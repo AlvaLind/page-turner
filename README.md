@@ -37,3 +37,67 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 ---
 
 Happy coding!
+## Terminal commands: 
+
+Run server 
+```shell
+python manage.py runserver  
+```
+
+Run server with local settings
+```console
+python manage.py runserver --settings page_turner.local_settings
+```
+
+Make directories 
+```
+mkdir location/new_directory_name
+```
+
+Check migrations for model changes
+```
+python manage.py makemigrations --dry-run
+```    
+
+Make migrations for model changes
+```
+python manage.py makemigrations
+```    
+
+Migrate database
+```bash
+python manage.py migrate
+```
+
+Create super user
+```
+python manage.py createsuperuser
+```
+
+Generating the static files
+```
+python manage.py collectstatic  
+```                                   
+
+Check
+```
+python manage.py check
+```
+
+Install dependencies
+```
+pip install -r .\requirements.txt
+```
+
+Update requirements.txt with latest versions of installed packages
+```
+pip freeze > requirements.txt
+```
+
+flush/delete existing data from databases 
+```
+python3 manage.py flush
+```
+
+Install Python Imaging Library - Pillow library. Required for book cover images.
+```
