@@ -1,7 +1,18 @@
 from django.contrib import admin
-from .models import Book
+from .models import Book, Genre
 from django_summernote.admin import SummernoteModelAdmin
 
+
+
+@admin.register(Genre)
+class GenreAdmin(SummernoteModelAdmin):
+    """
+    Lists fields for display in admin, fileds for search,
+    field filters, fields to prepopulate and rich-text editor.
+    """
+    list_display = ('name', 'description',)
+    search_fields = ['name']
+    summernote_fields = ('description',)
 
 
 @admin.register(Book)

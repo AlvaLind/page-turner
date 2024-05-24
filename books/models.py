@@ -4,12 +4,27 @@ from django.db import models
 
 # Create your models here.
 
+
+class Genre(models.Model):
+    # Fields
+    name = models.CharField(max_length=50)
+    description = models.TextField(blank=True)
+    
+    class Meta: 
+        ordering =["-name"]
+    
+    def __str__(self):
+        return self.name
+    
+    
 class Book(models.Model):
+    # Relationships
+    genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True)
+    
     # Fields
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=100)
     author = models.CharField(max_length=50)
-    genre = models.CharField(max_length=30)
+    title = models.CharField(max_length=100)
     published_year = models.IntegerField()
     cover_image = models.ImageField(upload_to='book_covers/', blank=True, null=True)
     description = models.TextField(blank=True, null=True)
@@ -24,3 +39,4 @@ class Book(models.Model):
         return self.title
     
 
+    
