@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book, Genre
+from .models import Book, Genre, Author
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -8,13 +8,22 @@ from django_summernote.admin import SummernoteModelAdmin
 class GenreAdmin(SummernoteModelAdmin):
     """
     Lists fields for display in admin, fileds for search,
-    field filters, fields to prepopulate and rich-text editor.
+    and rich-text editor.
     """
     list_display = ('name', 'description',)
     search_fields = ['name']
     summernote_fields = ('description',)
 
 
+@admin.register(Author)
+class AuthorAdmin(admin.ModelAdmin):
+    """
+    Lists fields for display in admin and fields for search.
+    """
+    list_display = ('name', 'nationality', 'birth_date')
+    search_fields = ['name']
+    
+    
 @admin.register(Book)
 class BookAdmin(SummernoteModelAdmin):
     """

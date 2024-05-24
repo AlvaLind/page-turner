@@ -17,13 +17,23 @@ class Genre(models.Model):
         return self.name
     
     
+class Author(models.Model):
+    # Fields
+    name = models.CharField(max_length=100)
+    birth_date = models.DateField(null=True, blank=True)
+    nationality = models.CharField(max_length=100, blank=True)
+    
+    def __str__(self):
+        return self.name
+    
+    
 class Book(models.Model):
     # Relationships
     genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
     
     # Fields
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    author = models.CharField(max_length=50)
     title = models.CharField(max_length=100)
     published_year = models.IntegerField()
     cover_image = models.ImageField(upload_to='book_covers/', blank=True, null=True)
