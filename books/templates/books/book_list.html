@@ -1,0 +1,32 @@
+<!-- templates/book_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+</head>
+<body>
+    <header>
+        <h1>Page Turner Library</h1>
+    </header>
+
+    <section>
+        <ul>
+            {% for book in books %}
+                <li>
+                    <h2>{{ book.title }}</h2>
+                    <p><strong>Author:</strong> {{ book.author.name }}</p>
+                    <p><strong>Genre:</strong> {{ book.genre.name }}</p>
+                    <p><strong>Published Year:</strong> {{ book.published_year }}</p>
+                    {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover">
+                    {% endif %}
+                    <p>{{ book.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+</body>
+</html>
