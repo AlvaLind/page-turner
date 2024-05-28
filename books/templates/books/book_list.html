@@ -1,32 +1,37 @@
-<!-- templates/book_list.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book List</title>
-</head>
-<body>
-    <header>
-        <h1>Page Turner Library</h1>
-    </header>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
 
-    <section>
-        <ul>
-            {% for book in books %}
-                <li>
-                    <h2>{{ book.title }}</h2>
-                    <p><strong>Author:</strong> {{ book.author.name }}</p>
-                    <p><strong>Genre:</strong> {{ book.genre.name }}</p>
-                    <p><strong>Published Year:</strong> {{ book.published_year }}</p>
-                    {% if book.cover_image %}
-                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover">
-                    {% endif %}
-                    <p>{{ book.description }}</p>
-                </li>
-            {% endfor %}
-        </ul>
-    </section>
+<div class="container mt-5">
+    <h1 class="mb-4">Latest Books</h1>
+    <div class="row">
+        {% for book in book_list %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="image-container me-3">
+                            {% if book.cover_image %}
+                            <img class="img-fluid" src="{{ book.cover_image.url }}" alt="{{ book.title }}" style="max-width: 100px;">
+                            {% else %}
+                            <img class="img-fluid" src="{% static 'images/book_default.png' %}" alt="placeholder image" style="max-width: 100px;">
+                            {% endif %}
+                        </div>
+                        <div class="flex-grow-1">
+                            <h4 class="title mb-1">{{ book.title }}</h4>
+                            <p class="author mb-1">Author: {{ book.author }}</p>
+                            <p class="card-text text-muted h6 mb-0">Published in: {{ book.published_year }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}
+    </div>
+    <div class="row">
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
 
-</body>
-</html>
+{% endblock %}

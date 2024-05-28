@@ -10,8 +10,8 @@ class GenreAdmin(SummernoteModelAdmin):
     Lists fields for display in admin, fileds for search,
     and rich-text editor.
     """
-    list_display = ('name', 'description',)
-    search_fields = ['name']
+    list_display = ('name',)
+    search_fields = ['name', 'description']
     summernote_fields = ('description',)
 
 
@@ -31,7 +31,7 @@ class BookAdmin(SummernoteModelAdmin):
     field filters, fields to prepopulate and rich-text editor.
     """
     list_display = ('title', 'author', 'genre', 'published_year',)
-    search_fields = ['title', 'author', 'genre']
+    search_fields = ['title', 'author', 'genre', 'description']
     list_filter = ('genre', 'created_on',)
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('description',)
