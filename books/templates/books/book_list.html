@@ -14,7 +14,7 @@
                             {% if book.cover_image %}
                             <img class="img-fluid" src="{{ book.cover_image.url }}" alt="{{ book.title }}" style="max-width: 100px;">
                             {% else %}
-                            <img class="img-fluid" src="{% static 'images/book_default.png' %}" alt="placeholder image" style="max-width: 100px;">
+                            <img class="img-fluid" src="{% static 'images/book_default.jpg' %}" alt="placeholder image" style="max-width: 100px;">
                             {% endif %}
                         </div>
                         <div class="flex-grow-1">
