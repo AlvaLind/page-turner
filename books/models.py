@@ -1,5 +1,7 @@
 import uuid
 from django.db import models
+from cloudinary.models import CloudinaryField
+
 
 
 # Create your models here.
@@ -11,7 +13,7 @@ class Genre(models.Model):
     description = models.TextField(blank=True)
     
     class Meta: 
-        ordering =["-name"]
+        ordering =["name"]
     
     def __str__(self):
         return self.name
@@ -23,6 +25,9 @@ class Author(models.Model):
     birth_date = models.DateField(null=True, blank=True)
     nationality = models.CharField(max_length=100, blank=True)
     
+    class Meta: 
+        ordering =["name"]
+        
     def __str__(self):
         return self.name
     
@@ -36,7 +41,7 @@ class Book(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100)
     published_year = models.IntegerField()
-    cover_image = models.ImageField(upload_to='book_covers/', blank=True, null=True)
+    cover_image = CloudinaryField('image', default='placeholder')
     description = models.TextField(blank=True, null=True)
     slug = models.SlugField(max_length=100, unique=True, blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
