@@ -48,7 +48,7 @@ class Book(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
 
     class Meta: 
-        ordering =["-created_on"]
+        ordering =["-published_year"]
     
     def __str__(self):
         return self.title
