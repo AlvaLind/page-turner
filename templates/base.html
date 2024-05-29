@@ -1,7 +1,7 @@
 {% load static %}
 
 {% url 'index' as home_url %}
-{% url 'book_list' as books_url %}
+{% url 'books' as books_url %}
 
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}" 
-                        href="{{ home_url }}">Home</a>
+                        href="{{ books_url }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == books_url %}active" aria-current="page{% endif %}"
