@@ -101,3 +101,11 @@ python3 manage.py flush
 
 Install Python Imaging Library - Pillow library. Required for book cover images.
 ```
+pip3 install cloudinary~=1.36.0 dj3-cloudinary-storage~=0.0.6 urllib3~=1.26.15
+```
+
+
+Copy the templates from the allauth package to the project's templates directory for windows
+```
+xcopy "C:\Users\alval\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\allauth\templates\*" ".\templates\" /S /E
+```
