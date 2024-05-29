@@ -74,3 +74,11 @@ footer .footer-links li a:hover {
 footer p {
     margin: 10px 0 0;
 }
+
+.no-underline {
+    text-decoration: none;
+}
+
+.no-underline:hover {
+    text-decoration: none;
+}
