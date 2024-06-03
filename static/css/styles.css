@@ -6,6 +6,8 @@ body {
     padding: 0;
     background-color: #F5F5DC; 
     color: #333;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh; /* Set minimum height to fill the viewport */
 }
 
@@ -33,11 +35,11 @@ nav {
 
 .navbar-nav .nav-item .nav-link.active {
     font-weight: bold;
-    color: #ffcc00;
+    color: #fae17b;
 }
 
 main {
-    flex: 1;
+    flex-grow: 1;
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
@@ -83,4 +85,9 @@ footer p {
 
 .no-underline:hover {
     text-decoration: none;
+}
+
+.form-container {
+    background-color: #f5f5e0; 
+    border: 2px solid #8f8f8f; 
 }
