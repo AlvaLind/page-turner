@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 
@@ -54,4 +55,21 @@ class Book(models.Model):
         return self.title
     
 
+class Comment(models.Model):
+    """
+    Stores a single comment entry related to :model:'auth.User'
+    and :model:'books/Book'.
+    """    
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="comments")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
+    body = models.TextField(max_length=1000)
+    approved = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ["created_on"]
+        
+    def __str__(self):
+       return f"Comment {self.body} by {self.user}"
+        
     
