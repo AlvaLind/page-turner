@@ -109,3 +109,9 @@ Copy the templates from the allauth package to the project's templates directory
 ```
 xcopy "C:\Users\alval\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\allauth\templates\*" ".\templates\" /S /E
 ```
+
+Install crispy forms and crispy bootstrap
+```
+pip3 install django-crispy-forms~=2.0 crispy-bootstrap5~=0.7
+```
+
