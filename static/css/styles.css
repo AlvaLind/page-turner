@@ -79,6 +79,7 @@ footer p {
     margin: 10px 0 0;
 }
 
+/* Book card styles, book_list template */
 .no-underline {
     text-decoration: none;
 }
@@ -99,4 +100,14 @@ footer p {
 
 .title, .author{
     color: #333;
+}
+
+/* Rating Star Icons, book_details template */
+.star-icon {
+    color: #7e7c7c; 
+    cursor: pointer; 
+}
+
+.star-icon.rated {
+    color: #e7bb36;
 }
