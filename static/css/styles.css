@@ -79,7 +79,8 @@ footer p {
     margin: 10px 0 0;
 }
 
-/* Book card styles, book_list template */
+/* book_list template */
+/* list of displayed books section */
 .no-underline {
     text-decoration: none;
 }
@@ -110,4 +111,24 @@ footer p {
 
 .star-icon.rated {
     color: #e7bb36;
+}
+
+/* Comment Section */
+.comment-container {
+    border: 2px solid #c98f61;
+    background-color: #f4f2f3;
+    padding: 15px;
+    max-height: 100vh;
+    overflow: scroll;
+}
+
+.comment-card{
+    border: 2px solid #c98f61;
+    background-color: #fff;
+}
+
+.add-comment-card{
+    border: 2px solid #c98f61;
+    background-color: #f4f2f3;
+    max-height: 100vh;
 }
