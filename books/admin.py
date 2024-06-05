@@ -20,7 +20,7 @@ class AuthorAdmin(admin.ModelAdmin):
     """
     Lists fields for display in admin and fields for search.
     """
-    list_display = ('name', 'nationality', 'birth_date')
+    list_display = ('name', 'nationality', 'birth_date',)
     search_fields = ['name']
     
     
@@ -31,12 +31,22 @@ class BookAdmin(SummernoteModelAdmin):
     field filters, fields to prepopulate and rich-text editor.
     """
     list_display = ('title', 'author', 'genre', 'published_year',)
-    search_fields = ['title', 'author', 'genre', 'description']
+    search_fields = ['title', 'author__name', 'genre__name', 'description']
     list_filter = ('genre', 'created_on',)
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('description',)
     
+
+@admin.register(Rating)
+class RatingAdmin(admin.ModelAdmin):
+    """
+    Lists fields for display in admin, fields for search,
+    field filters,
+    """
+    search_fields = ['book__title']
+    list_filter = ('rating', 'last_updated')
+    
     
 # Register your models here.
 admin.site.register(Comment)
-admin.site.register(Rating)
+

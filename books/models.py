@@ -95,4 +95,4 @@ class Rating(models.Model):
         unique_together = ('user', 'book') 
         
     def __str__(self):
-        return f'{self.book.title} - {self.rating} stars {self.user.username}'
+        return f'{self.book.title} - {self.rating} Stars - Rated by: {self.user.username}'
