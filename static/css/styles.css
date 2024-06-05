@@ -116,9 +116,9 @@ footer p {
 /* Comment Section */
 .comment-container {
     border: 2px solid #c98f61;
-    background-color: #f4f2f3;
+    background-color: #f0efe2;
     padding: 15px;
-    max-height: 100vh;
+    max-height: 600px;
     overflow: scroll;
 }
 
@@ -129,6 +129,6 @@ footer p {
 
 .add-comment-card{
     border: 2px solid #c98f61;
-    background-color: #f4f2f3;
-    max-height: 100vh;
+    background-color: #f0efe2;
+    max-height: 600px;
 }
