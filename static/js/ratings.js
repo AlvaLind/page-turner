@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const starIcons = document.querySelectorAll(".star-icon");
     const ratingInput = document.getElementById("rating-input");
     const ratingForm = document.getElementById("rating-form");
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
 
     // Retrieve the data-value (users rating out of 5) from the stars icons.
     starIcons.forEach(star => {
