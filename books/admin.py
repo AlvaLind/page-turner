@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book, Genre, Author, Comment
+from .models import Author, Book, Comment, Genre, Rating
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -39,3 +39,4 @@ class BookAdmin(SummernoteModelAdmin):
     
 # Register your models here.
 admin.site.register(Comment)
+admin.site.register(Rating)
