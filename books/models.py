@@ -72,4 +72,27 @@ class Comment(models.Model):
     def __str__(self):
        return f"Comment {self.body} by {self.user}"
         
+
+class Rating(models.Model):
+    """
+    Stores a single rating entry related to :model:'auth.User'
+    and :model:'books/Book'.
     
+    Each user can rate each book only once. The rating is an integer
+    value between 1 and 5 inclusive.
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="ratings")
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="rater")
+    rating = models.IntegerField(choices=[(i, i) for i in range (1, 6)], blank=True, null=True)
+    last_updated = models.DateTimeField(auto_now=True)
+
+    """
+    Enforces uniqueness constraints on the fields user and book in the model.
+    This means the combination of the user and book values must be unique and not already exist. 
+    It will make sure a user can rate a particular book only once. 
+    """
+    class Meta:
+        unique_together = ('user', 'book') 
+        
+    def __str__(self):
+        return f'{self.book.title} - {self.rating} stars {self.user.username}'
