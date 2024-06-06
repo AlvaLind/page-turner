@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'rest_framework',
     'books',
+    'about_us',
 ]
 
 SITE_ID = 1
