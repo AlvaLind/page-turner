@@ -12,6 +12,7 @@ class BookList(generic.ListView):
     model = Book
     queryset = Book.objects.all()
     template_name = "book_list.html"
+    paginate_by = 9
     
 def book_detail(request, slug):
     """

@@ -2,38 +2,70 @@
 {% load static %}
 {% block content %}
 
-<div class="container mt-5">
-    <h1 class="mb-4">Latest Books</h1>
+<!-- book_list.html content starts here -->
+<div class="container-fluid">
     <div class="row">
-        {% for book in book_list %}
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <a href="{% url 'book_detail' book.slug %}" class="book-link no-underline">
-                        <div class="d-flex">
-                            <div class="image-container me-3">
-                                {% if book.cover_image %}
-                                <img class="img-fluid" src="{{ book.cover_image.url }}" alt="{{ book.title }}" style="max-width: 100px;">
-                                {% else %}
-                                <img class="img-fluid" src="{% static 'images/book_default.jpg' %}" alt="placeholder image" style="max-width: 100px;">
-                                {% endif %}
-                            </div>
-                            <div class="flex-grow-1">
-                                <h4 class="title mb-1">{{ book.title }}</h4>
-                                <p class="author mb-1">Author: {{ book.author }}</p>
-                                <p class="card-text text-muted h6 mb-0">Published in: {{ book.published_year }}</p>
-                            </div>
+        <!-- Books section -->
+        <div class="container mt-5">
+            <h1 class="mb-4">Latest Books</h1>
+            <div class="row">
+                <!-- Create a card display for each book -->
+                {% for book in book_list %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <a href="{% url 'book_detail' book.slug %}" class="book-link no-underline">
+                                <div class="d-flex">
+                                    <!-- Use a default book cover image if it has no cover image in the database -->
+                                    <div class="image-container me-3">
+                                        {% if book.cover_image %}
+                                        <img class="img-fluid" src="{{ book.cover_image.url }}" alt="{{ book.title }}" style="max-width: 100px;">
+                                        {% else %}
+                                        <img class="img-fluid" src="{% static 'images/book_default.jpg' %}" alt="placeholder image" style="max-width: 100px;">
+                                        {% endif %}
+                                    </div>
+                                    <!-- Display basic book details -->
+                                    <div class="flex-grow-1">
+                                        <h4 class="title mb-1">{{ book.title }}</h4>
+                                        <p class="author mb-1">Author: {{ book.author }}</p>
+                                        <p class="card-text text-muted h6 mb-0">Published in: {{ book.published_year }}</p>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
+                    </div>
                 </div>
+                <!-- Make sure 3 books per row then start a new row -->
+                {% if forloop.counter|divisibleby:3 %}
+            </div>
+            <div class="row">
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
-        {% if forloop.counter|divisibleby:3 %}
     </div>
-    <div class="row">
-        {% endif %}
-        {% endfor %}
-    </div>
+
+    <!-- Paginate books list so a max of 9 are displayed per page -->
+    <!-- set the max number in BookList view 'paginate_by = 9'-->
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <!-- If statement to display a previous button if required -->
+            {% if page_obj.has_previous %}
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}" class="page-link"> &laquo; PREV </a>
+            </li>
+            {% endif %}
+
+            <!-- If statement to display a next button if required -->
+            {% if page_obj.has_next %}
+            <li>
+                <a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}     
 </div>
 
 {% endblock %}
