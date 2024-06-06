@@ -81,6 +81,7 @@ footer p {
 
 /* book_list template */
 /* list of displayed books section */
+
 .no-underline {
     text-decoration: none;
 }
@@ -97,7 +98,7 @@ footer p {
 .card{
     border: 2px solid #c98f61;
     background-color: #f4f2f3;
-    height: 90%;
+    height: 90%; 
 }
 
 .image-container img {
@@ -127,7 +128,7 @@ footer p {
     background-color: #f0efe2;
     padding: 15px;
     max-height: 600px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .comment-card{
@@ -139,4 +140,12 @@ footer p {
     border: 2px solid #c98f61;
     background-color: #f0efe2;
     max-height: 600px;
+}
+
+/* About us section */
+.rounded-image {
+    border-radius: 15px;
+    float: right;
+    margin-left: 15px;
+    margin-bottom: 10px;
 }
