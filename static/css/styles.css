@@ -97,6 +97,14 @@ footer p {
 .card{
     border: 2px solid #c98f61;
     background-color: #f4f2f3;
+    height: 90%;
+}
+
+.image-container img {
+    max-width: 100%; 
+    height: auto; 
+    max-height: 160px; 
+    overflow: hidden; 
 }
 
 .title, .author{
