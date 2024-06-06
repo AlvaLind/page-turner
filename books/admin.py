@@ -44,7 +44,8 @@ class RatingAdmin(admin.ModelAdmin):
     field filters,
     """
     search_fields = ['book__title']
-    list_filter = ('rating', 'last_updated')
+    list_filter = ('rating',)
+    readonly_fields = ["book", "rating", "user",]
     
     
 # Register your models here.
