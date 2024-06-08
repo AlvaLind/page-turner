@@ -113,13 +113,22 @@ footer p {
 }
 
 /* Rating Star Icons, book_details template */
-.star-icon {
-    color: #7e7c7c; 
-    cursor: pointer; 
+.rating-stars .star-form {
+    display: inline;
+    padding: 2px;
 }
 
-.star-icon.rated {
-    color: #e7bb36;
+.rating-stars .star-icon {
+    font-size: 1.5rem;
+    margin-right: 0.2rem;
+    color: #747474;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.rating-stars .star-icon.filled {
+    color: #f5b301;
 }
 
 /* Comment Section */

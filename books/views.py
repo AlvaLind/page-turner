@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from .models import Book, Comment, Rating 
 from .forms import CommentForm, RatingForm
 
@@ -65,17 +65,18 @@ def book_detail(request, slug):
     # Handle the rating form submission
     if request.method == "POST":    
         rating_form = RatingForm(data=request.POST)
+       
         if rating_form.is_valid():
-            rating = rating_form.save(commit=False)
-            rating.user = request.user
-            rating.book = book
+            rating_value = rating_form.cleaned_data['rating']
+            # Get or create a rating object for the user and book
+            rating, created = Rating.objects.get_or_create(user=request.user, book=book)
+            rating.rating = rating_value
             rating.save()
-            messages.add_message(
-                request, messages.SUCCESS,
-                'Your rating has been submitted!'
-            )
-            print("Rating submitted successfully")
+            
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                return JsonResponse({'message': 'Rating submitted successfully', 'user_rating': rating_value})
             return HttpResponseRedirect(reverse('book_detail', args=[slug]))
+
     else:
         # Empty the rating form  
         rating_form = RatingForm()
@@ -86,7 +87,8 @@ def book_detail(request, slug):
         user_rating_obj = Rating.objects.filter(book=book, user=request.user).first()
         if user_rating_obj:
             user_rating = user_rating_obj.rating
-            
+    print("users rating is now:", user_rating)   
+     
     # Pass variables to the book_detail template            
     return render(request, "books/book_detail.html", {
         "book": book,
