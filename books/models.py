@@ -83,7 +83,7 @@ class Rating(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="ratings")
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="rater")
-    rating = models.IntegerField(choices=[(i, i) for i in range (1, 6)], blank=True, null=True)
+    rating = models.IntegerField(choices=[(i, i) for i in range (1, 6)], default=-1)
     last_updated = models.DateTimeField(auto_now=True)
 
     """
