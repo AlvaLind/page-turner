@@ -62,6 +62,16 @@ def book_detail(request, slug):
         # Empty the comment form        
         comment_form = CommentForm()
     
+    # Retrieve all ratings for this book
+    book_ratings = Rating.objects.filter(book=book).exclude(rating=-1).values_list('rating', flat=True)
+    # Calculate average rating
+    if book_ratings:
+        average_rating = sum(book_ratings) / len(book_ratings)
+        print("calculated average rating: ", average_rating)
+    else:
+        average_rating = None 
+        print("set average rating to none")  
+        
     # Handle the rating form submission
     if request.method == "POST":    
         rating_form = RatingForm(data=request.POST)
@@ -72,23 +82,30 @@ def book_detail(request, slug):
             rating, created = Rating.objects.get_or_create(user=request.user, book=book)
             rating.rating = rating_value
             rating.save()
+            print("Rating submitted successfully")
             
+            # Calculate the average book rating
+            book_ratings = Rating.objects.filter(book=book).exclude(rating=-1).values_list('rating', flat=True)
+            if book_ratings:
+                average_rating = sum(book_ratings) / len(book_ratings)
+            
+            # Check if request was made using AJAX and return a JSON response back to ratings.js submitForm function to be processed. 
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                return JsonResponse({'message': 'Rating submitted successfully', 'user_rating': rating_value})
+                return JsonResponse({'message': 'Rating submitted successfully', 'user_rating': rating_value, 'average_rating': average_rating})
+            
+            # If not an AJAX request, respond with a HTTP response to redirect user to book detail page
             return HttpResponseRedirect(reverse('book_detail', args=[slug]))
 
     else:
         # Empty the rating form  
         rating_form = RatingForm()
-    
-    # Retreive the user's rating for the book
-    user_rating = None
+        
+    # Retrieve the user's rating for the book if the user is authenticated
     if request.user.is_authenticated:
         user_rating_obj = Rating.objects.filter(book=book, user=request.user).first()
         if user_rating_obj:
             user_rating = user_rating_obj.rating
-    print("users rating is now:", user_rating)   
-     
+
     # Pass variables to the book_detail template            
     return render(request, "books/book_detail.html", {
         "book": book,
@@ -96,7 +113,8 @@ def book_detail(request, slug):
         "comment_count": comment_count,
         "comment_form": comment_form,
         "rating_form": rating_form,  
-        "user_rating": user_rating,     
+        "user_rating": user_rating,
+        "average_rating": average_rating,     
         },
     )
     
