@@ -18,57 +18,6 @@
         </div>
     </div>
 
-    <!-- Rating Section -->
-    <div class="row mt-4">
-        <div class="col-12">
-            <hr>
-            <div class="mt-2">
-            {% if average_rating %}
-                <p>Average Rating: <span id="average-rating">{{ average_rating }}</span></p>
-            {% else %}
-                <p>No ratings yet</p>
-            {% endif %}
-            </div>
-            {% if user.is_authenticated %}
-            <p>Please rate this book:</p>
-            <div class="rating-stars">
-                <form id="ratingForm1" class="star-form" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="rating" value="1">
-                    <button type="submit" class="far fa-star star-icon" data-value="1"></button>
-                </form>
-                <form id="ratingForm2" class="star-form" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="rating" value="2">
-                    <button type="submit" class="far fa-star star-icon" data-value="2"></button>
-                </form>
-                <form id="ratingForm3" class="star-form" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="rating" value="3">
-                    <button type="submit" class="far fa-star star-icon" data-value="3"></button>
-                </form>
-                <form id="ratingForm4" class="star-form" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="rating" value="4">
-                    <button type="submit" class="far fa-star star-icon" data-value="4"></button>
-                </form>
-                <form id="ratingForm5" class="star-form" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="rating" value="5">
-                    <button type="submit" class="far fa-star star-icon" data-value="5"></button>
-                </form>
-            </div>
-            
-
-            <div class="mt-2">
-                <p>Your rating: <span id="user-rating">{{ user_rating }}</span></p>
-            </div>
-            {% else %}
-            <p>Log in to rate this book</p>
-            {% endif %}
-        </div>
-    </div>
-
     <!-- Comments Section -->
     <div class="row mt-4">
         <div class="col-12">
@@ -118,8 +67,48 @@
                             {% csrf_token %}
                             <button id="submitButton" type="submit" class="btn btn-primary btn-lg mt-2">Submit</button>
                         </form>
+                            <!-- Rating Section -->
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <hr>
+                                <strong>Please rate this book:</strong>
+                                <div class="rating-stars mt-2">
+                                    <form id="ratingForm1" class="star-form" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="rating" value="1">
+                                        <button type="submit" class="far fa-star star-icon" data-value="1"></button>
+                                    </form>
+                                    <form id="ratingForm2" class="star-form" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="rating" value="2">
+                                        <button type="submit" class="far fa-star star-icon" data-value="2"></button>
+                                    </form>
+                                    <form id="ratingForm3" class="star-form" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="rating" value="3">
+                                        <button type="submit" class="far fa-star star-icon" data-value="3"></button>
+                                    </form>
+                                    <form id="ratingForm4" class="star-form" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="rating" value="4">
+                                        <button type="submit" class="far fa-star star-icon" data-value="4"></button>
+                                    </form>
+                                    <form id="ratingForm5" class="star-form" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="rating" value="5">
+                                        <button type="submit" class="far fa-star star-icon" data-value="5"></button>
+                                    </form>
+                                </div>
+                                
+
+                                <div class="mt-2">
+                                    <p>Your rating: <span id="user-rating">{{ user_rating }}</span></p>
+                                </div>
+
+                            </div>
+                        </div>
                     {% else %}
-                        <p>Log in to leave a comment</p>
+                        <p>Log in to leave a comment and/or a rating</p>
                     {% endif %}
                 </div>
             </div>

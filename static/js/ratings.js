@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // If the rating was submitted successfully update user rating and average rating displayx
             if (data.message === 'Rating submitted successfully') {
                 userRating.textContent = data.user_rating; 
-                averageRatingElement.textContent = data.average_rating !== null ? data.average_rating.toFixed(2) : 'No ratings yet'; 
+                averageRatingElement.textContent = data.average_rating !== null ? data.average_rating.toFixed(1) : 'No ratings yet'; 
             }
         })
 

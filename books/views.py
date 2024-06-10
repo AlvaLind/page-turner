@@ -73,6 +73,7 @@ def book_detail(request, slug):
         print("set average rating to none")  
         
     # Handle the rating form submission
+    
     if request.method == "POST":    
         rating_form = RatingForm(data=request.POST)
        
@@ -99,7 +100,8 @@ def book_detail(request, slug):
     else:
         # Empty the rating form  
         rating_form = RatingForm()
-        
+    
+    user_rating = None
     # Retrieve the user's rating for the book if the user is authenticated
     if request.user.is_authenticated:
         user_rating_obj = Rating.objects.filter(book=book, user=request.user).first()

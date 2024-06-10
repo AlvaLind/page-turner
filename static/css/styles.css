@@ -131,7 +131,7 @@ footer p {
     color: #f5b301;
 }
 
-/* Comment Section */
+/* Comment display Section */
 .comment-container {
     border: 2px solid #c98f61;
     background-color: #f0efe2;
@@ -149,6 +149,15 @@ footer p {
     border: 2px solid #c98f61;
     background-color: #f0efe2;
     max-height: 600px;
+}
+
+/* Leave a comment section */
+#id_body{
+    height:150px;
+}
+
+.form-label{
+    content-visibility: hidden;
 }
 
 /* About us section */
