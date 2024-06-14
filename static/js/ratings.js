@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Select all star icons, current user rating and average book rating elements
+    // Select all star icons, current user rating, and average book rating elements
     const stars = document.querySelectorAll('.star-icon');
-    const userRating = document.getElementById('user-rating');
-    const averageRatingElement = document.getElementById('average-rating')
+    const userRatingElement = document.getElementById('user-rating');
+    const averageRatingElement = document.getElementById('average-rating');
 
     // Attach event listeners to each star
     stars.forEach(star => {
@@ -11,66 +11,80 @@ document.addEventListener('DOMContentLoaded', function () {
         star.addEventListener('click', handleStarClick);
     });
 
-    ```
-        Function to handle star hover event
-        Gets the hovered star value and fills all stars 
-        up to that star while mouse is hovering over it.
-    ```
+
+    // Function to handle star hover event
     function handleStarHover(event) {
-        const value = event.target.getAttribute('data-value');
-        fillStars(value);
+        const value = parseFloat(event.target.getAttribute('data-value'));
+        fillUserStars(value);
     }
 
-    ``` 
-        Function to handle mouseout event
-        Fills stars up to the user's last submitted rating
-    ```
+
+    // Function to handle mouseout event
     function handleStarHoverOut() {
-        fillStars(userRating.textContent);
+        const userRating = parseFloat(userRatingElement.textContent);
+        fillUserStars(userRating);
     }
 
-    ```
-        Function to handle star click event
-        Finds the closest form containing the clicked star
-        gets the data-value from the clicked star
-        updates the user rating
-        fills stars up to and including the clicked star
-        and then submits the form via AJAX 
 
-    ```
+    // Function to handle star click event
     function handleStarClick(event) {
         event.preventDefault(); // Prevent the default form submission 
         const form = event.target.closest('form');
-        const value = event.target.getAttribute('data-value');
-        userRating.textContent = value;
-        fillStars(value);
-        submitForm(form, value); // Submit the form via AJAX using our submitForm Function
+        const value = parseFloat(event.target.getAttribute('data-value'));
+        userRatingElement.textContent = value;
+        fillUserStars(value);
+        submitForm(form, value); // Submit the form via AJAX using our submitForm function
     }
+    
 
-    ```
-        Function to colour/fill star icons up to a given data-value 
-        iterates over for each star icon
-        Adds 'filled' class to stars with data-value <= the value arg
-        otherwise remove the 'filled' class
-        'filled' class in styles changes star colour to yellow
-    ```
-    function fillStars(value) {
+    // Function to colour/fill star icons up to a given value
+    function fillUserStars(value) {
+        // For each star check to see how many need to be filled to match user rating
         stars.forEach(star => {
-            if (star.getAttribute('data-value') <= value) {
+            // Get the selected star icons data-value
+            const starValue = parseFloat(star.getAttribute('data-value'));
+            // Add filled class to any star up to the user rating. 
+            if (starValue <= value) {
                 star.classList.add('filled');
             } else {
-                star.classList.remove('filled');
+                star.classList.remove('filled',);
             }
         });
     }
 
-    ```
-        Function to submit the form via AJAX in order
-        to submit the rating form data to the server without
-        reloading the entire webpage.
-    ```
-    function submitForm(form, value) {
 
+    // Function to colour/fill star icons to display a books ave. rating
+    function fillBookStars(average_rating) {
+        const starIcons = document.querySelectorAll('.book-star-ratings .book-rating-star');
+
+        starIcons.forEach(starIcon => {
+            const value = parseInt(starIcon.getAttribute('data-value'));
+
+            // Handle full filled stars
+            if (average_rating >= value) {
+                starIcon.classList.add('fas'); // Fill the star
+                starIcon.classList.remove('far');
+            } else {
+                starIcon.classList.remove('fas'); // Empty the star
+                starIcon.classList.add('far');
+            }
+
+            // Calculate remainder after filling full stars
+            const remainder = average_rating - Math.floor(average_rating);
+
+            // Handle half-filled stars, when average_rating rounds to 0.5. 
+            if (remainder >= 0.3 && remainder <= 0.7 && Math.floor(average_rating) === value - 1) {
+                starIcon.classList.add('half-filled');
+                starIcon.classList.add('fas');
+            } else {
+                starIcon.classList.remove('half-filled');
+            }
+        });
+    }
+
+
+    // Function to submit the form via AJAX
+    function submitForm(form, value) {
         const formData = new FormData(form); // Create FormData object from form
         formData.set('rating', value); // Set the rating value in the FormData object
 
@@ -83,25 +97,45 @@ document.addEventListener('DOMContentLoaded', function () {
                 'X-Requested-With': 'XMLHttpRequest' // Indicate AJAX request
             }
         })
-
-        // Convert response to JSON
-        .then(response => response.json()) 
-        
+        .then(response => response.json()) // Convert response to JSON
         .then(data => {
-            // If the rating was submitted successfully update user rating and average rating displayx
+            // If the rating was submitted successfully update user rating and average rating display
             if (data.message === 'Rating submitted successfully') {
-                userRating.textContent = data.user_rating; 
-                averageRatingElement.textContent = data.average_rating !== null ? data.average_rating.toFixed(1) : 'No ratings yet'; 
+                // Update books average rating display
+                userRatingElement.textContent = data.user_rating; 
+                // Display books ave. rating in text, check for plural format
+                let averageRatingText;
+                    // Check if average_rating is not null
+                    if (data.average_rating !== null) {
+                        let ratingText;
+                        // Determine if it's singular or plural based on total_ratings
+                        if (data.total_ratings === 1) {
+                            ratingText = 'rating';
+                        } else {
+                            ratingText = 'ratings';
+                        }
+                        // put together the averageRatingText string and round ave. rating to one decimal
+                        averageRatingText = `${data.average_rating.toFixed(1)} from ${data.total_ratings} ${ratingText}`;
+                    // If there are no ratings, display a message 
+                    } else {
+                        averageRatingText = 'No ratings yet';
+                    }  
+                // Update the HTML content of averageRatingElement with the calculated/put together averageRatingText
+                averageRatingElement.innerHTML = `<p>${averageRatingText}</p>`;
+
+                // Refill user rating stars based on updated user rating
+                fillUserStars(parseFloat(userRatingElement.textContent)); 
+                // Refill books average rating stars based on all reviews
+                fillBookStars(data.average_rating);
             }
         })
-
-        // Log any errors 
         .catch(error => {
             console.error('Error in fetch request:', error);
         });
     }
 
-    // Colour/fill the stars based on the user's existing rating
-    fillStars(userRating.textContent);
+    // Colour/fill the stars based on the user's existing rating when the page loads
+    fillUserStars(parseFloat(userRatingElement.textContent));
+    // Colour/fill the stars for the books ave. rating when the page loads
+    fillBookStars(parseFloat(averageRatingElement.textContent));
 });
-

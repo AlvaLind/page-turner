@@ -1,4 +1,5 @@
 /* styles.css */
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css);
 
 body {
     font-family: Arial, sans-serif;
@@ -112,23 +113,78 @@ footer p {
     color: #333;
 }
 
-/* Rating Star Icons, book_details template */
+/* Display books average rating, book_details template */
+/* Styles for star icons display */
+.book-star-ratings {
+    display: inline-block;
+    position: relative;
+    font-size: 24px;
+    color: #777777;
+}
+
+.star-ratings-background{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.star-ratings-foreground {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.star-ratings-background .book-stars,
+.star-ratings-foreground .book-stars {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.book-stars li {
+    display: inline-block;
+    text-align: center;
+}
+
+.book-rating-star {
+    color: #777777; /* Empty star colour */
+}
+
+.book-rating-star.fas {
+    color: #f5c518; /* Filled star colour */
+}
+
+.book-rating-star.half-filled::before {
+    content: '\f089'; /* Half-filled star icon from fontAwesome */
+    display: inline-flex;
+    overflow: hidden;
+}
+
+/* User Rating Star Icons, book_details template */
 .rating-stars .star-form {
     display: inline;
-    padding: 2px;
+    padding: 1px;
 }
 
 .rating-stars .star-icon {
-    font-size: 1.5rem;
-    margin-right: 0.2rem;
+    font-size: 1.25rem;
+    margin-right: 0.1rem;
+    padding: 1px;
     color: #747474;
     border: none;
     background: none;
     cursor: pointer;
 }
 
-.rating-stars .star-icon.filled {
-    color: #f5b301;
+.star-icon {
+    font-size: 24px; /* Adjust the size as needed */
+    color: #ccc; /* Default star colour */
+    cursor: pointer;
+    position: relative;
+}
+
+.star-icon.filled {
+    color: #f5c518; /* Highlight colour for filled stars */
 }
 
 /* Comment display Section */

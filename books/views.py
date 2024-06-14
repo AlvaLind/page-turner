@@ -62,18 +62,18 @@ def book_detail(request, slug):
         # Empty the comment form        
         comment_form = CommentForm()
     
-    # Retrieve all ratings for this book
+    # Retrieve all ratings for this book 
     book_ratings = Rating.objects.filter(book=book).exclude(rating=-1).values_list('rating', flat=True)
+    # Calculate total number of ratings left on the book
+    total_ratings = Rating.objects.filter(book=book).count()
+    
     # Calculate average rating
     if book_ratings:
         average_rating = sum(book_ratings) / len(book_ratings)
-        print("calculated average rating: ", average_rating)
     else:
         average_rating = None 
-        print("set average rating to none")  
         
     # Handle the rating form submission
-    
     if request.method == "POST":    
         rating_form = RatingForm(data=request.POST)
        
@@ -89,10 +89,15 @@ def book_detail(request, slug):
             book_ratings = Rating.objects.filter(book=book).exclude(rating=-1).values_list('rating', flat=True)
             if book_ratings:
                 average_rating = sum(book_ratings) / len(book_ratings)
-            
+            else:
+                average_rating = None 
+        
             # Check if request was made using AJAX and return a JSON response back to ratings.js submitForm function to be processed. 
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                return JsonResponse({'message': 'Rating submitted successfully', 'user_rating': rating_value, 'average_rating': average_rating})
+                return JsonResponse({'message': 'Rating submitted successfully', 
+                                     'user_rating': rating_value, 
+                                     'average_rating': average_rating, 
+                                     })
             
             # If not an AJAX request, respond with a HTTP response to redirect user to book detail page
             return HttpResponseRedirect(reverse('book_detail', args=[slug]))
@@ -116,7 +121,8 @@ def book_detail(request, slug):
         "comment_form": comment_form,
         "rating_form": rating_form,  
         "user_rating": user_rating,
-        "average_rating": average_rating,     
+        "average_rating": average_rating, 
+        "total_ratings": total_ratings,
         },
     )
     
