@@ -97,6 +97,7 @@ def book_detail(request, slug):
                 return JsonResponse({'message': 'Rating submitted successfully', 
                                      'user_rating': rating_value, 
                                      'average_rating': average_rating, 
+                                     'total_ratings': book_ratings,
                                      })
             
             # If not an AJAX request, respond with a HTTP response to redirect user to book detail page
