@@ -8,10 +8,44 @@
         <div class="col-md-4">
             <img src="{{ book.cover_image.url }}" class="img-fluid mb-3" alt="{{ book.title }} cover image">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 mb-4">
             <h1>{{ book.title }}</h1>
             <p><strong>Author:</strong> {{ book.author }}</p>
             <p><strong>Published Year:</strong> {{ book.published_year }}</p>
+            
+            <div class="book-star-ratings">
+                <div class="star-ratings-background">
+                    <ul class="book-stars">
+                        <li><i class="far fa-star book-rating-icon"></i></li>
+                        <li><i class="far fa-star book-rating-icon"></i></li>
+                        <li><i class="far fa-star book-rating-icon"></i></li>
+                        <li><i class="far fa-star book-rating-icon"></i></li>
+                        <li><i class="far fa-star book-rating-icon"></i></li>
+                    </ul>
+                </div>
+                <div class="star-ratings-foreground">
+                    <ul class="book-stars">
+                        <li><i class="fa-star book-rating-star far" data-value="1"></i></li>
+                        <li><i class="fa-star book-rating-star far" data-value="2"></i></li>
+                        <li><i class="fa-star book-rating-star far" data-value="3"></i></li>
+                        <li><i class="fa-star book-rating-star far" data-value="4"></i></li>
+                        <li><i class="fa-star book-rating-star far" data-value="5"></i></li>
+                    </ul>    
+                </div>            
+            </div>
+
+            <div id="average-rating">
+                {% if average_rating == None %}
+                    <p>No ratings</p>
+                {% else %}
+                    {% if total_ratings == 1 %}
+                        <p>{{ average_rating }} from {{ total_ratings }} rating</p>
+                    {% else %}
+                        <p>{{ average_rating }} from {{ total_ratings }} ratings</p>
+                    {% endif %}
+                {% endif %}
+            </div>
+
             <hr>
             <h3>Description</h3>
             <p>{{ book.description|safe }}</p>
@@ -23,7 +57,11 @@
         <div class="col-12">
             <hr>
             <strong class="text-secondary">
-                <i class="far fa-comments"></i> {{ comment_count }} Comments
+                {% if comment_count == 1 %}
+                    <i class="far fa-comments"></i> {{ comment_count }} Comment
+                {% else %}
+                    <i class="far fa-comments"></i> {{ comment_count }} Comments
+                {% endif %}
             </strong>
         </div>
     </div>
@@ -55,19 +93,20 @@
             {% endfor %}
         </div>
 
-        <!-- New Comment Form -->
+        <!-- Leave a Comment and Rating Form -->
         <div class="col-md-4 d-flex flex-column">
             <div class="add-comment-card flex-grow-1">
                 <div class="card-body">
                     {% if user.is_authenticated %}
+                        <!-- Comment Section -->
                         <h3>Leave a comment:</h3>
-                        <p>Posting as: {{ user.username }}</p>
+                        <span><i class="far fa-user"></i> {{ user.username }}</span>
                         <form id="commentForm" method="post">
                             {{ comment_form | crispy }}
                             {% csrf_token %}
                             <button id="submitButton" type="submit" class="btn btn-primary btn-lg mt-2">Submit</button>
                         </form>
-                            <!-- Rating Section -->
+                        <!-- Rating Section -->
                         <div class="row mt-4">
                             <div class="col-12">
                                 <hr>
