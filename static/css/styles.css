@@ -41,6 +41,7 @@ nav {
 
 main {
     flex-grow: 1;
+    align-self: auto;
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
@@ -96,10 +97,15 @@ footer p {
     border: 2px solid #161616; 
 }
 
-.card{
+.card {
     border: 2px solid #c98f61;
     background-color: #f4f2f3;
-    height: 90%; 
+    min-height: 190px;
+    position: relative;
+}
+
+.card-body { 
+    overflow: auto;
 }
 
 .image-container img {
@@ -160,6 +166,44 @@ footer p {
     overflow: hidden;
 }
 
+/* User Interactions Section */
+.user-interactions-container {
+    align-content: center;
+}
+
+/* Comment display Section */
+.comment-container {
+    border: 2px solid #c98f61;
+    background-color: #f0efe2;
+    padding: 15px;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.gutters {
+    --bs-gutter-x: 0rem;
+}
+
+.comment-card{
+    border: 2px solid #c98f61;
+    background-color: #fff;
+}
+
+.add-comment-card{
+    border: 2px solid #c98f61;
+    background-color: #f0efe2;
+    max-height: 600px;
+}
+
+/* Leave a comment section */
+#id_body{
+    height:150px;
+}
+
+.form-label{
+    content-visibility: hidden;
+}
+
 /* User Rating Star Icons, book_details template */
 .rating-stars .star-form {
     display: inline;
@@ -187,39 +231,31 @@ footer p {
     color: #f5c518; /* Highlight colour for filled stars */
 }
 
-/* Comment display Section */
-.comment-container {
-    border: 2px solid #c98f61;
-    background-color: #f0efe2;
-    padding: 15px;
-    max-height: 600px;
-    overflow-y: scroll;
-}
-
-.comment-card{
-    border: 2px solid #c98f61;
-    background-color: #fff;
-}
-
-.add-comment-card{
-    border: 2px solid #c98f61;
-    background-color: #f0efe2;
-    max-height: 600px;
-}
-
-/* Leave a comment section */
-#id_body{
-    height:150px;
-}
-
-.form-label{
-    content-visibility: hidden;
-}
-
 /* About us section */
 .rounded-image {
     border-radius: 15px;
     float: right;
     margin-left: 15px;
     margin-bottom: 10px;
+}
+
+/* Media query for larger screens */
+@media (min-width: 768px) {
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    
+    /* User Interactions section on book_details */
+    .gutters {
+        --bs-gutter-x: 1.5rem;
+    }
+}
+
+/* Medium screens up to 1200px */
+@media (min-width: 768px) and (max-width: 1300px) {
+    .col-md-6 {
+        flex: 0 0 50%; /* Ensure two books per row */
+        max-width: 50%; /* Ensure two books per row */
+    }
 }

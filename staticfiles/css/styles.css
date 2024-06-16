@@ -1,4 +1,5 @@
 /* styles.css */
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css);
 
 body {
     font-family: Arial, sans-serif;
@@ -40,6 +41,7 @@ nav {
 
 main {
     flex-grow: 1;
+    align-self: auto;
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
@@ -79,6 +81,9 @@ footer p {
     margin: 10px 0 0;
 }
 
+/* book_list template */
+/* list of displayed books section */
+
 .no-underline {
     text-decoration: none;
 }
@@ -92,11 +97,165 @@ footer p {
     border: 2px solid #161616; 
 }
 
-.card{
+.card {
     border: 2px solid #c98f61;
     background-color: #f4f2f3;
+    min-height: 190px;
+    position: relative;
+}
+
+.card-body { 
+    overflow: auto;
+}
+
+.image-container img {
+    max-width: 100%; 
+    height: auto; 
+    max-height: 160px; 
+    overflow: hidden; 
 }
 
 .title, .author{
     color: #333;
+}
+
+/* Display books average rating, book_details template */
+/* Styles for star icons display */
+.book-star-ratings {
+    display: inline-block;
+    position: relative;
+    font-size: 24px;
+    color: #777777;
+}
+
+.star-ratings-background{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.star-ratings-foreground {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.star-ratings-background .book-stars,
+.star-ratings-foreground .book-stars {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.book-stars li {
+    display: inline-block;
+    text-align: center;
+}
+
+.book-rating-star {
+    color: #777777; /* Empty star colour */
+}
+
+.book-rating-star.fas {
+    color: #f5c518; /* Filled star colour */
+}
+
+.book-rating-star.half-filled::before {
+    content: '\f089'; /* Half-filled star icon from fontAwesome */
+    display: inline-flex;
+    overflow: hidden;
+}
+
+/* User Interactions Section */
+.user-interactions-container {
+    align-content: center;
+}
+
+/* Comment display Section */
+.comment-container {
+    border: 2px solid #c98f61;
+    background-color: #f0efe2;
+    padding: 15px;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.gutters {
+    --bs-gutter-x: 0rem;
+}
+
+.comment-card{
+    border: 2px solid #c98f61;
+    background-color: #fff;
+}
+
+.add-comment-card{
+    border: 2px solid #c98f61;
+    background-color: #f0efe2;
+    max-height: 600px;
+}
+
+/* Leave a comment section */
+#id_body{
+    height:150px;
+}
+
+.form-label{
+    content-visibility: hidden;
+}
+
+/* User Rating Star Icons, book_details template */
+.rating-stars .star-form {
+    display: inline;
+    padding: 1px;
+}
+
+.rating-stars .star-icon {
+    font-size: 1.25rem;
+    margin-right: 0.1rem;
+    padding: 1px;
+    color: #747474;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.star-icon {
+    font-size: 24px; /* Adjust the size as needed */
+    color: #ccc; /* Default star colour */
+    cursor: pointer;
+    position: relative;
+}
+
+.star-icon.filled {
+    color: #f5c518; /* Highlight colour for filled stars */
+}
+
+/* About us section */
+.rounded-image {
+    border-radius: 15px;
+    float: right;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
+/* Media query for larger screens */
+@media (min-width: 768px) {
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    
+    /* User Interactions section on book_details */
+    .gutters {
+        --bs-gutter-x: 1.5rem;
+    }
+}
+
+/* Medium screens up to 1200px */
+@media (min-width: 768px) and (max-width: 1300px) {
+    .col-md-6 {
+        flex: 0 0 50%; /* Ensure two books per row */
+        max-width: 50%; /* Ensure two books per row */
+    }
 }

@@ -8,11 +8,15 @@
         <!-- Books section -->
         <div class="container mt-5">
             <h1 class="mb-4">Latest Books</h1>
-            <div class="row">
+            <!-- If there are no books to display -->
+            {% if not book_list %}
+                <p>No books available at the moment.</p>
+            {% endif %}
+            <div class="row book-grid">
                 <!-- Create a card display for each book -->
                 {% for book in book_list %}
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="card">
                         <div class="card-body">
                             <a href="{% url 'book_detail' book.slug %}" class="book-link no-underline">
                                 <div class="d-flex">
@@ -35,11 +39,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Make sure 3 books per row then start a new row -->
-                {% if forloop.counter|divisibleby:3 %}
-            </div>
-            <div class="row">
-                {% endif %}
                 {% endfor %}
             </div>
         </div>
