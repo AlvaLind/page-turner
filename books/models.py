@@ -40,7 +40,7 @@ class Book(models.Model):
     
     # Fields
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=60)
     published_year = models.IntegerField()
     cover_image = CloudinaryField('image', default='placeholder')
     description = models.TextField(blank=True, null=True)
