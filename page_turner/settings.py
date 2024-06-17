@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-alvalind-djangoblog-3dksgiqxqfp.ws-eu114.gitpod.io', '.herokuapp.com']
+ALLOWED_HOSTS = ['page-turner.herokuapp.com', 'localhost']
 
 # Application definition
 INSTALLED_APPS = [
@@ -141,6 +141,7 @@ USE_TZ = True
 
 # Configure media files handling change later to cloudinary
 MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Static files (CSS, JavaScript, Images)
@@ -148,14 +149,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # URL to use when referring to static files located in STATICFILES_DIRS
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 
 # Directory where Django will collect all static files for production use
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = [os.path.join(BASE_DIR, "static")]
 
 # List of directories to look for static files during development
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles")]
 
 
 # Default primary key field type
