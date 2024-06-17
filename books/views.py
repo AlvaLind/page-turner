@@ -6,7 +6,6 @@ from .models import Book, Comment, Rating
 from .forms import CommentForm, RatingForm
 
 
-
 # Create your views here.
 class BookList(generic.ListView):
     model = Book
@@ -89,6 +88,7 @@ def book_detail(request, slug):
             book_ratings = Rating.objects.filter(book=book).exclude(rating=-1).values_list('rating', flat=True)
             if book_ratings:
                 average_rating = sum(book_ratings) / len(book_ratings)
+                total_ratings = Rating.objects.filter(book=book).count()
             else:
                 average_rating = None 
         

@@ -242,6 +242,7 @@ footer p {
 /* Media query for larger screens */
 @media (min-width: 768px) {
     main {
+        align-self: center;
         margin-left: 5%;
         margin-right: 5%;
     }

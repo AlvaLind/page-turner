@@ -83,6 +83,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
+    function bookRatingText(average_rating, total_ratings) {
+        // Display books ave. rating in text, check for plural format
+        let averageRatingText;
+            // Check if average_rating is not null
+            if (average_rating !== null) {
+                let ratingText;
+                // Determine if it's singular or plural based on total_ratings
+                if (total_ratings === 1) {
+                    ratingText = 'rating';
+                } else {
+                    ratingText = 'ratings';
+                }
+                // put together the averageRatingText string and round ave. rating to one decimal
+                averageRatingText = `${average_rating.toFixed(1)} from ${total_ratings} ${ratingText}`;
+            // If there are no ratings, display a message 
+            } else {
+                averageRatingText = 'No ratings yet';
+            }  
+        // Update the HTML content of averageRatingElement with the calculated/put together averageRatingText
+        averageRatingElement.innerHTML = `<p>${averageRatingText}</p>`;
+    } 
+
     // Function to submit the form via AJAX
     function submitForm(form, value) {
         const formData = new FormData(form); // Create FormData object from form
@@ -103,30 +125,13 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.message === 'Rating submitted successfully') {
                 // Update books average rating display
                 userRatingElement.textContent = data.user_rating; 
-                // Display books ave. rating in text, check for plural format
-                let averageRatingText;
-                    // Check if average_rating is not null
-                    if (data.average_rating !== null) {
-                        let ratingText;
-                        // Determine if it's singular or plural based on total_ratings
-                        if (data.total_ratings === 1) {
-                            ratingText = 'rating';
-                        } else {
-                            ratingText = 'ratings';
-                        }
-                        // put together the averageRatingText string and round ave. rating to one decimal
-                        averageRatingText = `${data.average_rating.toFixed(1)} from ${data.total_ratings} ${ratingText}`;
-                    // If there are no ratings, display a message 
-                    } else {
-                        averageRatingText = 'No ratings yet';
-                    }  
-                // Update the HTML content of averageRatingElement with the calculated/put together averageRatingText
-                averageRatingElement.innerHTML = `<p>${averageRatingText}</p>`;
-
+                
                 // Refill user rating stars based on updated user rating
                 fillUserStars(parseFloat(userRatingElement.textContent)); 
                 // Refill books average rating stars based on all reviews
                 fillBookStars(data.average_rating);
+                // Create and display the rating text below books stars
+                bookRatingText(data.average_rating, data.total_ratings);
             }
         })
         .catch(error => {
