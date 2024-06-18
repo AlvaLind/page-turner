@@ -30,7 +30,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.herokuapp.com', 'local_host']
+ALLOWED_HOSTS = ['.herokuapp.com', 'local_host', '127.0.0.1' ]
+
+CSRF_TRUSTED_ORIGINS = ['https://page-turner.herokuapp.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -63,6 +65,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -138,23 +141,26 @@ USE_I18N = True
 
 USE_TZ = True
 
-# Configure media files handling change later to cloudinary
-MEDIA_URL = '/media/'
-#DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 # URL to use when referring to static files located in STATICFILES_DIRS
-STATIC_URL = '/static/'
-#STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATIC_URL = 'static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # List of directories to look for static files during development
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 # Directory where Django will collect all static files for production use
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+
+# Configure media files handling 
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
