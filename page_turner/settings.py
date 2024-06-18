@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['page-turner.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['.herokuapp.com', 'local_host']
 
 # Application definition
 INSTALLED_APPS = [
@@ -39,16 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'django.contrib.sites',
+    'cloudinary_storage',
+    'django.contrib.staticfiles',
+    'cloudinary',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'crispy_forms',
-    'crispy_bootstrap5',
-    'cloudinary_storage',
     'django_summernote',
-    'cloudinary',
     'rest_framework',
     'books', 
     'about_us',
@@ -138,10 +138,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Configure media files handling change later to cloudinary
 MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+#DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Static files (CSS, JavaScript, Images)
@@ -149,17 +148,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # URL to use when referring to static files located in STATICFILES_DIRS
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-
-# Directory where Django will collect all static files for production use
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
+#STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 # List of directories to look for static files during development
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+# Directory where Django will collect all static files for production use
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

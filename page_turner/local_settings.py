@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -141,6 +141,7 @@ USE_TZ = True
 
 # Configure media files handling change later to cloudinary
 MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Static files (CSS, JavaScript, Images)
@@ -148,7 +149,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # URL to use when referring to static files located in STATICFILES_DIRS
 STATIC_URL = '/static/'
-
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 # Directory where Django will collect all static files for production use
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
