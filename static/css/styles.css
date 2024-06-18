@@ -266,12 +266,12 @@ footer p {
     color: #f5c518; /* Highlight colour for filled stars */
 }
 
-/* About us section */
+/* About us html section */
 .rounded-image {
     border-radius: 15px;
-    float: right;
-    margin-left: 15px;
-    margin-bottom: 10px;
+    display: block;
+    margin: 15px auto; /* Center the image */
+    width: 100%;
 }
 
 /* Media query for larger screens */
@@ -297,6 +297,15 @@ footer p {
     .gutters {
         --bs-gutter-x: 1.5rem;
     }    
+
+    /* About us html section */
+    @media (min-width: 768px) {
+        .rounded-image {
+            float: right;
+            margin: 15px;
+            width: 30%;
+        }
+    }
 }
 
 /* Medium screens up to 1200px */
