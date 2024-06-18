@@ -13,6 +13,13 @@ class BookList(generic.ListView):
     template_name = "book_list.html"
     paginate_by = 9
     
+    
+def Homepage(request):
+    latest_books = Book.objects.order_by('-created_on')[:6] # Most recently added 6 books
+    context = {'book_list': latest_books}
+    return render(request, 'homepage.html', context)
+    
+    
 def book_detail(request, slug):
     """
     Display an individual :model:'books.Book'.
