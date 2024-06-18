@@ -81,9 +81,44 @@ footer p {
     margin: 10px 0 0;
 }
 
+/* Homepage Styles */
+/* Title banner styles*/
+.title-banner {
+    position: relative;
+    width: 100%;
+}
+
+.banner-image {
+    width: 100%;
+    align-self: center;
+    height: auto;
+    max-height: 600px;
+}
+
+.banner-text-box {
+    position: static;
+    display:grid;
+    justify-content: space-around;
+    justify-items: center;
+    transform: none;
+    background-color: #fff;
+    width: 100%;
+    max-width: none;
+    margin-top: 10px;
+    padding: 20px;
+    text-align: left;
+}
+
+.banner-text-box .btn {
+    margin-top: 10px;
+}
+
+.remove-gutters{
+    --bs-gutter-x: 0rem;
+}
+
 /* book_list template */
 /* list of displayed books section */
-
 .no-underline {
     text-decoration: none;
 }
@@ -247,16 +282,28 @@ footer p {
         margin-right: 5%;
     }
     
+    /* Homepage title Banner */
+    .banner-text-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent background */
+        width: 60%; 
+        max-width: 600px; 
+    }
+
     /* User Interactions section on book_details */
     .gutters {
         --bs-gutter-x: 1.5rem;
-    }
+    }    
 }
 
 /* Medium screens up to 1200px */
 @media (min-width: 768px) and (max-width: 1300px) {
+    /* Book_list ensure two books per row */
     .col-md-6 {
-        flex: 0 0 50%; /* Ensure two books per row */
-        max-width: 50%; /* Ensure two books per row */
+        flex: 0 0 50%; 
+        max-width: 50%; 
     }
 }
