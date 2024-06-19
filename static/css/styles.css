@@ -39,6 +39,14 @@ nav {
     color: #c98f61
 }
 
+.logo {
+    max-height: 40px; 
+    height: auto;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
 main {
     flex-grow: 1;
     align-self: auto;
