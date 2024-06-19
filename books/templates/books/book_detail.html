@@ -24,7 +24,7 @@
             {% endif %}
         </div>
         <div class="col-md-8 mb-4">
-            <h1>{{ book.title }}</h1>   
+            <h1 class="title">{{ book.title }}</h1>   
             <p><strong>Author:</strong> {{ book.author }}</p>
             <p><strong>Published Year:</strong> {{ book.published_year }}</p>
             
@@ -203,6 +203,9 @@
 {% endblock %}
 
 {% block extras %}
+<script>
+    const isAuthenticated = {{ user.is_authenticated|yesno:"true,false" }};
+</script>
 <script src="{% static 'js/comments.js' %}"></script>
 <script src="{% static 'js/ratings.js' %}"></script>
 {% endblock %}

@@ -138,9 +138,15 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error in fetch request:', error);
         });
     }
-
-    // Colour/fill the stars based on the user's existing rating when the page loads
-    fillUserStars(parseFloat(userRatingElement.textContent));
+   
     // Colour/fill the stars for the books ave. rating when the page loads
     fillBookStars(parseFloat(averageRatingElement.textContent));
+    // Colour/fill the stars based on the user's existing rating when the page loads
+    if (isAuthenticated) {
+        fillUserStars(parseFloat(userRatingElement.textContent));
+    } 
+
+
 });
+
+
