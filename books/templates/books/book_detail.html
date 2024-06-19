@@ -4,6 +4,17 @@
 {% load crispy_forms_tags %}
 
 <div class="container mt-5">
+    <!-- Top left corner links -->
+    <div class="return-nav-links">
+        <span>
+            <a class="nav-link {% if request.path == home_url %}" aria-current="page{% endif %}" 
+                    href="{{ home_url }}">Home</a>
+            <span class="seperator">|</span>
+            <a class="nav-link {% if request.path == books_url %}" aria-current="page{% endif %}"
+                href="{{ books_url }}">Books</a>
+        </span>
+    </div>
+    <!-- Display book details -->
     <div class="row">
         <div class="col-md-4">
             {% if book.cover_image.url == 'https://res.cloudinary.com/dxtaxsd1v/image/upload/placeholder' %}
@@ -17,6 +28,7 @@
             <p><strong>Author:</strong> {{ book.author }}</p>
             <p><strong>Published Year:</strong> {{ book.published_year }}</p>
             
+            <!-- Display books stars -->
             <div class="book-star-ratings">
                 <div class="star-ratings-background">
                     <ul class="book-stars">
@@ -38,6 +50,7 @@
                 </div>            
             </div>
 
+            <!-- Display books text rating -->
             <div id="average-rating">
                 {% if average_rating == None %}
                     <p>No ratings</p>

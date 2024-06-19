@@ -220,8 +220,32 @@ footer {
     color: #333;
 }
 
-/* Display books average rating, book_details template */
+/* book_details template */
 /* Styles for star icons display */
+.return-nav-links {
+    display: flex;
+    align-items: center; 
+}
+
+.return-nav-links span {
+    display: flex;
+    align-items: center; 
+}
+
+.return-nav-links .separator {
+    margin: 0 5px; 
+}
+
+.return-nav-links .nav-link {
+    padding: 5px;
+    color: #333;
+    text-decoration: none;
+}
+
+.return-nav-links .nav-link:hover{
+    color: #ffcc00;
+}
+
 .book-star-ratings {
     display: inline-block;
     position: relative;
