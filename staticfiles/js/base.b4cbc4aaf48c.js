@@ -1,6 +1,5 @@
 // Automatically close messages after 3 seconds
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("DOMContentLoaded event fired.");
     
     setTimeout(function() {
         console.log("Timeout function executed.");
@@ -11,4 +10,5 @@ document.addEventListener("DOMContentLoaded", function() {
             message.style.display = 'none';
         });
     }, 3000);
+
 });

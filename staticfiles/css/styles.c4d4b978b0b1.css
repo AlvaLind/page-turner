@@ -50,7 +50,7 @@ nav {
 main {
     flex-grow: 1;
     align-self: auto;
-    padding: 20px;
+    padding: 10px 20px 20px 20px;
     max-width: 1200px;
     margin: 0 auto;
     background-color: #d9d2c0;
@@ -152,6 +152,7 @@ footer {
 .title-banner {
     position: relative;
     width: 100%;
+    margin-top: 10px;
 }
 
 .banner-image {
@@ -221,32 +222,37 @@ footer {
 }
 
 /* book_details template */
+/* return to previous page button styles */
+.return-button {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.back-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Make it round */
+    background-color: rgba(255, 255, 255, 0.70); /* Faded white background */
+    border: none;
+    color: #333; /* Text color */
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #f5c518a4; /* Lighter background on hover */
+}
+
+/* Optional: Center the arrow horizontally and vertically */
+.back-button i {
+    position: relative;
+}
+
 /* Styles for star icons display */
-.return-nav-links {
-    display: flex;
-    align-items: center; 
-}
-
-.return-nav-links span {
-    display: flex;
-    align-items: center; 
-}
-
-.return-nav-links .separator {
-    margin: 0 5px; 
-}
-
-.return-nav-links .nav-link {
-    padding: 5px;
-    color: #333;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.return-nav-links .nav-link:hover{
-    color: #ffcc00;
-}
-
 .title {
     margin-top: 15px;
 }
@@ -362,11 +368,15 @@ footer {
 }
 
 /* About us html section */
+.about-title { 
+    margin-bottom: 20px;
+}
 .rounded-image {
     border-radius: 15px;
     display: block;
     margin: 15px auto; /* Center the image */
     width: 100%;
+    margin-bottom: 20px;
 }
 
 /* Media query for larger screens */
