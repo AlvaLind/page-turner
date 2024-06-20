@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
-class BookRequest(models.model):
+class BookRequest(models.Model):
     """
     Stores a single Book request message.
     For users to request a book to be added to the site
