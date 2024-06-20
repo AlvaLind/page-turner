@@ -6,7 +6,7 @@
 {% url 'account_logout' as logout_url %}
 {% url 'books' as books_url %}
 {% url 'homepage' as home_url %}
-
+{% url 'book_request' as book_request_url %}
 
 
 <!DOCTYPE html>
@@ -51,6 +51,10 @@
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == about_us_url %}active{%endif%}"
                           aria-current="page" href="{% url 'about_us' %}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == book_request_url %}active{%endif%}"
+                          aria-current="page" href="{% url 'book_request' %}">Request a Book</a>
                     </li>
                 </ul>
                 <hr>
@@ -124,6 +128,7 @@
                     <li><a href="{{ home_url }}">Home</a></li>
                     <li><a href="{{ books_url }}">Books</a></li>
                     <li><a href="{{ about_us_url }}">About Us</a></li>
+                    <li><a href="{{ book_request_url }}">Request a Book</a></li>
                 </ul>
             </div>
             <hr>
