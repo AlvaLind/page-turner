@@ -1,7 +1,7 @@
 from .models import BookRequest
 from django import forms
 
-class BookRequest(forms.ModelForm):
+class BookRequestForm(forms.ModelForm):
     """
     Form class for users to request a book
     to be added to the site
