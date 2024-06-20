@@ -12,3 +12,15 @@ class BookRequestForm(forms.ModelForm):
         """
         model = BookRequest
         fields = ('title', 'author', 'published_year', 'description', 'cover_image',)
+        labels = {
+            'title': 'Title',
+            'author': 'Author',
+            'published_year': 'Published Year',
+            'description': 'Description',
+            'cover_image': 'Cover Image',
+        }
+        widgets = {
+            'description': forms.Textarea(attrs={
+                'placeholder': 'Provide a brief summary or details about the book...'
+            }),
+        }
