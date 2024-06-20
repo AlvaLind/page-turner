@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'books', 
     'about_us',
+    'book_request',
 ]
 
 SITE_ID = 1
