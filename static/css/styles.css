@@ -367,7 +367,7 @@ footer {
     color: #f5c518; /* Highlight colour for filled stars */
 }
 
-/* About us html section */
+/* About us html styles */
 .about-title { 
     margin-bottom: 20px;
 }
@@ -378,6 +378,22 @@ footer {
     width: 100%;
     margin-bottom: 20px;
 }
+
+/* Book Request html styles */
+.form-label {
+    color: #333;
+    content-visibility: visible;
+}
+
+
+/* Buttons */
+.btn-secondary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+
+
 
 /* Media query for larger screens */
 @media (min-width: 768px) {

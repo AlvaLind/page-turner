@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!-- book_request.html content starts here -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 my-5">
+            <h2>Request a book!</h2>
+            <p>Your input is essential in helping us expand our literary 
+                collection. If there's a book you'd like to see on our
+                website, let us know! Fill out the form below, and
+                together we can bring more great reads to our community.</p>
+
+            <form method="post">
+                {{ bookRequest_form | crispy }}
+                {% csrf_token %}
+                <button class="btn btn-secondary" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
