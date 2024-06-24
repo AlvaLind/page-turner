@@ -57,7 +57,14 @@
                           aria-current="page" href="{% url 'book_request' %}">Request a Book</a>
                     </li>
                 </ul>
+
+                <!-- Search Form -->
+                <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search_books' %}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
+                </form>
+
                 <hr>
+
                 <!-- Login, out and register -->
                 <div class="d-flex">
                     <ul class="navbar-nav">
