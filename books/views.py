@@ -18,6 +18,11 @@ def Homepage(request):
     latest_books = Book.objects.order_by('-created_on')[:6] # Most recently added 6 books
     context = {'book_list': latest_books}
     return render(request, 'homepage.html', context)
+
+
+def search_books(request):
+
+    return render(request, 'search_books.html', {})
     
     
 def book_detail(request, slug):
