@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'books',
     'about_us',
     'book_request',
+    'user_profile',
 ]
 
 SITE_ID = 1

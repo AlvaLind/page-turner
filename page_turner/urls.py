@@ -26,4 +26,5 @@ urlpatterns = [
     path('book_request/', include("book_request.urls"), name="book_request-urls"),
     path('summernote/', include('django_summernote.urls')),
     path("", include("books.urls"), name="books-urls"),
+    path('profile/', include("user_profile.urls"), name="user_profile-urls"),
 ]
