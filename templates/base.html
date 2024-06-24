@@ -7,6 +7,7 @@
 {% url 'books' as books_url %}
 {% url 'homepage' as home_url %}
 {% url 'book_request' as book_request_url %}
+{% url 'profile' as profile_page_url %}
 
 
 <!DOCTYPE html>
@@ -65,10 +66,16 @@
 
                 <hr>
 
-                <!-- Login, out and register -->
+                <!-- Profile Icon and Login, out and register -->
                 <div class="d-flex">
                     <ul class="navbar-nav">
                         {% if user.is_authenticated %}
+                        <li class="nav-item profile-icon">
+                            <a class="nav-link {% if request.path == profile_page_url %}active" aria-current="page{% endif %}" 
+                            href="{{ profile_page_url }}">
+                                <i class="fas fa-user"></i> <!-- Profile icon -->
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
                         </li>

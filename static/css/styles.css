@@ -402,7 +402,11 @@ footer {
         margin-left: 5%;
         margin-right: 5%;
     }
-    
+
+    .profile-icon {
+        margin-left: 20px;
+    }
+
     /* Homepage title Banner */
     .banner-text-box {
         position: absolute;
