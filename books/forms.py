@@ -34,3 +34,11 @@ class RatingForm(forms.ModelForm):
         """
         model = Rating
         fields = ('rating',)
+        
+
+class BookSearchForm(forms.Form):
+    query = forms.CharField(
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(attrs={'placeholder': 'Search'})
+    )

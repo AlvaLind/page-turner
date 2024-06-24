@@ -2,8 +2,9 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect, JsonResponse
+from django.db.models import Q
 from .models import Book, Comment, Rating 
-from .forms import CommentForm, RatingForm
+from .forms import CommentForm, RatingForm, BookSearchForm
 
 
 # Create your views here.
@@ -21,8 +22,34 @@ def Homepage(request):
 
 
 def search_books(request):
-
-    return render(request, 'search_books.html', {})
+    """
+    Search for books by title, author, or genre.
+    
+    **Context**
+    
+    ''form''
+        An instance of :form:'books.BookSearchForm'.
+    ''books''
+        A queryset containing all books that match the search query.
+        
+    **Template:**
+    
+    :template:'books/search_books.html'
+    """
+    form = BookSearchForm(request.GET or None)
+    books = Book.objects.all()
+    query = None
+    
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        if query:
+            books = books.filter(
+                Q(title__icontains=query) | 
+                Q(author__name__icontains=query) | 
+                Q(genre__name__icontains=query)
+            )
+    
+    return render(request, 'search_books.html', {'form': form, 'query': query, 'book_list': books})
     
     
 def book_detail(request, slug):
