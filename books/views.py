@@ -78,6 +78,11 @@ def book_detail(request, slug):
     queryset = Book.objects.all()
     book = get_object_or_404(queryset, slug=slug)    
     
+    # Check if the book is in the user's bookshelf
+    in_bookshelf = False
+    if request.user.is_authenticated:
+        in_bookshelf = Bookshelf.objects.filter(user=request.user, book=book).exists()
+    
     # Retrieve comments 
     comments = book.comments.all().order_by("-created_on")
     comment_count = book.comments.filter(approved=True).count()
@@ -156,6 +161,7 @@ def book_detail(request, slug):
     # Pass variables to the book_detail template            
     return render(request, "books/book_detail.html", {
         "book": book,
+        "in_bookshelf": in_bookshelf,
         "comments": comments,
         "comment_count": comment_count,
         "comment_form": comment_form,
