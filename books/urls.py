@@ -11,4 +11,5 @@ urlpatterns = [
          views.comment_delete, name='comment_delete'),
      path('search/', views.search_books, name='search_books'),
      path('add_to_bookshelf/<slug:slug>/', views.add_to_bookshelf, name='add_to_bookshelf'),
+     path('remove_from_bookshelf/<slug:slug>/', views.remove_from_bookshelf, name='remove_from_bookshelf'),
 ]
