@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment, Rating
+from .models import Comment, Rating, Bookshelf
 
 
 class CommentForm(forms.ModelForm):
@@ -42,3 +42,12 @@ class BookSearchForm(forms.Form):
         required=False,
         widget=forms.TextInput(attrs={'placeholder': 'Search'})
     )
+    
+
+class BookshelfForm(forms.ModelForm):
+    class Meta:
+        model = Bookshelf
+        fields = [
+            'status'
+        ]
+    
