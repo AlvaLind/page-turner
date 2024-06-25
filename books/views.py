@@ -247,3 +247,8 @@ def remove_from_bookshelf(request, slug):
 
     return redirect('book_detail', slug=slug)
 
+@login_required
+def bookshelf(request):
+    bookshelf = Bookshelf.objects.filter(user=request.user)
+    
+    return render(request, 'profile_page.html', {'bookshelf': bookshelf})
