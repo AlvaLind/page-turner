@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Author, Book, Comment, Genre, Rating
+from .models import Author, Book, Comment, Genre, Rating, Bookshelf
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -47,6 +47,17 @@ class RatingAdmin(admin.ModelAdmin):
     list_filter = ('rating',)
     readonly_fields = ["book", "rating", "user",]
     
+
+@admin.register(Bookshelf)
+class BookshelfAdmin(admin.ModelAdmin):
+    """
+    List fields for display in admin, fields for searching, 
+    field filters and list filter.
+    """
+    list_display = ['user', 'book', 'status']
+    search_fields = ['user_username', 'book_title']
+    list_filter = ['status', 'user']
+    readonly_fields = ["user", "book", "status"]
     
 # Register your models here.
 admin.site.register(Comment)

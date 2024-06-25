@@ -96,3 +96,20 @@ class Rating(models.Model):
         
     def __str__(self):
         return f'{self.book.title} - {self.rating} Stars - Rated by: {self.user.username}'
+    
+class Bookshelf(models.Model):
+    STATUS_CHOICES = [
+        ('read', 'Read'),
+        ('unread', 'Unread'),
+        ('reading', 'Reading'),
+    ]
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    status = models.CharField(max_length=7, choices=STATUS_CHOICES, default='unread')
+    added_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'book')  # Ensure each book can only be added once per user
+
+    def __str__(self):
+        return f"{self.user.username} - {self.book.title} ({self.get_status_display()})"
