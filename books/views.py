@@ -1,11 +1,11 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Q
-from .models import Book, Comment, Rating 
+from .models import Book, Comment, Rating, Bookshelf
 from .forms import CommentForm, RatingForm, BookSearchForm
-
 
 # Create your views here.
 class BookList(generic.ListView):
@@ -225,4 +225,16 @@ def comment_delete(request, slug, comment_id):
 
     return HttpResponseRedirect(reverse('book_detail', args=[slug]))
 
+# Add books to bookshelf
+@login_required
+def add_to_bookshelf(request, slug):
+    book = get_object_or_404(Book, slug=slug)
+    bookshelf_entry, created = Bookshelf.objects.get_or_create(user=request.user, book=book)
+    if created:
+        bookshelf_entry.status = 'unread'  # default status
+        bookshelf_entry.save()
+    messages.add_message(request, messages.SUCCESS, 'This book has been added to your Bookshelf!')
+    
+    return redirect('book_detail', slug=slug)
+    
 
