@@ -52,7 +52,7 @@ main {
     align-self: auto;
     padding: 10px 20px 20px 20px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0;
     background-color: #d9d2c0;
 }
 
@@ -396,27 +396,30 @@ footer {
     position: relative;
 }
 
+
 #bookshelf-buttons {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    position: static;
+    margin-top: 10px;
 }
 
-@media (max-width: 768px) {
-    #bookshelf-buttons {
-        position: static;
-        margin-top: 10px;
-    }
+
+
+/* Profile page styles */
+.profile-books{
+    display: block;
 }
 
+.status {
+    margin-top: 20px;
+}
 
 
 /* Media query for larger screens */
 @media (min-width: 768px) {
     main {
         align-self: center;
-        margin-left: 5%;
-        margin-right: 5%;
+        margin-left: 1%;
+        margin-right: 1%;
     }
 
     .profile-icon {
@@ -434,16 +437,41 @@ footer {
         max-width: 600px; 
     }
 
+    /* Book details page styles */
     /* User Interactions section on book_details */
     .gutters {
         --bs-gutter-x: 1.5rem;
     }    
+
+    #bookshelf-buttons {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
 
     /* About us html section */
     .rounded-image {
         float: right;
         margin: 15px;
         width: 30%;
+    }
+
+    /* Profile page styles */
+    .profile-container {
+        display: flex;
+    }
+
+    .profile-settings {
+        margin-right: 5%;
+    }
+
+    .profile-books{
+        display: flex;
+    }
+
+    .status {
+        flex-grow: 1 ;
+        text-align: right;
     }
 
     /* Footer set 3 columns on large screens */ 

@@ -4,13 +4,63 @@
 {% load crispy_forms_tags %}
 
 <div class="container mt-3">
-    <h1>User Profile</h1>
-    
-    <form method="post">
-        {{ form | crispy }}
-        {% csrf_token %}
-        <button class="btn btn-secondary mb-3" type="submit">Save Changes</button>
-    </form>
+    <div class="profile-container">
+        <div class="profile-settings">
+            <h1>User Profile</h1>
+            
+            <form method="post">
+                {{ form | crispy }}
+                {% csrf_token %}
+                <button class="btn btn-secondary mb-3" type="submit">Save Changes</button>
+            </form>
+        </div>
+
+        <div class="users-bookshelf">
+            <h1>{{ request.user.username }}'s Bookshelf</h1>
+            {% if not bookshelf %}
+            <p>There is no books in your bookshelf.</p>
+            {% endif %}
+            <div class="row book-grid">
+                <!-- Create a card display for each book -->
+                {% for book in books_in_bookshelf %}
+                <!-- use full container width -->
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="profile-books">
+                                <a href="{% url 'book_detail' book.slug %}" class="book-link no-underline">
+                                    <div class="d-flex">
+                                        <!-- Use a default book cover image if no image was uploaded so defaulted to placeholder -->
+                                        <div class="image-container me-3">
+                                            {% if book.cover_image.url == 'https://res.cloudinary.com/dxtaxsd1v/image/upload/placeholder' %}
+                                            <img class="img-fluid" src="https://res.cloudinary.com/dxtaxsd1v/image/upload/v1718572431/em43nwjwng89xzrgfdvq.jpg" alt="placeholder Image" style="max-width: 100px;">
+                                            {% else %}
+                                            <img class="img-fluid" src="{{ book.cover_image.url }}" alt="{{ book.title }}" style="max-width: 100px;">
+                                            {% endif %}
+                                        </div>
+                                        <!-- Display basic book details -->
+                                        <div class="flex-grow-1">
+                                            <h4 class="title mb-1">{{ book.title }}</h4>
+                                            <p class="author mb-1">Author: {{ book.author }}</p>
+                                            <p class="card-text text-muted h6 mb-0">Published in: {{ book.published_year }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="status">
+                                    <p> Status: </p>
+                                    <form method="post" action="{% url 'remove_from_bookshelf' book.slug %}">
+                                        {% csrf_token %}
+                                        <button class="btn btn-secondary mb-3" type="submit">Remove Book</button>
+                                    </form>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
