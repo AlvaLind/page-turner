@@ -241,7 +241,7 @@ def add_to_bookshelf(request, slug):
         bookshelf_entry.save()
     messages.add_message(request, messages.SUCCESS, 'This book has been added to your Bookshelf!')
     
-    return redirect('book_detail', slug=slug)
+    return HttpResponseRedirect(reverse('book_detail', args=[slug]))
     
 
 @login_required
@@ -251,7 +251,7 @@ def remove_from_bookshelf(request, slug):
     bookshelf_entry.delete()
     messages.add_message(request, messages.SUCCESS, 'This book has been removed from your Bookshelf!')
 
-    return redirect('book_detail', slug=slug)
+    return HttpResponseRedirect(reverse('book_detail', args=[slug]))
 
 @login_required
 def bookshelf(request):
