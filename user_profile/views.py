@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from .forms import UserProfileForm
+from books.models import Bookshelf, Book
 
 # Create your views here.
 
@@ -23,4 +24,10 @@ def profile(request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = UserProfileForm(instance=request.user)
-    return render(request, 'profile_page.html', {'form': form})
+    
+    bookshelf = Bookshelf.objects.filter(user=request.user)
+    books_in_bookshelf = Book.objects.filter(bookshelf__in=bookshelf)
+
+    
+    
+    return render(request, 'profile_page.html', {'form': form, 'bookshelf': bookshelf, 'books_in_bookshelf': books_in_bookshelf,})
