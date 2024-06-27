@@ -141,8 +141,9 @@ document.addEventListener('DOMContentLoaded', function () {
    
     // Colour/fill the stars for the books ave. rating when the page loads
     fillBookStars(parseFloat(averageRatingElement.textContent));
-    // Colour/fill the stars based on the user's existing rating when the page loads
-    if (isAuthenticated) {
+    // Colour/fill the stars based on the user's existing rating 
+    // when the page loads if the users has previously rated 
+    if (userRatingElement) {
         fillUserStars(parseFloat(userRatingElement.textContent));
     } 
 
