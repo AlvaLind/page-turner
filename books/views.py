@@ -3,7 +3,7 @@ from django.views import generic
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, JsonResponse
-from django.db.models import Q
+from django.db.models import Q, Avg, Count
 from .models import Book, Comment, Rating, Bookshelf
 from .forms import CommentForm, RatingForm, BookSearchForm
 
@@ -16,8 +16,25 @@ class BookList(generic.ListView):
     
     
 def Homepage(request):
-    latest_books = Book.objects.order_by('-created_on')[:6] # Most recently added 6 books
-    context = {'book_list': latest_books}
+    """
+    Display the homepage with the top-rated books.
+
+    **Context**
+
+    ''book_list''
+        A queryset containing the top 6 books with the highest average 
+        ratings, and excluding books with no ratings.
+
+    **Template:**
+
+    :template:'books/homepage.html'
+    """
+    top_rated_books = (
+        Book.objects.annotate(average_rating=Avg('rater__rating'), rating_count=Count('rater__rating'))
+        .filter(rating_count__gt=0) 
+        .order_by('-average_rating')[:6]
+    )
+    context = {'book_list': top_rated_books}
     return render(request, 'homepage.html', context)
 
 
