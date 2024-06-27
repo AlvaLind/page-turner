@@ -405,14 +405,39 @@ footer {
 
 
 /* Profile page styles */
+.users-bookshelf {
+    max-width: 600px;
+}
+
+.profile-settings {
+    min-width: 230px;
+}
+
 .profile-books{
     display: block;
 }
 
-.status {
-    margin-top: 20px;
+.bookshelf-interactions {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    align-items: flex-start; /* Align items to the start on smaller screens */
+    margin-top: 10px;
 }
 
+.bookshelf-form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Align items with space between */
+    align-items: flex-start; /* Align items to the top */
+    position: relative; /* Positioning context for absolute positioning */
+}
+
+.status-form {
+    display: inline-block; /* Ensure the form behaves as an inline block */
+}
+
+.status-select {
+    width: 130px;
+}
 
 /* Media query for larger screens */
 @media (min-width: 768px) {
@@ -424,6 +449,15 @@ footer {
 
     .profile-icon {
         margin-left: 20px;
+    }
+
+    .status-form-left {
+        order: 1; /* Ensure left form appears first */
+        text-align: left;
+    }
+    
+    .status-form-right {
+        order: 2; /* Ensure right form appears second */
     }
 
     /* Homepage title Banner */
@@ -467,10 +501,19 @@ footer {
 
     .profile-books{
         display: flex;
+        justify-content: space-between; /* Aligns items with space between on large screens */
+        align-items: flex-start; /* Align items to the top */
     }
 
-    .status {
-        flex-grow: 1 ;
+    .bookshelf-form-container {
+        display: flex;
+        flex-direction: column; /* Stack forms vertically */
+    }
+
+    .bookshelf-interactions {
+        display: inline-block;
+        margin-top: 20px;
+        margin-left: auto;
         text-align: right;
     }
 
