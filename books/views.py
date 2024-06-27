@@ -268,7 +268,10 @@ def remove_from_bookshelf(request, slug):
     bookshelf_entry.delete()
     messages.add_message(request, messages.SUCCESS, 'This book has been removed from your Bookshelf!')
 
-    return HttpResponseRedirect(reverse('book_detail', args=[slug]))
+    # Get the referring URL from the request headers or book_detail if not available
+    referer_url = request.META.get('HTTP_REFERER', reverse('book_detail', args=[slug]))
+
+    return HttpResponseRedirect(referer_url)
 
 @login_required
 def bookshelf(request):
