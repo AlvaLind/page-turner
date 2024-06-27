@@ -46,12 +46,40 @@
                                         </div>
                                     </div>
                                 </a>
-                                <div class="status">
-                                    <p> Status: </p>
-                                    <form method="post" action="{% url 'remove_from_bookshelf' book.slug %}">
-                                        {% csrf_token %}
-                                        <button class="btn btn-secondary mb-3" type="submit">Remove Book</button>
-                                    </form>
+                                <div class="bookshelf-interactions">
+                                    <div class="bookshelf-form-container">
+                                        
+                                        <!-- Form to update the status -->
+                                        <form class="status-form status-form-left" method="post" action="{% url 'profile' %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="book_slug" value="{{ book.slug }}">
+                                            <input type="hidden" name="status_form" value="status_form">
+
+                                            {% for item in books_with_status %}
+                                                {% if item.book.slug == book.slug %}
+                                                    <p>Status: {{ item.status }}</p>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            <select name="status" class="form-control mb-2 status-select">
+                                                {% for item in books_with_status %}
+                                                    {% if item.book.slug == book.slug %}
+                                                        {% for status_choice in status_choices %}
+                                                            <option value="{{ status_choice.0 }}" {% if book.bookshelf.status == status_choice.0 %}selected{% endif %}>
+                                                                {{ status_choice.1 }}
+                                                            </option>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                            <button class="btn btn-secondary mb-3" type="submit">Update Status</button>
+                                        </form>
+                                        
+                                        <form class="remove-book-form status-form-right" method="post" action="{% url 'remove_from_bookshelf' book.slug %}">
+                                            {% csrf_token %}
+                                            <button class="btn btn-secondary mb-3" type="submit">Remove Book</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>    
                         </div>
