@@ -240,7 +240,7 @@ footer {
     justify-content: space-around;
     justify-items: center;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    background-color: rgba(255, 255, 255, 0.8); 
     padding: 20px;
     width:75%;
     max-width: 90%;
@@ -304,10 +304,10 @@ footer {
     display: inline-block;
     width: 40px;
     height: 40px;
-    border-radius: 50%; /* Make it round */
-    background-color: rgba(255, 255, 255, 0.70); /* Faded white background */
+    border-radius: 50%; 
+    background-color: rgba(255, 255, 255, 0.70); 
     border: none;
-    color: #333; /* Text color */
+    color: #333; 
     font-size: 20px;
     line-height: 40px;
     text-align: center;
@@ -316,10 +316,9 @@ footer {
 }
 
 .back-button:hover {
-    background-color: #B58FFF; /* Lighter background on hover */
+    background-color: #B58FFF;
 }
 
-/* Optional: Center the arrow horizontally and vertically */
 .back-button i {
     position: relative;
 }
@@ -429,14 +428,14 @@ footer {
 }
 
 .star-icon {
-    font-size: 24px; /* Adjust the size as needed */
-    color: #ccc; /* Default star colour */
+    font-size: 24px; 
+    color: #ccc; 
     cursor: pointer;
     position: relative;
 }
 
 .star-icon.filled {
-    color: #f5c518; /* Highlight colour for filled stars */
+    color: #f5c518; 
 }
 
 /* About us html styles */
@@ -451,7 +450,7 @@ footer {
 .rounded-image {
     border-radius: 15px;
     display: block;
-    margin: 15px auto; /* Center the image */
+    margin: 15px auto; 
     width: 100%;
     margin-bottom: 20px;
 }
@@ -504,21 +503,21 @@ footer {
 }
 
 .bookshelf-interactions {
-    flex-direction: column; /* Stack items vertically on smaller screens */
-    align-items: flex-start; /* Align items to the start on smaller screens */
+    flex-direction: column; 
+    align-items: flex-start; 
     margin-top: 10px;
 }
 
 .bookshelf-form-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Align items with space between */
-    align-items: flex-start; /* Align items to the top */
-    position: relative; /* Positioning context for absolute positioning */
+    justify-content: space-between;
+    align-items: flex-start; 
+    position: relative; 
 }
 
 .status-form {
-    display: inline-block; /* Ensure the form behaves as an inline block */
+    display: inline-block; 
 }
 
 .status-select {
@@ -537,12 +536,12 @@ footer {
     }
 
     .status-form-left {
-        order: 1; /* Ensure left form appears first */
+        order: 1;
         text-align: left;
     }
     
     .status-form-right {
-        order: 2; /* Ensure right form appears second */
+        order: 2; 
     }
 
     /* Homepage title Banner */
@@ -551,7 +550,7 @@ footer {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent background */
+        background-color: rgba(255, 255, 255, 0.85); 
         width: 60%; 
         max-width: 600px; 
     }
@@ -605,13 +604,13 @@ footer {
 
     .profile-books{
         display: flex;
-        justify-content: space-between; /* Aligns items with space between on large screens */
-        align-items: flex-start; /* Align items to the top */
+        justify-content: space-between; 
+        align-items: flex-start; 
     }
 
     .bookshelf-form-container {
         display: flex;
-        flex-direction: column; /* Stack forms vertically */
+        flex-direction: column; 
     }
 
     .bookshelf-interactions {
