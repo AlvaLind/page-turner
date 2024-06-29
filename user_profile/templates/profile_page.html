@@ -5,18 +5,20 @@
 
 <div class="container mt-3">
     <div class="profile-container">
-        <div class="profile-settings">
-            <h1>User Profile</h1>
-            
-            <form method="post">
-                {{ form | crispy }}
-                {% csrf_token %}
-                <button class="btn btn-secondary mb-3" type="submit">Save Changes</button>
-            </form>
+        <div class="user-profile">
+            <div class="profile-settings">
+                <h1>User Profile</h1>
+                
+                <form method="post" class="profile-form">
+                    {{ form | crispy }}
+                    {% csrf_token %}
+                    <button class="btn btn-secondary mb-3" type="submit">Save Changes</button>
+                </form>
+            </div>
         </div>
 
         <div class="users-bookshelf">
-            <h1>{{ request.user.username }}'s Bookshelf</h1>
+            <h1 class="mb-3">{{ request.user.username }}'s Bookshelf</h1>
             {% if not bookshelf %}
             <p>There is no books in your bookshelf.</p>
             {% endif %}
@@ -46,6 +48,7 @@
                                         </div>
                                     </div>
                                 </a>
+                                <hr class="breakline">
                                 <div class="bookshelf-interactions">
                                     <div class="bookshelf-form-container">
                                         

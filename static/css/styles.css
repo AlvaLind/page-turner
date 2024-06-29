@@ -494,6 +494,21 @@ footer {
     max-width: 600px;
 }
 
+.user-profile {
+    margin-bottom: 50px;
+}
+
+.profile-settings {
+    border: 2px solid #ccc; 
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.profile-form{
+    max-width: 500px; 
+    width: 100%; 
+}
+
 .profile-settings {
     min-width: 230px;
 }
@@ -524,6 +539,10 @@ footer {
 
 .status-form {
     display: inline-block; 
+}
+
+.status-select {
+    min-width: 120px;
 }
 
 .status-select {
@@ -607,11 +626,15 @@ footer {
         --bs-gutter-x: 1.5rem;
     }    
 
+    .breakline{
+        display: none;
+    }
+
     #bookshelf-buttons {
         position: absolute;
         top: 10px;
         right: 10px;
-    }
+    }  
 
     /* About us html section */
     .rounded-image {
@@ -627,6 +650,9 @@ footer {
 
     .profile-settings {
         margin-right: 5%;
+        border: 2px solid #ccc; 
+        border-radius: 10px;
+        padding: 30px;
     }
 
     .profile-books{
@@ -644,6 +670,7 @@ footer {
         display: inline-block;
         margin-top: 20px;
         margin-left: auto;
+        padding-left: 15px;
         text-align: right;
     }
 
@@ -665,12 +692,15 @@ footer {
 @media (min-width: 768px) and (max-width: 1000px) {
     /* Profile page stack settings and bookshelf*/
     .profile-container {
+        display: flex;
         flex-direction: column;
+        align-items: center;
     }
 
     .profile-settings,
     .users-bookshelf {
-        width: 100%; 
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
 }
+
+
