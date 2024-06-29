@@ -276,6 +276,7 @@ footer {
     background-color: #f4f2f3;
     min-height: 190px;
     position: relative;
+    max-width: 600px;
 }
 
 .card-body { 
