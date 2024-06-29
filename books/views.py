@@ -130,6 +130,7 @@ def book_detail(request, slug):
     # Calculate average rating
     if book_ratings:
         average_rating = sum(book_ratings) / len(book_ratings)
+        average_rating = round(average_rating, 1)
     else:
         average_rating = None 
         
