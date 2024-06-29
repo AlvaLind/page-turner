@@ -11,6 +11,7 @@ from books.forms import BookshelfForm
 def profile(request):
     # Post request in profile form 
     if request.method == 'POST' and 'profile_form' in request.POST:
+        print("form submitted correctly")
         form = UserProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             user = form.save(commit=False)
@@ -19,11 +20,14 @@ def profile(request):
                 user.set_password(new_password)
                 update_session_auth_hash(request, user)
             user.save()
+            print("form saved successfully")
             messages.success(request, 'Your profile was successfully updated!')
             return redirect('profile')
         else:
+            print("post failed")
             messages.error(request, 'Please correct the error below.')
     else:
+        print("no post recognised")
         form = UserProfileForm(instance=request.user)
     
     # Post request in status form 
