@@ -516,12 +516,39 @@ footer {
     position: relative; 
 }
 
+/* Staus dropdown form styles */
+.current-status {
+    color: #161616;
+    margin-top: 0px;
+}
+
 .status-form {
     display: inline-block; 
 }
 
 .status-select {
-    width: 130px;
+    position: relative;
+    appearance: none; 
+    border: 1px solid #b4b4b4; 
+    border-radius: 4px; 
+    transition: all 0.3s ease; 
+}
+
+/* Styling the placeholder option */
+.status-select option[disabled] {
+    color: #aaa; 
+}
+
+.status-select:hover {
+    border-color: #757575; 
+    background-color: #f0f0f0; 
+}
+
+/* Focus effect for the select element */
+.status-select:focus {
+    outline: none; 
+    box-shadow: 0 0 5px rgba(181, 143, 255, 0.5); 
+    border-color:#B58FFF; 
 }
 
 /* Media query for larger screens */
@@ -632,5 +659,18 @@ footer {
     .col-md-6 {
         flex: 0 0 50%; 
         max-width: 50%; 
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1000px) {
+    /* Profile page stack settings and bookshelf*/
+    .profile-container {
+        flex-direction: column;
+    }
+
+    .profile-settings,
+    .users-bookshelf {
+        width: 100%; 
+        margin-bottom: 20px;
     }
 }
