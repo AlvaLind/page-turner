@@ -10,13 +10,13 @@
         <div class="col-lg-12">
             <picture>
                 <!-- Source for large screens -->
-                <source media="(min-width: 600px)" srcset="{% static 'images/reading-in-cozy-library.png' %}">
+                <source media="(min-width: 600px)" srcset="{% static 'images/woman-purple-book.jpg' %}">
                 <!-- Source for small screens -->
-                <img src="{% static 'images/man-reading-2.png' %}" alt="Banner Image" class="banner-image">
+                <img src="{% static 'images/man-reading-6.jpg' %}" alt="Banner Image" class="banner-image">
             </picture>
             <div class="banner-text-box">
-                <h1>Welcome to Page Turner</h1>
-                <p>Discover the latest books and explore new worlds</p>
+                <h1>Welcome to PageTurner</h1>
+                <p>Browse Exciting Reads and Find Your Next Favorite Book</p>
                 <a href="{% url 'books' %}" class="btn btn-primary">See all books</a>
             </div>
         </div>
@@ -24,7 +24,7 @@
 </div>
 
 <!-- Display books -->
-<div class="container-fluid">
+<div class="container-fluid display-books">
     <div class="row">
         <div class="container mt-5">
             <h1 class="mb-4">Top Rated Books</h1>
@@ -71,19 +71,6 @@
     </div>
 </div>
 
-<!-- Newsletter Signup -->
-<div class="container-fluid newsletter-signup py-5">
-    <div class="row">
-        <div class="col-12 text-center">
-            <h2>Stay Updated!</h2>
-            <p>Sign up for our newsletter to get the latest book releases, author events, and exclusive content straight to your inbox.</p>
-            <form method="post" action="{% url 'homepage' %}" class="d-flex justify-content-center">
-                {% csrf_token %}
-                <input type="email" name="email" placeholder="Enter your email" required class="form-control me-2" style="max-width: 300px;">
-                <button type="submit" class="btn btn-primary">Subscribe</button>
-            </form>
-        </div>
-    </div>
-</div>
+
 
 {% endblock %}

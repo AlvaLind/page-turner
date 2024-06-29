@@ -5,7 +5,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #d9d2c0;
+    background-color: #F0F0EA;
     color: #333;
     display: flex;
     flex-direction: column;
@@ -18,8 +18,8 @@ header {
 }
 
 nav {
-    max-width: 1200px;
     margin: 0 auto;
+    max-width: 1200px;
     padding: 10px 20px;
 }
 
@@ -36,7 +36,7 @@ nav {
 
 .navbar-nav .nav-item .nav-link.active {
     font-weight: bold;
-    color: #c98f61
+    color: #3EA881
 }
 
 .logo {
@@ -49,11 +49,9 @@ nav {
 
 main {
     flex-grow: 1;
-    align-self: auto;
-    padding: 10px 20px 20px 20px;
-    max-width: 1200px;
+    padding: 10px 0px 20px 0px;
     margin: 0;
-    background-color: #d9d2c0;
+    background-color: #F0F0EA;
 }
 
 /* Footer Styles */
@@ -99,7 +97,7 @@ footer {
 }
 
 .social-link:hover {
-    color: #ffcc00;
+    color: #3EA881;
 }
 
 /* Footer Column 2 */
@@ -119,7 +117,7 @@ footer {
 }
 
 .page-links a:hover {
-    color: #ffcc00;
+    color: #3EA881;
 }
 
 /* Footer Column 3 */
@@ -150,6 +148,7 @@ footer {
 /* Homepage Styles */
 /* Title banner styles*/
 .title-banner {
+    max-width: 1200px;
     position: relative;
     width: 100%;
     margin-top: 10px;
@@ -173,11 +172,11 @@ footer {
     max-width: none;
     margin-top: 10px;
     padding: 20px;
-    text-align: left;
+    text-align: center;
 }
 
 .banner-text-box .btn {
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .remove-gutters{
@@ -186,6 +185,10 @@ footer {
 
 /* book_list template */
 /* list of displayed books section */
+.display-books {
+    max-width: 1200px;
+}
+
 .no-underline {
     text-decoration: none;
 }
@@ -200,7 +203,7 @@ footer {
 }
 
 .card {
-    border: 2px solid #c98f61;
+    border: 2px solid #3EA881;
     background-color: #f4f2f3;
     min-height: 190px;
     position: relative;
@@ -244,7 +247,7 @@ footer {
 }
 
 .back-button:hover {
-    background-color: #f5c518a4; /* Lighter background on hover */
+    background-color: #B58FFF; /* Lighter background on hover */
 }
 
 /* Optional: Center the arrow horizontally and vertically */
@@ -309,7 +312,7 @@ footer {
 
 /* Comment display Section */
 .comment-container {
-    border: 2px solid #c98f61;
+    border: 2px solid #3EA881;
     background-color: #f0efe2;
     padding: 15px;
     max-height: 600px;
@@ -321,12 +324,12 @@ footer {
 }
 
 .comment-card{
-    border: 2px solid #c98f61;
+    border: 2px solid #3EA881;
     background-color: #fff;
 }
 
 .add-comment-card{
-    border: 2px solid #c98f61;
+    border: 2px solid #3EA881;
     background-color: #f0efe2;
     max-height: 600px;
 }
@@ -371,6 +374,7 @@ footer {
 .about-title { 
     margin-bottom: 20px;
 }
+
 .rounded-image {
     border-radius: 15px;
     display: block;
@@ -386,10 +390,20 @@ footer {
 }
 
 
-/* Buttons */
+/* General Buttons */
+.btn-primary {
+    background-color: #A83E3E;
+    border-color: #A83E3E;
+}
+
+.btn-primary:hover {
+    background-color: #853434;
+    border-color: #853434;
+}
+
 .btn-secondary {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
+    background-color: #B58FFF;
+    border-color: #B58FFF;
 }
 
 .details {
@@ -401,7 +415,6 @@ footer {
     position: static;
     margin-top: 10px;
 }
-
 
 
 /* Profile page styles */
@@ -442,9 +455,8 @@ footer {
 /* Media query for larger screens */
 @media (min-width: 768px) {
     main {
-        align-self: center;
-        margin-left: 1%;
-        margin-right: 1%;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .profile-icon {
