@@ -61,14 +61,14 @@
             <!-- If statement to display a previous button if required -->
             {% if page_obj.has_previous %}
             <li>
-                <a href="?page={{ page_obj.previous_page_number }}" class="page-link"> &laquo; PREV </a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="page-link paginate-button"> &laquo; PREV </a>
             </li>
             {% endif %}
 
             <!-- If statement to display a next button if required -->
             {% if page_obj.has_next %}
             <li>
-                <a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a>
+                <a href="?page={{ page_obj.next_page_number }}" class="page-link paginate-button"> NEXT &raquo;</a>
             </li>
             {% endif %}
         </ul>

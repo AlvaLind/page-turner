@@ -482,10 +482,15 @@ footer {
     position: relative;
 }
 
-
 #bookshelf-buttons {
     position: static;
     margin-top: 10px;
+}
+
+/* Pagination Buttons */
+.paginate-button {
+    border: 3px solid #B58FFF;
+    color: #333;
 }
 
 

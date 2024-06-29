@@ -98,14 +98,14 @@
                         <!-- Previous page link -->
                         {% if books_in_bookshelf.has_previous %}
                         <li class="page-item">
-                            <a href="?page={{ books_in_bookshelf.previous_page_number }}" class="page-link"> &laquo; PREV </a>
+                            <a href="?page={{ books_in_bookshelf.previous_page_number }}" class="page-link paginate-button"> &laquo; PREV </a>
                         </li>
                         {% endif %}
 
                         <!-- Next page link -->
                         {% if books_in_bookshelf.has_next %}
                         <li class="page-item">
-                            <a href="?page={{ books_in_bookshelf.next_page_number }}" class="page-link"> NEXT &raquo;</a>
+                            <a href="?page={{ books_in_bookshelf.next_page_number }}" class="page-link paginate-button"> NEXT &raquo;</a>
                         </li>
                         {% endif %}
                     </ul>
