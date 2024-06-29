@@ -73,7 +73,6 @@
                                                     {% endif %}
                                                 {% endfor %}
                                             </select>
-                                            <button class="btn btn-secondary mb-3" type="submit">Update Status</button>
                                         </form>
                                         
                                         <form class="remove-book-form status-form-right" method="post" action="{% url 'remove_from_bookshelf' book.slug %}">
@@ -112,5 +111,17 @@
         </div>
     </div>
 </div>
+
+<!-- JS for status dropdown form to submit without a button -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.status-select').forEach(function(select) {
+            select.addEventListener('change', function() {
+                this.form.submit();
+            });
+        });
+    });
+</script>
+
 {% endblock %}
 
