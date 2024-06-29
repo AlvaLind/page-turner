@@ -11,13 +11,12 @@ class BookRequestForm(forms.ModelForm):
         Specify the book request model and order the fields 
         """
         model = BookRequest
-        fields = ('title', 'author', 'published_year', 'description', 'cover_image',)
+        fields = ('title', 'author', 'published_year', 'description',)
         labels = {
             'title': 'Title',
             'author': 'Author',
             'published_year': 'Published Year',
             'description': 'Description',
-            'cover_image': 'Cover Image',
         }
         widgets = {
             'description': forms.Textarea(attrs={

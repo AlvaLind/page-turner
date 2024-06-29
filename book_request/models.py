@@ -13,7 +13,6 @@ class BookRequest(models.Model):
     author = models.CharField(max_length=60)
     published_year = models.IntegerField()
     description = models.TextField(blank=True, null=True)
-    cover_image = CloudinaryField('image', default='placeholder', blank=True, null=True)
     read = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="requester")
     created_on = models.DateTimeField(auto_now_add=True)
