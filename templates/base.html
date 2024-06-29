@@ -50,12 +50,12 @@
                         href="{{ books_url }}">Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == about_us_url %}active{%endif%}"
-                          aria-current="page" href="{% url 'about_us' %}">About Us</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link {% if request.path == book_request_url %}active{%endif%}"
                           aria-current="page" href="{% url 'book_request' %}">Request a Book</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == about_us_url %}active{%endif%}"
+                          aria-current="page" href="{% url 'about_us' %}">About Us</a>
                     </li>
                 </ul>
 
@@ -123,7 +123,7 @@
                     <img  src="{% static 'images/page-turner-logo.png' %}" alt='Page Turner'>
                 </div>
                 <p class="site-description">
-                    Page Turner is a dynamic platform where book lovers connect 
+                    PageTurner is a dynamic platform where book lovers connect 
                     to discover new reads, share insights, and build virtual 
                     bookshelves to track their literary adventures.
                 </p>
