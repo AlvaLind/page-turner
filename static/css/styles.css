@@ -183,6 +183,30 @@ footer {
     --bs-gutter-x: 0rem;
 }
 
+/* discover banner styles */
+.discover-banner {
+    margin-top: 25px;
+    background-color: #B58FFF; 
+    color: #FFFFFF; 
+    padding: 60px;
+    text-align: center;
+}
+
+.introduction-text {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.discover-banner h2 {
+    font-size: 1.5 em;
+    margin-bottom: 0.5em;
+}
+
+.discover-banner p {
+    font-size: 1 em;
+    line-height: 1.1;
+}
+
 /* Missing any books styles */
 .missingbook-banner {
     position: relative;
