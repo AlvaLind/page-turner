@@ -71,6 +71,23 @@
     </div>
 </div>
 
-
+<!--Missing any books section-->
+<div class="missingbook-banner">
+    <div class="row w-100 remove-gutters">
+        <div class="col-lg-12 d-flex p-0 image-position">
+            <div class="missing-image-container">
+                <img src="{% static 'images/books-logo-purple.png' %}" alt="Missing your favourite book image" class="missingbook-image-1">
+                <div class="missingbook-text-box">
+                    <h2>Missing Your Favourite Book?</h2>
+                    <p>No Problem! Send in your book recommendations so we can keep the PageTurner library up to date</p>
+                    <a href="{% url 'book_request' %}" class="btn btn-primary">Request a Book</a>
+                </div>
+            </div>
+            <div class="missing-image-container hidden-container">
+                <img src="{% static 'images/reading-with-cat.jpg' %}" alt="Missing your favourite book image" class="missingbook-image-2">
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
