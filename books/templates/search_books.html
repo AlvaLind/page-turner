@@ -55,20 +55,20 @@
 
     <!-- Paginate books list so a max of 9 are displayed per page -->
     <!-- set the max number in BookList view 'paginate_by = 9'-->
-    {% if is_paginated %}
+    {% if book_list.paginator.num_pages > 1 %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             <!-- If statement to display a previous button if required -->
-            {% if page_obj.has_previous %}
+            {% if book_list.has_previous %}
             <li>
-                <a href="?page={{ page_obj.previous_page_number }}" class="page-link paginate-button"> &laquo; PREV </a>
+                <a href="?page={{ book_list.previous_page_number }}" class="page-link paginate-button"> &laquo; PREV </a>
             </li>
             {% endif %}
 
             <!-- If statement to display a next button if required -->
-            {% if page_obj.has_next %}
+            {% if book_list.has_next %}
             <li>
-                <a href="?page={{ page_obj.next_page_number }}" class="page-link paginate-button"> NEXT &raquo;</a>
+                <a href="?page={{ book_list.next_page_number }}" class="page-link paginate-button"> NEXT &raquo;</a>
             </li>
             {% endif %}
         </ul>

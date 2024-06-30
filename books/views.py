@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Q, Avg, Count
 from .models import Book, Comment, Rating, Bookshelf
@@ -66,6 +67,17 @@ def search_books(request):
                 Q(genre__name__icontains=query)
             )
     
+    # Pagination
+    paginator = Paginator(books, 9) 
+    page = request.GET.get('page')
+    
+    try:
+        books = paginator.page(page)
+    except PageNotAnInteger:
+        books = paginator.page(1)
+    except EmptyPage:
+        books = paginator.page(paginator.num_pages)
+        
     return render(request, 'search_books.html', {'form': form, 'query': query, 'book_list': books})
     
     
