@@ -10,7 +10,7 @@ from cloudinary.models import CloudinaryField
 
 class Genre(models.Model):
     # Fields
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     description = models.TextField(blank=True)
     
     class Meta: 
@@ -22,7 +22,7 @@ class Genre(models.Model):
     
 class Author(models.Model):
     # Fields
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     birth_date = models.DateField(null=True, blank=True)
     nationality = models.CharField(max_length=100, blank=True)
     
