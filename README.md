@@ -149,23 +149,23 @@ PageTurner's strategy revolves around:
 
 | User Story |
 |------------|
-- As a User, I can view the homepage to see the most recently uploaded books and understand the purpose of the website.
-- As a User, I can view the homepage to see the most recently uploaded books and understand the purpose of the website.
-- As a User, I can register for an account so that I can gain access to additional features. 
-- As a User, I can view the about us page so that I can learn about the website and its creator.
-- As a User, I can view a books detail page to see a specific books details.
-- As a User, I can search for books by genre, author, or title so that I can find books of interest. 
+| As a User, I can view the homepage to see the most recently uploaded books and understand the purpose of the website. |
+| As a User, I can view the homepage to see the most recently uploaded books and understand the purpose of the website. |
+| As a User, I can register for an account so that I can gain access to additional features. |
+| As a User, I can view the about us page so that I can learn about the website and its creator. |
+| As a User, I can view a books detail page to see a specific books details. |
+| As a User, I can search for books by genre, author, or title so that I can find books of interest. | 
 
 
 | Registered User Story |
 |-----------------------|
-- As a Registered User, I can log in to my account so that I can access personalized features and data.
-- As a Registered User, I can add a book to my favorites so that I can easily find and access it later.
-- As a Registered User, I can rate a book so that I can share my rating with others.
-- As a Registered User, I can comment on a book so that I can share my thoughts and feedback.
-- As a Registered User, I can edit my comments so that I can correct or update my feedback.
-- As a Registered User, I can request a book so that the admin considers adding it to the database.
-- As a Registered User, I can update my profile information so that my account details are current.
+| As a Registered User, I can log in to my account so that I can access personalized features and data. |
+| As a Registered User, I can add a book to my favorites so that I can easily find and access it later. |
+| As a Registered User, I can rate a book so that I can share my rating with others. |
+| As a Registered User, I can comment on a book so that I can share my thoughts and feedback. |
+| As a Registered User, I can edit my comments so that I can correct or update my feedback. |
+| As a Registered User, I can request a book so that the admin considers adding it to the database. |
+| As a Registered User, I can update my profile information so that my account details are current. |
 
 | Admin User Story |
 |------------------|
