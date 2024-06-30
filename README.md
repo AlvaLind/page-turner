@@ -215,8 +215,14 @@ The icons on the website are imported from [Font Awesome](https://fontawesome.co
 
 ### Wireframes
 
-## Flowchart or something similar
+You can access the miro planning board through **[this link.](https://miro.com/app/board/uXjVK2i1wUs=/?share_link_id=168534055727)**
 
+You can also access the wireframes through the links below.
+* [Desktop Wireframes](https://github.com/AlvaLind/page-turner/blob/main/documentation/README-images/wireframes/wireframe-desktop-view.jpg)
+* [Mobile Wireframes](https://github.com/AlvaLind/page-turner/blob/main/documentation/README-images/wireframes/wireframe-phone-view.jpg)
+
+## User jurney flowchart
+User jurney flowchart was created with [Figma](https://www.figma.com/). Access the board for both desktop and mobile view through **[this link](https://www.figma.com/board/HKSKWYNd20VX7OtIus7dZz/Untitled?node-id=0-1&t=pRwyrs5hjfD9DQU2-1)**
 
 ## Technologies used
 
@@ -263,6 +269,8 @@ The icons on the website are imported from [Font Awesome](https://fontawesome.co
 * [AmIResponsive](https://ui.dev/amiresponsive) to create the responsive showcase of the project.
 * [Font Awesome](https://fontawesome.com/) was used to create the icons used in the website.
 * [Coolors](https://coolors.co/) was used to make a color palette for the website.
+* [Miro](https://miro.com/) to create wireframes.
+* [Figma](https://www.figma.com/) to show user flow.
 
 ## Bugs
 ### Solved bugs
@@ -271,7 +279,7 @@ The icons on the website are imported from [Font Awesome](https://fontawesome.co
 
 ## Structural Design
 
-## ## Testing
+## Testing
 See testing file for info
 
 ## Deployment
