@@ -273,7 +273,7 @@ footer {
 
 .card {
     border: 2px solid #3EA881;
-    background-color: #f4f2f3;
+    background-color: #eeebec;
     min-height: 190px;
     position: relative;
     max-width: 600px;
@@ -284,9 +284,9 @@ footer {
 }
 
 .image-container img {
-    max-width: 100%; 
     height: auto; 
-    max-height: 160px; 
+    min-height: 140px;
+    max-height: 155px; 
     overflow: hidden; 
 }
 
