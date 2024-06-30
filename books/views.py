@@ -5,15 +5,53 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Q, Avg, Count
-from .models import Book, Comment, Rating, Bookshelf
+from .models import Book, Comment, Rating, Bookshelf, Genre
 from .forms import CommentForm, RatingForm, BookSearchForm
 
 # Create your views here.
 class BookList(generic.ListView):
     model = Book
-    queryset = Book.objects.all()
     template_name = "book_list.html"
     paginate_by = 9
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        # Get the genre ID from the query parameters
+        genre_id = self.request.GET.get('genre')
+        if genre_id:
+            try:
+                genre = Genre.objects.get(id=genre_id)
+                queryset = queryset.filter(genre=genre)
+            except Genre.DoesNotExist:
+                pass  # Handle case where genre_id does not correspond to any genre
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        # Add additional context data for rendering the template
+        context = super().get_context_data(**kwargs)
+        # Retrieve all genres to populate the dropdown menu
+        context['genres'] = Genre.objects.all()
+        return context
+
+    def post(self, request):
+        # Handle POST requests (form submissions)
+        # Retrieve the selected genre ID from the form data
+        genre_id = request.POST.get('genre')
+        if genre_id:
+            genre_name = Genre.objects.get(id=genre_id)
+            # Redirect to the 'books' URL with the selected genre ID as a query parameter
+            return redirect(reverse('books') + f'?genre={genre_id}&{genre_name}')
+        else:
+            genre_name = None
+        # If no valid genre_id or Genre does not exist, return books URL with no filter
+        return redirect('books')
+
+
+def filter_books_by_genre(request):
+    genre_id = request.POST.get('genre')
+    if genre_id:
+        return redirect(reverse('book_list') + f'?genre={genre_id}')
+    return redirect(reverse('book_list'))
     
     
 def Homepage(request):
