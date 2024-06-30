@@ -147,8 +147,8 @@ PageTurner's strategy revolves around:
 
 ### User Stories:
 
-| User Story and Acceptance Criteria |
-|------------------------------------|
+| User Story |
+|------------|
 - As a User, I can view the homepage to see the most recently uploaded books and understand the purpose of the website.
 - As a User, I can view the homepage to see the most recently uploaded books and understand the purpose of the website.
 - As a User, I can register for an account so that I can gain access to additional features. 
@@ -157,8 +157,8 @@ PageTurner's strategy revolves around:
 - As a User, I can search for books by genre, author, or title so that I can find books of interest. 
 
 
-| Registered User Story and Acceptance Criteria |
-|-----------------------------------------------|
+| Registered User Story |
+|-----------------------|
 - As a Registered User, I can log in to my account so that I can access personalized features and data.
 - As a Registered User, I can add a book to my favorites so that I can easily find and access it later.
 - As a Registered User, I can rate a book so that I can share my rating with others.
@@ -167,13 +167,13 @@ PageTurner's strategy revolves around:
 - As a Registered User, I can request a book so that the admin considers adding it to the database.
 - As a Registered User, I can update my profile information so that my account details are current.
 
-| Admin User Story and Acceptance Criteria |
-|------------------------------------------|
-- As an Admin, I can manage user accounts so that I can maintain the integrity of the user base and handle any issues.
-- As an Admin, I can access the about us admin interface so that I can update the text and image.
-- As an Admin, I can approve user comments so that only appropriate comments are displayed on the book detail pages.
-- As an Admin, I can mark book requests as read so that I can keep track of which requests have been reviewed.
-- As an Admin, I can upload a new book to the database so that users can access and search for it.
+| Admin User Story |
+|------------------|
+| As an Admin, I can manage user accounts so that I can maintain the integrity of the user base and handle any issues. |
+| As an Admin, I can access the about us admin interface so that I can update the text and image. |
+| As an Admin, I can approve user comments so that only appropriate comments are displayed on the book detail pages. |
+| As an Admin, I can mark book requests as read so that I can keep track of which requests have been reviewed. |
+| As an Admin, I can upload a new book to the database so that users can access and search for it. |
 
 ## Features
 
@@ -185,19 +185,19 @@ PageTurner has a color palette that not only reflects modernity but also aims to
 
 ![Colors of PageTurner ](documentation/README-images/colors-pageturner.png)
 
-* #A83E3E: for primary buttons.  
+* **#A83E3E:** for primary buttons.  
 This color gives the feeling of passion and energy, inviting users to take action and explore further. The vibrant hue of red-orange ignites enthusiasm and signifies PageTurner's commitment to providing an exciting reading journey.
-* #3EA881: for highlight.  
+* **#3EA881:** for highlight.  
 This highlight color, brings a refreshing touch of tranquility and growth. Evoking the calming essence of nature, it encourages users to discover new books with a sense of serenity and exploration.
-* #B58FFF: for secondary buttons and homepage styles.  
+* **#B58FFF:** for secondary buttons and homepage styles.  
 This shade of lavender-purple infuses a sense of elegance and invites users to immerse themselves in our curated collections with curiosity and delight.
-* #FFFFFF: for background color in the bookcards and the comment section.  
+* **#FFFFFF:** for background color in the bookcards and the comment section.  
 This color promotes readability and focus. Its clean, crisp appearance creates a canvas where information shines brightly, fostering an inviting and accessible environment.
-* #F0F0EA: as background color.  
+* **#F0F0EA:** as background color.  
 This background color contributes to our overall ambiance with a warm, neutral backdrop that enhances content visibility and user interaction. This soft, light gray tone envelops users in a sense of comfort and ease, ensuring a seamless browsing experience.
-* #333333: as footer color.  
+* **#333333:** as footer color.  
 In contrast to the background color, this footer color provides a stable foundation with its deep charcoal hue. This color exudes reliability and professionalism, guiding users effortlessly as they navigate through PageTurner's extensive resources and community.
-* #000000 as navbar and text color.  
+* **#000000** as navbar and text color.  
 The black color offers a clarity and sharp contrast against our lighter backgrounds. This classic black imbues our interface with a sense of authority and clarity, ensuring that every word and detail resonates with precision.
 
 Together, these colors create a modern, fresh, and fun atmosphere at PageTurner, where every shade is chosen to enhance user experience, inspire discovery, and foster a vibrant community of book enthusiasts.
@@ -221,7 +221,7 @@ You can also access the wireframes through the links below.
 * [Desktop Wireframes](https://github.com/AlvaLind/page-turner/blob/main/documentation/README-images/wireframes/wireframe-desktop-view.jpg)
 * [Mobile Wireframes](https://github.com/AlvaLind/page-turner/blob/main/documentation/README-images/wireframes/wireframe-phone-view.jpg)
 
-## User jurney flowchart
+## User journey flowchart
 User jurney flowchart was created with [Figma](https://www.figma.com/). Access the board for both desktop and mobile view through **[this link](https://www.figma.com/board/HKSKWYNd20VX7OtIus7dZz/Untitled?node-id=0-1&t=pRwyrs5hjfD9DQU2-1)**
 
 ## Technologies used
@@ -249,7 +249,6 @@ User jurney flowchart was created with [Figma](https://www.figma.com/). Access t
 * [Visual Studio Code](https://code.visualstudio.com/) was the IDE used to develop the website.
 * [Git](https://git-scm.com/) was used as the version control system used to manage the code.
 * [GitHub](https://github.com/) was used to host the code of the website.
-* [Heroku](https://dashboard.heroku.com/) was used to deploy the website.
 * [Pip3](https://pypi.org/project/pip/) was the package manager used to install the dependencies.
 * [Gunicorn](https://gunicorn.org/) was the webserver used to run the website.
 * [Whitenoise](https://whitenoise.readthedocs.io/en/stable/django.html) was used to simplify the process of handling static assets when deploying.
@@ -278,6 +277,16 @@ User jurney flowchart was created with [Figma](https://www.figma.com/). Access t
 ### Unsolved bugs
 
 ## Structural Design
+
+### Database 
+
+PostgreSQL from [Code Institute](https://codeinstitute.net/global/)
+
+### Entity Relationship Diagram
+
+![ERD diagram](documentation/README-images/erd-diagram.jpg)
+
+The ERD was created via [Lucid charts](https://lucid.app/)
 
 ## Testing
 See testing file for info
@@ -349,9 +358,13 @@ The project was deployed using Code Institutes mock terminal for Heroku so it ca
 
 ## Credits
 
+* [Heroku](https://dashboard.heroku.com/) for hosting the deployment.
+* [Code Institute course material](https://codeinstitute.net/global/) for django structure.
+
 Images from: 
 
 * Image with the reading girl and the cat is from this [Time for Kids](https://www.timeforkids.com/g56/summer-reading-debate/)
 * AI generated images from [Adobe](https://firefly.adobe.com/inspire/images)
 
 ## Acknowledgments
+* 
