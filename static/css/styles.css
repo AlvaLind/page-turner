@@ -302,6 +302,18 @@ footer {
     color: #333;
 }
 
+#genreFilterForm {
+    margin-bottom: 20px;
+}
+
+#genre {
+    padding-bottom: 2px;
+}
+
+.genre-form-label {
+    color:#161616
+}
+
 /* book_details template */
 /* return to previous page button styles */
 .return-button {

@@ -7,7 +7,21 @@
     <div class="row">
         <!-- Books section -->
         <div class="container mt-5">
-            <h1 class="mb-4">Latest Books</h1>
+            <h1 class="mb-4">Books</h1>
+            <!-- Filter by genre form -->
+            <form id="genreFilterForm" method="post">
+                {% csrf_token %}
+                <label class="genre-form-label" for="genre">Filter by genre:</label>
+                <select name="genre" id="genre">
+                    <option value="">All genres</option>
+                    {% for genre in genres %}
+                        <option value="{{ genre.id }}" {% if request.GET.genre == genre.id|stringformat:"s" %}selected{% endif %}>
+                            {{ genre.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </form>
+            
             <!-- If there are no books to display -->
             {% if not book_list %}
                 <p>No books available at the moment.</p>
@@ -71,5 +85,16 @@
     </nav>
     {% endif %}     
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Handle the genre filter post submission only after the html has fully loaded
+    $(document).ready(function() {
+        // Add change event to genre select dropdown to submit when value changes
+        $('#genre').change(function() {
+            $('#genreFilterForm').submit();
+        });
+    });
+</script>
 
 {% endblock %}
