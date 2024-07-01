@@ -24,7 +24,7 @@ def book_request(request):
             book_request_instance = bookRequest_form.save(commit=False)
             book_request_instance.user = request.user
             book_request_instance.save()
-            messages.add_message(request, messages.SUCCESS, "Thankyou for your book recommendation!")
+            messages.add_message(request, messages.SUCCESS, "Thank you for your book recommendation!")
             return redirect('book_request')
         else:
             messages.add_message(request, messages.ERROR, "Failed to submit your book recommendation, please try again")
