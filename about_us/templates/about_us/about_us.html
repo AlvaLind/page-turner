@@ -8,7 +8,7 @@
         <div class="col-12">
             <div class="text-wrapper">
                 <h2 class="about-title">{{ about_us.title }}</h2>
-                <img src="{{ about_us.profile_image.url }}" class="img-fluid rounded-image" width="30%" alt="{{ about_us.title }}">
+                <img src="{{ about_us.profile_image.url }}" class="img-fluid rounded-image" width="30%" alt="{{ about_us.title }}" aria-label="Profile Image of {{ about_us.title }}">
                 {{ about_us.content | safe }}
             </div>
         </div>
