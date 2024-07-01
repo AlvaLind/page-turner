@@ -8,7 +8,6 @@ from django.db.models import Q, Avg, Count
 from .models import Book, Comment, Rating, Bookshelf, Genre
 from .forms import CommentForm, RatingForm, BookSearchForm
 
-# Create your views here.
 class BookList(generic.ListView):
     model = Book
     template_name = "book_list.html"
@@ -23,7 +22,7 @@ class BookList(generic.ListView):
                 genre = Genre.objects.get(id=genre_id)
                 queryset = queryset.filter(genre=genre)
             except Genre.DoesNotExist:
-                pass  # Handle case where genre_id does not correspond to any genre
+                pass  
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -38,11 +37,12 @@ class BookList(generic.ListView):
         # Retrieve the selected genre ID from the form data
         genre_id = request.POST.get('genre')
         if genre_id:
-            genre_name = Genre.objects.get(id=genre_id)
-            # Redirect to the 'books' URL with the selected genre ID as a query parameter
-            return redirect(reverse('books') + f'?genre={genre_id}&{genre_name}')
-        else:
-            genre_name = None
+            try:
+                genre_name = Genre.objects.get(id=genre_id)
+                # Redirect to the 'books' URL with the selected genre ID as a query parameter
+                return redirect(reverse('books') + f'?genre={genre_id}&{genre_name}')
+            except (ValueError, Genre.DoesNotExist):
+                genre_name = None
         # If no valid genre_id or Genre does not exist, return books URL with no filter
         return redirect('books')
 
@@ -50,21 +50,21 @@ class BookList(generic.ListView):
 def filter_books_by_genre(request):
     genre_id = request.POST.get('genre')
     if genre_id:
-        return redirect(reverse('book_list') + f'?genre={genre_id}')
-    return redirect(reverse('book_list'))
-    
-    
+        return redirect(reverse('books') + f'?genre={genre_id}')
+    return redirect(reverse('books'))
+
+
 def Homepage(request):
     """
     Display the homepage with the top-rated books.
 
-    **Context**
+    *Context*
 
     ''book_list''
         A queryset containing the top 6 books with the highest average 
         ratings, and excluding books with no ratings.
 
-    **Template:**
+    *Template:*
 
     :template:'books/homepage.html'
     """
@@ -81,14 +81,14 @@ def search_books(request):
     """
     Search for books by title, author, or genre.
     
-    **Context**
+    *Context*
     
     ''form''
         An instance of :form:'books.BookSearchForm'.
     ''books''
         A queryset containing all books that match the search query.
         
-    **Template:**
+    *Template:*
     
     :template:'books/search_books.html'
     """
@@ -123,7 +123,7 @@ def book_detail(request, slug):
     """
     Display an individual :model:'books.Book'.
     
-    **Context**
+    *Context*
     
     ''book''
         An instance of :model:'books.Book'.
@@ -136,7 +136,7 @@ def book_detail(request, slug):
     ''rating_form''
         An instance of :form:'books.RatingForm'.
         
-    **Template:**
+    *Template:*
     
     :template:'books/book_detail.html'
     """
@@ -241,11 +241,12 @@ def book_detail(request, slug):
     )
     
 
+@login_required
 def comment_edit(request, slug, comment_id):
     """
     Edit an individual comment related to a book.
 
-    **Context**
+    *Context*
 
     ``book``
         An instance of :model:`books.Book`.
@@ -274,11 +275,12 @@ def comment_edit(request, slug, comment_id):
     return HttpResponseRedirect(reverse('book_detail', args=[slug]))
 
 
+@login_required
 def comment_delete(request, slug, comment_id):
     """
     Delete an individual comment related to a book.
 
-    **Context**
+    *Context*
 
     ``book``
         An instance of :model:`books.Book`.
@@ -298,6 +300,7 @@ def comment_delete(request, slug, comment_id):
         print("Error: Comment delete failed - not users comment")
 
     return HttpResponseRedirect(reverse('book_detail', args=[slug]))
+
 
 # Add and remove books from bookshelf
 @login_required
