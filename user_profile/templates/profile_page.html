@@ -10,10 +10,10 @@
                 <h1>User Profile</h1>
                 
                 <form method="post" class="profile-form">
-                    <input type="hidden" name="profile_form" value="profile_form" aria-label="Update user details">
+                    <input type="hidden" name="profile_form" value="profile_form">
                     {{ form | crispy }}
                     {% csrf_token %}
-                    <button class="btn btn-secondary mb-3" type="submit"aria-label="Save Changes">Save Changes</button>
+                    <button class="btn btn-secondary mb-3" type="submit" aria-label="Save Changes">Save Changes</button>
                 </form>
             </div>
         </div>
