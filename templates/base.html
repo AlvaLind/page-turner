@@ -43,8 +43,8 @@
     <header>
         <!-- Nav Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand navbar-brand-custom" href="{{ home_url }}">
-                <img src="{% static 'images/page-turner-logo.png' %}" alt='Page Turner' class="logo">
+            <a class="navbar-brand navbar-brand-custom" href="{{ home_url }}" aria-label="Home page">
+                <img src="{% static 'images/page-turner-logo.png' %}" alt='Page Turner' class="logo" aria-label="PageTurner logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -53,19 +53,19 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}" 
-                        href="{{ home_url }}">Home</a>
+                        href="{{ home_url }}" aria-label="Home page">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == books_url %}active" aria-current="page{% endif %}"
-                        href="{{ books_url }}">Books</a>
+                        href="{{ books_url }}" aria-label="See all books">Books</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == book_request_url %}active{%endif%}"
-                          aria-current="page" href="{% url 'book_request' %}">Request a Book</a>
+                          aria-current="page" href="{% url 'book_request' %}" aria-label="Request a book">Request a Book</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == about_us_url %}active{%endif%}"
-                          aria-current="page" href="{% url 'about_us' %}">About Us</a>
+                          aria-current="page" href="{% url 'about_us' %}" aria-label="About us">About Us</a>
                     </li>
                 </ul>
 
@@ -82,20 +82,20 @@
                         {% if user.is_authenticated %}
                         <li class="nav-item profile-icon">
                             <a class="nav-link {% if request.path == profile_page_url %}active" aria-current="page{% endif %}" 
-                            href="{{ profile_page_url }}">
-                                <i class="fas fa-user"></i> <!-- Profile icon -->
+                            href="{{ profile_page_url }}" aria-label="profile page">
+                                <i class="fas fa-user"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+                            <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}" aria-label="Logout">Logout</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-                                href="{% url 'account_signup' %}">Register</a>
+                                href="{% url 'account_signup' %}" aria-label="Register an account">Register</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
+                            <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}" aria-label="Login">Login</a>
                         </li>
                         {% endif %}
                     </ul>
@@ -130,7 +130,7 @@
             <!-- Column 1 -->
             <div class="footer-column">
                 <div class="site-logo">
-                    <img  src="{% static 'images/page-turner-logo.png' %}" alt='Page Turner'>
+                    <img  src="{% static 'images/page-turner-logo.png' %}" alt='Page Turner' aria-label="PageTurner logo">
                 </div>
                 <p class="site-description">
                     Page Turner is a dynamic platform where book lovers connect 
@@ -138,9 +138,9 @@
                     bookshelves to track their literary adventures.
                 </p>
                 <div class="social-links">
-                    <a href="https://x.com/" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com/" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com/" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/" class="social-link" aria-label="Go to twitter page"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com/" class="social-link" aria-label="Go to facebook page"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/" class="social-link" aria-label="Go to instagram page"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
             <hr>
@@ -149,10 +149,10 @@
             <div class="footer-column">
                 <h3>Explore</h3>
                 <ul class="page-links">
-                    <li><a href="{{ home_url }}">Home</a></li>
-                    <li><a href="{{ books_url }}">Books</a></li>
-                    <li><a href="{{ about_us_url }}">About Us</a></li>
-                    <li><a href="{{ book_request_url }}">Request a Book</a></li>
+                    <li><a href="{{ home_url }}" aria-label="Home page">Home</a></li>
+                    <li><a href="{{ books_url }}" aria-label="Books page">Books</a></li>
+                    <li><a href="{{ about_us_url }}" aria-label="About us page">About Us</a></li>
+                    <li><a href="{{ book_request_url }}" aria-label="Request a book page">Request a Book</a></li>
                 </ul>
             </div>
             <hr>
