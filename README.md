@@ -149,31 +149,41 @@ PageTurner's strategy revolves around:
 
 | User Story |
 |------------|
-| As a User, I can view the homepage to see the most recently uploaded books and understand the purpose of the website. |
-| As a User, I can view the homepage to see the most recently uploaded books and understand the purpose of the website. |
-| As a User, I can register for an account so that I can gain access to additional features. |
-| As a User, I can view the about us page so that I can learn about the website and its creator. |
-| As a User, I can view a books detail page to see a specific books details. |
-| As a User, I can search for books by genre, author, or title so that I can find books of interest. | 
+| [As a User](https://github.com/AlvaLind/page-turner/issues/5#issue-2315459600), I can view the homepage to see the most recently uploaded books and understand the purpose of the website. |
+| [As a User](https://github.com/AlvaLind/page-turner/issues/14#issue-2315476169), I can register for an account so that I can gain access to additional features. |
+| [As a User](https://github.com/AlvaLind/page-turner/issues/6#issue-2315460996), I can view the about us page so that I can learn about the website and its creator. |
+| [As a User](https://github.com/AlvaLind/page-turner/issues/20#issue-2323790329), I can view a books detail page to see a specific books details. |
+| [As a User](https://github.com/AlvaLind/page-turner/issues/4#issue-2315458536), I can search for books by genre, author, or title so that I can find books of interest. | 
 
 
 | Registered User Story |
 |-----------------------|
-| As a Registered User, I can log in to my account so that I can access personalized features and data. |
-| As a Registered User, I can add a book to my favorites so that I can easily find and access it later. |
-| As a Registered User, I can rate a book so that I can share my rating with others. |
-| As a Registered User, I can comment on a book so that I can share my thoughts and feedback. |
-| As a Registered User, I can edit my comments so that I can correct or update my feedback. |
-| As a Registered User, I can request a book so that the admin considers adding it to the database. |
-| As a Registered User, I can update my profile information so that my account details are current. |
+| [As a Registered User](https://github.com/AlvaLind/page-turner/issues/15#issue-2315478888), I can log in to my account so that I can access features and saved books. |
+| [As a Registered User](https://github.com/AlvaLind/page-turner/issues/10#issue-2315467841), I can add a book to my favorites so that I can easily find and access it later. |
+| [As a Registered User](https://github.com/AlvaLind/page-turner/issues/9#issue-2315466557), I can rate a book so that I can share my rating with others. |
+| [As a Registered User](https://github.com/AlvaLind/page-turner/issues/8#issue-2315465845), I can comment on a book so that I can share my thoughts and feedback. |
+| [As a Registered User](https://github.com/AlvaLind/page-turner/issues/17#issue-2315482426), I can edit my comments so that I can correct or update my feedback. |
+| [As a Registered User](https://github.com/AlvaLind/page-turner/issues/7#issue-2315465240), I can request a book so that the admin considers adding it to the database. |
+| [As a Registered User](https://github.com/AlvaLind/page-turner/issues/11#issue-2315468432), I can update my profile information so that my account details are correct. |
 
 | Admin User Story |
 |------------------|
-| As an Admin, I can manage user accounts so that I can maintain the integrity of the user base and handle any issues. |
-| As an Admin, I can access the about us admin interface so that I can update the text and image. |
-| As an Admin, I can approve user comments so that only appropriate comments are displayed on the book detail pages. |
-| As an Admin, I can mark book requests as read so that I can keep track of which requests have been reviewed. |
-| As an Admin, I can upload a new book to the database so that users can access and search for it. |
+| [As an Admin](https://github.com/AlvaLind/page-turner/issues/13#issue-2315473271), I can manage user accounts so that I can maintain the integrity of the user base and handle any issues. |
+| [As an Admin](https://github.com/AlvaLind/page-turner/issues/22#issue-2338408450), I can access the about us admin interface so that I can update the text and image. |
+| [As an Admin](https://github.com/AlvaLind/page-turner/issues/2#issue-2315456841), I can approve user comments so that only appropriate comments are displayed on the book detail pages. |
+| [As an Admin](https://github.com/AlvaLind/page-turner/issues/3#issue-2315457489), I can mark book requests as read so that I can keep track of which requests have been reviewed. |
+| [As an Admin](https://github.com/AlvaLind/page-turner/issues/1#issue-2315456250), I can upload a new book to the database so that users can access and search for it. |
+
+You can access all user stories through **[this link](https://github.com/users/AlvaLind/projects/3/views/1)**
+
+## Agile Methodology
+For PageTurner, I used agile methodologies to enhance development. This approach allowed me to efficiently add new features and updates, ensuring a high-quality user experience.
+
+![User story](documentation/user-story.png)
+
+![Github Board ](documentation/user-stories-board.png)
+You can locate the PageTurner backlog through **[this link](https://github.com/users/AlvaLind/projects/3/views/1)**
+
 
 ## Features
 
@@ -183,7 +193,7 @@ PageTurner's strategy revolves around:
 
 PageTurner has a color palette that not only reflects modernity but also aims to uplift and engage their users. 
 
-![Colors of PageTurner ](documentation/README-images/colors-pageturner.png)
+![Colors of PageTurner ](documentation/colors-pageturner.png)
 
 * **#A83E3E:** for primary buttons.  
 This color gives the feeling of passion and energy, inviting users to take action and explore further. The vibrant hue of red-orange ignites enthusiasm and signifies PageTurner's commitment to providing an exciting reading journey.
@@ -208,7 +218,7 @@ The font used on the website is Nunito and has been imported by [Google Fonts](h
 
 Nunito is a well-rounded, sans-serif typeface that offers a modern and friendly appearance. It features a balanced structure with soft, rounded terminals, making it highly readable and approachable.
 
-![Nunito](documentation/README-images/font-pt.png)
+![Nunito](documentation/font-pt.png)
 
 ### Icons
 The icons on the website are imported from [Font Awesome](https://fontawesome.com/), enhancing the user experience on versatile websites by providing essential visual cues.
@@ -218,8 +228,8 @@ The icons on the website are imported from [Font Awesome](https://fontawesome.co
 You can access the miro planning board through **[this link.](https://miro.com/app/board/uXjVK2i1wUs=/?share_link_id=168534055727)**
 
 You can also access the wireframes through the links below.
-* [Desktop Wireframes](https://github.com/AlvaLind/page-turner/blob/main/documentation/README-images/wireframes/wireframe-desktop-view.jpg)
-* [Mobile Wireframes](https://github.com/AlvaLind/page-turner/blob/main/documentation/README-images/wireframes/wireframe-phone-view.jpg)
+* [Desktop Wireframes](https://github.com/AlvaLind/page-turner/blob/main/documentation/wireframes/wireframe-desktop-view.jpg)
+* [Mobile Wireframes](https://github.com/AlvaLind/page-turner/blob/main/documentation/wireframes/wireframe-phone-view.jpg)
 
 ## User journey flowchart
 User jurney flowchart was created with [Figma](https://www.figma.com/). Access the board for both desktop and mobile view through **[this link](https://www.figma.com/board/HKSKWYNd20VX7OtIus7dZz/Untitled?node-id=0-1&t=pRwyrs5hjfD9DQU2-1)**
@@ -239,10 +249,8 @@ User jurney flowchart was created with [Figma](https://www.figma.com/). Access t
 * [jQuery UI](https://jqueryui.com/): Implemented to create interactive elements and enhance user interface components.
 
 ### Databases:
-* 
-* 
-* 
-* 
+* [SQLite](https://www.sqlite.org/): was used as a development database.
+* [PostgreSQL](https://www.postgresql.org/): the database used to store all the data. 
 
 
 ### Other tools:
@@ -254,10 +262,8 @@ User jurney flowchart was created with [Figma](https://www.figma.com/). Access t
 * [Whitenoise](https://whitenoise.readthedocs.io/en/stable/django.html) was used to simplify the process of handling static assets when deploying.
 * [Cloudinary](https://cloudinary.com/?utm_campaign=1329&utm_content=instapagelogocta-selfservetest) was used for managing, optimizing, and delivering images and videos through cloud storage.
 * [Django Summernote](https://pypi.org/project/django-summernote/) was used for providing a user-friendly interface for creating and editing text content.
-* 
 * [Django Crispy forms](https://django-cryptography.readthedocs.io/en/latest/) was used to control the rendering behavior of Django forms.
 * [Django allauth](https://django-allauth.readthedocs.io/en/latest/) was the authentication library used to create the user accounts.
-* 
 * [Chrome DevTools](https://developer.chrome.com/docs/devtools/open/) was used to debug the website.
 * [W3C Validator](https://validator.w3.org/) was used to validate HTML5 code for the website.
 * [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) was used to validate CSS code for the website.
@@ -280,11 +286,11 @@ User jurney flowchart was created with [Figma](https://www.figma.com/). Access t
 
 ### Database 
 
-A PostgreSQL database was provided by [Code Institute](https://codeinstitute.net/global/)
+The PostgreSQL database was provided by [Code Institute](https://codeinstitute.net/global/)
 
 ### Entity Relationship Diagram
 
-![ERD diagram](documentation/README-images/erd-diagram.jpg)
+![ERD diagram](documentation/erd-diagram.jpg)
 
 The ERD was created via [Lucid charts](https://lucid.app/)
 
@@ -315,27 +321,27 @@ The project was deployed using Code Institutes mock terminal for Heroku so it ca
 
 * Go to the Deploy tab:
 
-![Deploy Tab](documentation/README-images/deployment-2.png)
+![Deploy Tab](documentation/deployment-2.png)
 
 * Link your GitHub account and connect the application to the repository you created
 
-![Link GitHub account](documentation/README-images/deployment-3.png)
+![Link GitHub account](documentation/deployment-3.png)
 
 * Go to the Settings tab:
 
-![Settings Tab](documentation/README-images/deployment-4.png)
+![Settings Tab](documentation/deployment-4.png)
 
 * Click "Add buildpack":
 
-![Add Buildpack](documentation/README-images/deployment-5.png)
+![Add Buildpack](documentation/deployment-5.png)
 
 * Add the Python and Node.js buildpacks in the following order:
 
-![Add Python and Node.js](documentation/README-images/deployment-6.png)
+![Add Python and Node.js](documentation/deployment-6.png)
 
 * Click "Reveal Config Vars."
 
-![Reveal Config Vars](documentation/README-images/deployment-7.png)
+![Reveal Config Vars](documentation/deployment-7.png)
 
 * Add 1 new Config Vars:
     * Key: PORT Value: 8000
@@ -343,17 +349,17 @@ The project was deployed using Code Institutes mock terminal for Heroku so it ca
 
 * Go back to the Deploy tab:
 
-![Deploy Tab](documentation/README-images/deployment-8.png)
+![Deploy Tab](documentation/deployment-8.png)
 
 * Click "Deploy Branch":
 
-![Deploy Branch](documentation/README-images/deployment-9.png)
+![Deploy Branch](documentation/deployment-9.png)
 
 * Wait for the completion of the deployment.
 
 * Click "View" to launch the application inside a web page.
 
-![View Button](documentation/README-images/deployment-11.png)
+![View Button](documentation/deployment-11.png)
 
 
 ## Credits
