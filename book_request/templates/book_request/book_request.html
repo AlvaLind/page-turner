@@ -17,16 +17,16 @@
             <form method="post">
                 {{ bookRequest_form | crispy }}
                 {% csrf_token %}
-                <button class="btn btn-secondary" type="submit">Submit</button>
+                <button class="btn btn-secondary" type="submit" aria-label="Submit book request">Submit</button>
             </form>
             {% else %}
             <div class="login-required">
                 <p>You need to have an account to request a new book to be added to the library.</p>
                 <p>Please log in or register an account with us.</p>
                 <a class="btn btn-primary margin-right" {% if request.path == signup_url %}active{% endif %} aria-current="page"
-                    href="{% url 'account_signup' %}">Create account</a>
+                    href="{% url 'account_signup' %}" aria-label="Create Account">Create account</a>
                 <a class="btn btn-primary" {% if request.path == register_url %}active{% endif %} aria-current="page"
-                    href="{% url 'account_login' %}">Log in</a>
+                    href="{% url 'account_login' %}" aria-label="Log In">Log in</a>
             </div>
             {% endif %}
         </div>
