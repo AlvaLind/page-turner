@@ -280,7 +280,7 @@ User jurney flowchart was created with [Figma](https://www.figma.com/). Access t
 
 ### Database 
 
-PostgreSQL from [Code Institute](https://codeinstitute.net/global/)
+A PostgreSQL database was provided by [Code Institute](https://codeinstitute.net/global/)
 
 ### Entity Relationship Diagram
 
@@ -289,7 +289,7 @@ PostgreSQL from [Code Institute](https://codeinstitute.net/global/)
 The ERD was created via [Lucid charts](https://lucid.app/)
 
 ## Testing
-See testing file for info
+Please refer to the [TESTING.md](https://github.com/AlvaLind/page-turner/blob/main/TESTING.md) for test-related documentation.
 
 ## Deployment
 
