@@ -10,10 +10,10 @@
                 <h1>User Profile</h1>
                 
                 <form method="post" class="profile-form">
-                    <input type="hidden" name="profile_form" value="profile_form">
+                    <input type="hidden" name="profile_form" value="profile_form" aria-label="Update user details">
                     {{ form | crispy }}
                     {% csrf_token %}
-                    <button class="btn btn-secondary mb-3" type="submit">Save Changes</button>
+                    <button class="btn btn-secondary mb-3" type="submit"aria-label="Save Changes">Save Changes</button>
                 </form>
             </div>
         </div>
@@ -31,14 +31,14 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="profile-books">
-                                <a href="{% url 'book_detail' book.slug %}" class="book-link no-underline">
+                                <a href="{% url 'book_detail' book.slug %}" class="book-link no-underline" aria-label="book details">
                                     <div class="d-flex">
                                         <!-- Use a default book cover image if no image was uploaded so defaulted to placeholder -->
                                         <div class="image-container me-3">
                                             {% if book.cover_image.url == 'https://res.cloudinary.com/dxtaxsd1v/image/upload/placeholder' %}
-                                            <img class="img-fluid" src="https://res.cloudinary.com/dxtaxsd1v/image/upload/v1718572431/em43nwjwng89xzrgfdvq.jpg" alt="placeholder Image" style="max-width: 100px;">
+                                            <img class="img-fluid" src="https://res.cloudinary.com/dxtaxsd1v/image/upload/v1718572431/em43nwjwng89xzrgfdvq.jpg" alt="placeholder Image" style="max-width: 100px;" aria-label="placeholder book cover">
                                             {% else %}
-                                            <img class="img-fluid" src="{{ book.cover_image.url }}" alt="{{ book.title }}" style="max-width: 100px;">
+                                            <img class="img-fluid" src="{{ book.cover_image.url }}" alt="{{ book.title }}" style="max-width: 100px;" aria-label="book cover image">
                                             {% endif %}
                                         </div>
                                         <!-- Display basic book details -->
@@ -65,7 +65,7 @@
                                                 {% endif %}
                                             {% endfor %}
 
-                                            <select name="status" class="form-control mb-2 status-select">
+                                            <select name="status" class="form-control mb-2 status-select" aria-label="Select reading status">
                                                 <option value="" disabled selected>Set Status ▼</option>
                                                 {% for item in books_with_status %}
                                                     {% if item.book.slug == book.slug %}
@@ -81,7 +81,7 @@
                                         
                                         <form class="remove-book-form status-form-right" method="post" action="{% url 'remove_from_bookshelf' book.slug %}">
                                             {% csrf_token %}
-                                            <button class="btn btn-secondary mb-3" type="submit">Remove Book</button>
+                                            <button class="btn btn-secondary mb-3" type="submit" aria-label="Remove Book">Remove Book</button>
                                         </form>
                                     </div>
                                 </div>
@@ -99,14 +99,14 @@
                         <!-- Previous page link -->
                         {% if books_in_bookshelf.has_previous %}
                         <li class="page-item">
-                            <a href="?page={{ books_in_bookshelf.previous_page_number }}" class="page-link paginate-button"> &laquo; PREV </a>
+                            <a href="?page={{ books_in_bookshelf.previous_page_number }}" class="page-link paginate-button" aria-label="Previous page"> &laquo; PREV </a>
                         </li>
                         {% endif %}
 
                         <!-- Next page link -->
                         {% if books_in_bookshelf.has_next %}
                         <li class="page-item">
-                            <a href="?page={{ books_in_bookshelf.next_page_number }}" class="page-link paginate-button"> NEXT &raquo;</a>
+                            <a href="?page={{ books_in_bookshelf.next_page_number }}" class="page-link paginate-button" aria-label="Next page"> NEXT &raquo;</a>
                         </li>
                         {% endif %}
                     </ul>
