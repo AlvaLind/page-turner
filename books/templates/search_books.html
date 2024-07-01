@@ -27,14 +27,14 @@
                 {% endif %}
                     <div class="card">
                         <div class="card-body">
-                            <a href="{% url 'book_detail' book.slug %}" class="book-link no-underline">
+                            <a href="{% url 'book_detail' book.slug %}" class="book-link no-underline" aria-label="book details">
                                 <div class="d-flex">
                                     <!-- Use a default book cover image if no image was uploaded so defaulted to placeholder -->
                                     <div class="image-container me-3">
                                         {% if book.cover_image.url == 'https://res.cloudinary.com/dxtaxsd1v/image/upload/placeholder' %}
-                                        <img class="img-fluid" src="https://res.cloudinary.com/dxtaxsd1v/image/upload/v1718572431/em43nwjwng89xzrgfdvq.jpg" alt="placeholder Image" style="max-width: 100px;">
+                                        <img class="img-fluid" src="https://res.cloudinary.com/dxtaxsd1v/image/upload/v1718572431/em43nwjwng89xzrgfdvq.jpg" alt="placeholder Image" style="max-width: 100px;" aria-label="default book cover image">
                                         {% else %}
-                                        <img class="img-fluid" src="{{ book.cover_image.url }}" alt="{{ book.title }}" style="max-width: 100px;">
+                                        <img class="img-fluid" src="{{ book.cover_image.url }}" alt="{{ book.title }}" style="max-width: 100px;" aria-label="book cover image">
                                         {% endif %}
                                     </div>
                                     <!-- Display basic book details -->
@@ -61,14 +61,14 @@
             <!-- If statement to display a previous button if required -->
             {% if book_list.has_previous %}
             <li>
-                <a href="?page={{ book_list.previous_page_number }}" class="page-link paginate-button"> &laquo; PREV </a>
+                <a href="?page={{ book_list.previous_page_number }}" class="page-link paginate-button" aria-label="previous page"> &laquo; PREV </a>
             </li>
             {% endif %}
 
             <!-- If statement to display a next button if required -->
             {% if book_list.has_next %}
             <li>
-                <a href="?page={{ book_list.next_page_number }}" class="page-link paginate-button"> NEXT &raquo;</a>
+                <a href="?page={{ book_list.next_page_number }}" class="page-link paginate-button" aria-label="next page"> NEXT &raquo;</a>
             </li>
             {% endif %}
         </ul>
