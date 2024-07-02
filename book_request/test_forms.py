@@ -9,11 +9,12 @@ class UserProfileFormTests(TestCase):
         """
         Create a test user
         """
-        self.user = User.objects.create_user(username='testuser', password='Oldpassword1')
+        self.user = User.objects.create_user(username='testuser',
+            password='Oldpassword1')
 
     def test_valid_form_data(self):
         """
-        Test to confirm the profile form submits successfully when 
+        Test to confirm the profile form submits successfully when
         valid data is submitted
         """
         form_data = {
@@ -62,4 +63,4 @@ class UserProfileFormTests(TestCase):
         }
         form = UserProfileForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
-        self.assertIn('confirm_password', form.errors) 
+        self.assertIn('confirm_password', form.errors)

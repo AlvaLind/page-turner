@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Author, Book, Comment, Genre, Rating, Bookshelf
 from django_summernote.admin import SummernoteModelAdmin
-
+from .models import Author, Book, Comment, Genre, Rating, Bookshelf
 
 
 @admin.register(Genre)
@@ -22,8 +21,8 @@ class AuthorAdmin(admin.ModelAdmin):
     """
     list_display = ('name', 'nationality', 'birth_date',)
     search_fields = ['name']
-    
-    
+
+
 @admin.register(Book)
 class BookAdmin(SummernoteModelAdmin):
     """
@@ -35,7 +34,7 @@ class BookAdmin(SummernoteModelAdmin):
     list_filter = ('genre', 'created_on',)
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('description',)
-    
+
 
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
@@ -45,20 +44,19 @@ class RatingAdmin(admin.ModelAdmin):
     """
     search_fields = ['book__title']
     list_filter = ('rating',)
-    readonly_fields = ["book", "rating", "user",]
-    
+    readonly_fields = ["book", "rating", "user", ]
+
 
 @admin.register(Bookshelf)
 class BookshelfAdmin(admin.ModelAdmin):
     """
-    List fields for display in admin, fields for searching, 
+    List fields for display in admin, fields for searching,
     field filters and list filter.
     """
     list_display = ['user', 'book', 'status']
     search_fields = ['user_username', 'book_title']
     list_filter = ['status', 'user']
     readonly_fields = ["user", "book", "status"]
-    
-# Register your models here.
-admin.site.register(Comment)
 
+
+admin.site.register(Comment)

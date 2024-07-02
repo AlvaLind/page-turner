@@ -4,7 +4,7 @@ from .models import Comment, Rating, Bookshelf
 
 class CommentForm(forms.ModelForm):
     """
-    Form class for users to comment on a book 
+    Form class for users to comment on a book
     """
     class Meta:
         """
@@ -12,7 +12,7 @@ class CommentForm(forms.ModelForm):
         """
         model = Comment
         fields = ('body',)
-        
+
 
 choices = [
     (1, 'One Star'),
@@ -21,20 +21,22 @@ choices = [
     (4, 'Four Stars'),
     (5, 'Five Stars')
 ]
+
+
 class RatingForm(forms.ModelForm):
     """
     Form class for users to rate a book
-    RadioSelect widget renders the choices as star icons (radio buttons) 
+    RadioSelect widget renders the choices as star icons (radio buttons)
     """
     rating = forms.ChoiceField(choices=choices, widget=forms.RadioSelect)
-    
+
     class Meta:
         """
-        Specify the Rating model and order of the fields.  
+        Specify the Rating model and order of the fields.
         """
         model = Rating
         fields = ('rating',)
-        
+
 
 class BookSearchForm(forms.Form):
     query = forms.CharField(
@@ -42,7 +44,7 @@ class BookSearchForm(forms.Form):
         required=False,
         widget=forms.TextInput(attrs={'placeholder': 'Search'})
     )
-    
+
 
 class BookshelfForm(forms.ModelForm):
     class Meta:
@@ -50,4 +52,3 @@ class BookshelfForm(forms.ModelForm):
         fields = [
             'status'
         ]
-    

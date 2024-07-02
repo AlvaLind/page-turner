@@ -1,9 +1,9 @@
 from django.test import TestCase
+from datetime import date
 from books.forms import CommentForm, RatingForm, BookSearchForm, BookshelfForm
 from books.models import Comment, Rating, Bookshelf, User, Book, Genre, Author
-from datetime import date
 
-# Set up initial data for the tests.
+
 class BaseTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -12,9 +12,11 @@ class BaseTest(TestCase):
         This data cannot be edited in the tests.
         Create a user, genre, author and book object
         """
-        cls.user = User.objects.create_user(username='testuser', password='password')
+        cls.user = User.objects.create_user(username='testuser',
+            password='password')
         cls.genre = Genre.objects.create(name='Test Genre')
-        cls.author = Author.objects.create(name='Test Author', birth_date=date(2000, 1, 1), nationality='Swedish')
+        cls.author = Author.objects.create(name='Test Author',
+            birth_date=date(2000, 1, 1), nationality='Swedish')
         cls.book = Book.objects.create(
             title='Test Book',
             published_year=2021,
@@ -23,8 +25,8 @@ class BaseTest(TestCase):
             slug='test-book'
         )
 
-# Run tests
-class RatingFormTest(BaseTest): 
+
+class RatingFormTest(BaseTest):
 
     def test_rating_form_valid_data(self):
         """
@@ -45,7 +47,7 @@ class RatingFormTest(BaseTest):
     def test_rating_form_save(self):
         """
         Test that the form saves valid data correctly
-        Submit a rating to the RatingForm, 
+        Submit a rating to the RatingForm,
         Check it is valid data, assign the rating a book and user object,
         save the form rating data as a rating in Rating.
         Check the data submitted was stored correctly
@@ -98,7 +100,7 @@ class CommentFormTest(BaseTest):
     def test_comment_form_empty_data(self):
         """
         Test for validating CommentForm with empty data.
-        If comment is submitted with no comment text should 
+        If comment is submitted with no comment text should
         return 'This field is required.' error.
         """
         form = CommentForm(data={})
@@ -108,14 +110,15 @@ class CommentFormTest(BaseTest):
 
     def test_comment_form_body_max_length(self):
         """
-        Test for validating CommentForm with body exceeding maximum length set to 1000.
+        Test for validating CommentForm with body over maximum length of 1000.
         Submit a comment with 1001 characters. Should return error message
         """
         form_data = {'body': 'a' * 1001}
         form = CommentForm(data=form_data)
         self.assertFalse(form.is_valid())
         self.assertIn('body', form.errors)
-        self.assertEqual(form.errors['body'], ['Ensure this value has at most 1000 characters (it has 1001).'])
+        self.assertEqual(form.errors['body'],
+            ['Ensure this value has at most 1000 characters (it has 1001).'])
 
     def test_comment_form_save(self):
         """

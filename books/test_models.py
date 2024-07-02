@@ -2,8 +2,9 @@ from datetime import date
 from django.test import TestCase
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
-from books.models import Author, Book, Bookshelf, Comment, Genre, Rating, User
 from django.db.utils import IntegrityError
+from books.models import Author, Book, Bookshelf, Comment, Genre, Rating, User
+
 
 # Create your tests here.
 class AuthorModelTest(TestCase):
@@ -12,13 +13,14 @@ class AuthorModelTest(TestCase):
         """
         Creates two Author objects to be used in test methods below.
         """
-        self.author1 = Author.objects.create(name='Test Author', birth_date=date(2000,1,1), nationality='Swedish')
+        self.author1 = Author.objects.create(name='Test Author',
+            birth_date=date(2000, 1, 1), nationality='Swedish')
         self.author2 = Author.objects.create(name='Sample Author')
 
     def test_author_creation(self):
         """
         Test creating an Author object.
-        """                             
+        """
         # Retrieve the author from the database
         author = Author.objects.get(name="Test Author")
 
@@ -41,12 +43,13 @@ class AuthorModelTest(TestCase):
 
 
 class GenreModelTest(TestCase):
-        
+
     def setUp(self):
         """
         Creates two Genre objects to be used in test methods below.
         """
-        self.genre1 = Genre.objects.create(name='Thriller', description='Books of thrilling nature')
+        self.genre1 = Genre.objects.create(name='Thriller',
+            description='Books of thrilling nature')
         self.genre2 = Genre.objects.create(name='Romance')
 
     def test_genre_creation(self):
@@ -55,7 +58,7 @@ class GenreModelTest(TestCase):
         """
         self.assertEqual(self.genre1.name, 'Thriller')
         self.assertEqual(self.genre1.description, 'Books of thrilling nature')
-        self.assertEqual(str(self.genre1), 'Thriller') 
+        self.assertEqual(str(self.genre1), 'Thriller')
 
     def test_genre_unique_constraint(self):
         """
@@ -96,11 +99,12 @@ class BookModelTest(TestCase):
         self.assertEqual(saved_book.published_year, 2020)
         self.assertEqual(saved_book.genre, self.genre)
         self.assertEqual(saved_book.author, self.author)
-        self.assertEqual(saved_book.description, 'This is a test book description.')
+        self.assertEqual(saved_book.description,
+            'This is a test book description.')
         self.assertIsNotNone(saved_book.created_on)
         self.assertIsNotNone(saved_book.last_updated)
         # Ensure slug is generated correctly
-        self.assertEqual(saved_book.slug, slugify('Test Book'))  
+        self.assertEqual(saved_book.slug, slugify('Test Book'))
 
     def test_book_unique_slug(self):
         """
@@ -113,7 +117,7 @@ class BookModelTest(TestCase):
             genre=self.genre,
             author=self.author,
         )
-        
+
         # Attempt to create another book with the same title
         with self.assertRaises(ValidationError):
             book2 = Book(
@@ -123,7 +127,8 @@ class BookModelTest(TestCase):
                 author=self.author,
             )
             book2.full_clean()  # Trigger validation without saving
-            book2.save()  # Save should raise ValidationError due to unique slug constraint
+            book2.save()
+            # Save should raise ValidationError due to unique slug constraint
 
     def test_book_ordering(self):
         """
@@ -142,7 +147,7 @@ class BookModelTest(TestCase):
             genre=self.genre,
             author=self.author
         )
-        
+
         # Retrieve books ordered by published year descending
         books = Book.objects.all()
         self.assertEqual(list(books), [book1, book2])
@@ -170,7 +175,8 @@ class CommentModelTest(TestCase):
         Testing the ability to create objects in these models
         and to be used for comment tests
         """
-        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.user = User.objects.create_user(username='testuser',
+            password='testpassword')
         self.genre = Genre.objects.create(name='Romance')
         self.author = Author.objects.create(name='Test Author')
         self.book = Book.objects.create(
@@ -212,7 +218,8 @@ class CommentModelTest(TestCase):
         Test that creating a Comment without a User raises an IntegrityError.
         """
         with self.assertRaises(IntegrityError):
-            Comment.objects.create(book=self.book, body='This comment has no user.')
+            Comment.objects.create(book=self.book,
+                body='This comment has no user.')
 
 
 class RatingModelTest(TestCase):
@@ -221,11 +228,13 @@ class RatingModelTest(TestCase):
         """
         Set up test data for the Rating model.
         Create a User profile, genre, author and book object.
-        Create a Rating object. 
+        Create a Rating object.
         """
-        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.user = User.objects.create_user(username='testuser',
+            password='testpassword')
         self.genre = Genre.objects.create(name='Test Genre')
-        self.author = Author.objects.create(name='Test Author', birth_date=date(2000, 1, 1), nationality='Swedish')
+        self.author = Author.objects.create(name='Test Author',
+            birth_date=date(2000, 1, 1), nationality='Swedish')
         self.book = Book.objects.create(
             title='Test Book',
             published_year=2021,
@@ -233,7 +242,8 @@ class RatingModelTest(TestCase):
             author=self.author,
             slug='test-book'
         )
-        self.rating1 = Rating.objects.create(user=self.user, book=self.book, rating=5)
+        self.rating1 = Rating.objects.create(user=self.user,
+            book=self.book, rating=5)
 
     def test_rating_creation(self):
         """
@@ -247,7 +257,7 @@ class RatingModelTest(TestCase):
     def test_rating_update(self):
         """
         Test updating a Rating object.
-        Change the users rating twice. 
+        Change the users rating twice.
         A user can only have 1 rating stored per book
         """
         self.rating1.rating = 3
@@ -273,9 +283,11 @@ class BookshelfModelTest(TestCase):
         Create a user, genre, author and book object.
         Create a bookshelf entry using these above objects.
         """
-        self.user = User.objects.create_user(username='testuser', password='password')
+        self.user = User.objects.create_user(username='testuser',
+            password='password')
         self.genre = Genre.objects.create(name='Test Genre')
-        self.author = Author.objects.create(name='Test Author', birth_date=date(2000, 1, 1), nationality='Swedish')
+        self.author = Author.objects.create(name='Test Author',
+            birth_date=date(2000, 1, 1), nationality='Swedish')
         self.book = Book.objects.create(
             title='Test Book',
             published_year=2021,
@@ -283,12 +295,14 @@ class BookshelfModelTest(TestCase):
             author=self.author,
             slug='test-book'
         )
-        self.bookshelf_entry = Bookshelf.objects.create(user=self.user, book=self.book)
+        self.bookshelf_entry = Bookshelf.objects.create(user=self.user,
+            book=self.book)
 
     def test_bookshelf_creation(self):
         """
         Test creating a Bookshelf object and default status is set to 'unread'
-        Check the values were stored correctly when creating self.bookshelf_entry in setUp
+        Check the values were stored correctly when creating
+        self.bookshelf_entry in setUp
         """
         self.assertEqual(self.bookshelf_entry.user, self.user)
         self.assertEqual(self.bookshelf_entry.book, self.book)
@@ -298,7 +312,7 @@ class BookshelfModelTest(TestCase):
         """
         Test updating the status of a Bookshelf object.
         Change self.bookshelf_entry from reading to read.
-        Check it updated/stored the status correctly 
+        Check it updated/stored the status correctly
         """
         self.bookshelf_entry.status = 'read'
         self.bookshelf_entry.save()
@@ -310,7 +324,8 @@ class BookshelfModelTest(TestCase):
         User tries to add the same book and should return an error
         """
         with self.assertRaises(IntegrityError):
-            Bookshelf.objects.create(user=self.user, book=self.book, status='unread')
+            Bookshelf.objects.create(user=self.user, book=self.book,
+                status='unread')
 
     def test_bookshelf_without_user(self):
         """
@@ -323,7 +338,7 @@ class BookshelfModelTest(TestCase):
     def test_bookshelf_without_book(self):
         """
         Test creating a Bookshelf object without a book.
-        Adding a book to bookshelf without a book oobject should return an error
+        Adding a book to bookshelf without a book object should return an error
         """
         with self.assertRaises(IntegrityError):
             Bookshelf.objects.create(user=self.user, status='unread')

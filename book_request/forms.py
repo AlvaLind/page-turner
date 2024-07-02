@@ -1,5 +1,6 @@
-from .models import BookRequest
 from django import forms
+from .models import BookRequest
+
 
 class BookRequestForm(forms.ModelForm):
     """
@@ -8,7 +9,7 @@ class BookRequestForm(forms.ModelForm):
     """
     class Meta:
         """
-        Specify the book request model and order the fields 
+        Specify the book request model and order the fields
         """
         model = BookRequest
         fields = ('title', 'author', 'published_year', 'description',)
@@ -20,6 +21,7 @@ class BookRequestForm(forms.ModelForm):
         }
         widgets = {
             'description': forms.Textarea(attrs={
-                'placeholder': 'Provide a brief summary or details about the book...'
+                'placeholder':
+                    'Provide a brief summary or details about the book...'
             }),
         }

@@ -8,6 +8,7 @@ from django.db.models import Q, Avg, Count
 from .models import Book, Comment, Rating, Bookshelf, Genre
 from .forms import CommentForm, RatingForm, BookSearchForm
 
+
 class BookList(generic.ListView):
     model = Book
     template_name = "book_list.html"
@@ -22,7 +23,7 @@ class BookList(generic.ListView):
                 genre = Genre.objects.get(id=genre_id)
                 queryset = queryset.filter(genre=genre)
             except Genre.DoesNotExist:
-                pass  
+                pass
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -39,11 +40,13 @@ class BookList(generic.ListView):
         if genre_id:
             try:
                 genre_name = Genre.objects.get(id=genre_id)
-                # Redirect to the 'books' URL with the selected genre ID as a query parameter
-                return redirect(reverse('books') + f'?genre={genre_id}&{genre_name}')
+                # Redirect to the 'books' URL with the selected genre ID
+                return redirect(reverse('books') +
+                    f'?genre={genre_id}&{genre_name}')
             except (ValueError, Genre.DoesNotExist):
                 genre_name = None
-        # If no valid genre_id or Genre does not exist, return books URL with no filter
+        # If no valid genre_id or Genre does not exist,
+        # return books URL with no filter
         return redirect('books')
 
 
@@ -61,7 +64,7 @@ def Homepage(request):
     *Context*
 
     ''book_list''
-        A queryset containing the top 6 books with the highest average 
+        A queryset containing the top 6 books with the highest average
         ratings, and excluding books with no ratings.
 
     *Template:*
@@ -69,8 +72,9 @@ def Homepage(request):
     :template:'books/homepage.html'
     """
     top_rated_books = (
-        Book.objects.annotate(average_rating=Avg('rater__rating'), rating_count=Count('rater__rating'))
-        .filter(rating_count__gt=0) 
+        Book.objects.annotate(average_rating=Avg('rater__rating'),
+            rating_count=Count('rater__rating'))
+        .filter(rating_count__gt=0)
         .order_by('-average_rating')[:6]
     )
     context = {'book_list': top_rated_books}
@@ -80,51 +84,52 @@ def Homepage(request):
 def search_books(request):
     """
     Search for books by title, author, or genre.
-    
+
     *Context*
-    
+
     ''form''
         An instance of :form:'books.BookSearchForm'.
     ''books''
         A queryset containing all books that match the search query.
-        
+
     *Template:*
-    
+
     :template:'books/search_books.html'
     """
     form = BookSearchForm(request.GET or None)
     books = Book.objects.all()
     query = None
-    
+
     if form.is_valid():
         query = form.cleaned_data['query']
         if query:
             books = books.filter(
-                Q(title__icontains=query) | 
-                Q(author__name__icontains=query) | 
+                Q(title__icontains=query) |
+                Q(author__name__icontains=query) |
                 Q(genre__name__icontains=query)
             )
-    
+
     # Pagination
-    paginator = Paginator(books, 9) 
+    paginator = Paginator(books, 9)
     page = request.GET.get('page')
-    
+
     try:
         books = paginator.page(page)
     except PageNotAnInteger:
         books = paginator.page(1)
     except EmptyPage:
         books = paginator.page(paginator.num_pages)
-        
-    return render(request, 'search_books.html', {'form': form, 'query': query, 'book_list': books})
-    
-    
+
+    return render(request, 'search_books.html', {'form': form, 'query': query,
+        'book_list': books})
+
+
 def book_detail(request, slug):
     """
     Display an individual :model:'books.Book'.
-    
+
     *Context*
-    
+
     ''book''
         An instance of :model:'books.Book'.
     ''comments''
@@ -135,25 +140,26 @@ def book_detail(request, slug):
         An instance of :form:'books.CommentForm'.
     ''rating_form''
         An instance of :form:'books.RatingForm'.
-        
+
     *Template:*
-    
+
     :template:'books/book_detail.html'
     """
-    
-    # Retrieve the book 
+
+    # Retrieve the book
     queryset = Book.objects.all()
-    book = get_object_or_404(queryset, slug=slug)    
-    
+    book = get_object_or_404(queryset, slug=slug)
+
     # Check if the book is in the user's bookshelf
     in_bookshelf = False
     if request.user.is_authenticated:
-        in_bookshelf = Bookshelf.objects.filter(user=request.user, book=book).exists()
-    
-    # Retrieve comments 
+        in_bookshelf = Bookshelf.objects.filter(user=request.user,
+            book=book).exists()
+
+    # Retrieve comments
     comments = book.comments.all().order_by("-created_on")
     comment_count = book.comments.filter(approved=True).count()
-    
+
     # Handle the comment form submission
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
@@ -169,77 +175,82 @@ def book_detail(request, slug):
             print("Comment submitted successfully")
             return HttpResponseRedirect(reverse('book_detail', args=[slug]))
     else:
-        # Empty the comment form        
+        # Empty the comment form
         comment_form = CommentForm()
-    
-    # Retrieve all ratings for this book 
-    book_ratings = Rating.objects.filter(book=book).exclude(rating=-1).values_list('rating', flat=True)
+
+    # Retrieve all ratings for this book
+    book_ratings = (Rating.objects.filter(book=book).exclude(rating=-1)
+        .values_list('rating', flat=True))
     # Calculate total number of ratings left on the book
     total_ratings = Rating.objects.filter(book=book).count()
-    
+
     # Calculate average rating
     if book_ratings:
         average_rating = sum(book_ratings) / len(book_ratings)
         average_rating = round(average_rating, 1)
     else:
-        average_rating = None 
-        
+        average_rating = None
+
     # Handle the rating form submission
-    if request.method == "POST":    
+    if request.method == "POST":
         rating_form = RatingForm(data=request.POST)
-       
+
         if rating_form.is_valid():
             rating_value = rating_form.cleaned_data['rating']
             # Get or create a rating object for the user and book
-            rating, created = Rating.objects.get_or_create(user=request.user, book=book)
+            rating, created = Rating.objects.get_or_create(user=request.user,
+                book=book)
             rating.rating = rating_value
             rating.save()
             print("Rating submitted successfully")
-            
+
             # Calculate the average book rating
-            book_ratings = Rating.objects.filter(book=book).exclude(rating=-1).values_list('rating', flat=True)
+            book_ratings = (Rating.objects.filter(book=book)
+                .exclude(rating=-1).values_list('rating', flat=True))
             if book_ratings:
                 average_rating = sum(book_ratings) / len(book_ratings)
                 total_ratings = Rating.objects.filter(book=book).count()
             else:
-                average_rating = None 
-        
-            # Check if request was made using AJAX and return a JSON response back to ratings.js submitForm function to be processed. 
+                average_rating = None
+
+            # Check if request was made using AJAX and return a JSON response
+            # back to ratings.js submitForm function to be processed.
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                return JsonResponse({'message': 'Rating submitted successfully', 
-                                     'user_rating': rating_value, 
-                                     'average_rating': average_rating, 
-                                     'total_ratings': total_ratings,
-                                     })
-            
-            # If not an AJAX request, respond with a HTTP response to redirect user to book detail page
+                return JsonResponse(
+                    {'message': 'Rating submitted successfully',
+                    'user_rating': rating_value,
+                    'average_rating': average_rating,
+                    'total_ratings': total_ratings, })
+
+            # If not an AJAX request, respond with a HTTP response
             return HttpResponseRedirect(reverse('book_detail', args=[slug]))
 
     else:
-        # Empty the rating form  
+        # Empty the rating form
         rating_form = RatingForm()
-    
+
     user_rating = None
     # Retrieve the user's rating for the book if the user is authenticated
     if request.user.is_authenticated:
-        user_rating_obj = Rating.objects.filter(book=book, user=request.user).first()
+        user_rating_obj = Rating.objects.filter(book=book,
+            user=request.user).first()
         if user_rating_obj:
             user_rating = user_rating_obj.rating
 
-    # Pass variables to the book_detail template            
+    # Pass variables to the book_detail template
     return render(request, "books/book_detail.html", {
         "book": book,
         "in_bookshelf": in_bookshelf,
         "comments": comments,
         "comment_count": comment_count,
         "comment_form": comment_form,
-        "rating_form": rating_form,  
+        "rating_form": rating_form,
         "user_rating": user_rating,
-        "average_rating": average_rating, 
+        "average_rating": average_rating,
         "total_ratings": total_ratings,
         },
     )
-    
+
 
 @login_required
 def comment_edit(request, slug, comment_id):
@@ -269,7 +280,8 @@ def comment_edit(request, slug, comment_id):
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
             print("Comment edited successfully")
         else:
-            messages.add_message(request, messages.ERROR, 'Error, unable to update comment!')
+            messages.add_message(request, messages.ERROR,
+                'Error, unable to update comment!')
             print("Error: Comment edit failed")
 
     return HttpResponseRedirect(reverse('book_detail', args=[slug]))
@@ -296,7 +308,8 @@ def comment_delete(request, slug, comment_id):
         messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
         print("Comment deleted successfully")
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+        messages.add_message(request, messages.ERROR,
+            'You can only delete your own comments!')
         print("Error: Comment delete failed - not users comment")
 
     return HttpResponseRedirect(reverse('book_detail', args=[slug]))
@@ -306,29 +319,35 @@ def comment_delete(request, slug, comment_id):
 @login_required
 def add_to_bookshelf(request, slug):
     book = get_object_or_404(Book, slug=slug)
-    bookshelf_entry, created = Bookshelf.objects.get_or_create(user=request.user, book=book)
+    bookshelf_entry, created = Bookshelf.objects.get_or_create(
+        user=request.user, book=book)
     if created:
         bookshelf_entry.status = 'unread'  # default status
         bookshelf_entry.save()
-    messages.add_message(request, messages.SUCCESS, 'This book has been added to your Bookshelf!')
-    
+    messages.add_message(request, messages.SUCCESS,
+        'This book has been added to your Bookshelf!')
+
     return HttpResponseRedirect(reverse('book_detail', args=[slug]))
-    
+
 
 @login_required
 def remove_from_bookshelf(request, slug):
     book = get_object_or_404(Book, slug=slug)
-    bookshelf_entry = get_object_or_404(Bookshelf, user=request.user, book=book)
+    bookshelf_entry = get_object_or_404(Bookshelf, user=request.user,
+        book=book)
     bookshelf_entry.delete()
-    messages.add_message(request, messages.SUCCESS, 'This book has been removed from your Bookshelf!')
+    messages.add_message(request, messages.SUCCESS,
+        'This book has been removed from your Bookshelf!')
 
-    # Get the referring URL from the request headers or book_detail if not available
-    referer_url = request.META.get('HTTP_REFERER', reverse('book_detail', args=[slug]))
+    # Get the refer URL from the request headers or book_detail if not avail.
+    referer_url = request.META.get('HTTP_REFERER',
+        reverse('book_detail', args=[slug]))
 
     return HttpResponseRedirect(referer_url)
+
 
 @login_required
 def bookshelf(request):
     bookshelf = Bookshelf.objects.filter(user=request.user)
-    
+
     return render(request, 'profile_page.html', {'bookshelf': bookshelf})

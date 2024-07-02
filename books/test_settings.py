@@ -1,8 +1,8 @@
-from pathlib import Path
-from page_turner.settings import *
 import os
 import sys
 import dj_database_url
+from pathlib import Path
+from page_turner.settings import *
 from django.contrib.messages import constants as messages
 
 # Fetch base directory of the project
