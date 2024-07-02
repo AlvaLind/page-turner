@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (starValue <= value) {
                 star.classList.add('filled');
             } else {
-                star.classList.remove('filled',);
+                star.classList.remove('filled');
             }
         });
     }
