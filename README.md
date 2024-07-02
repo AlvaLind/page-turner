@@ -1,125 +1,10 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome,
-
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
-
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
-
-## Codeanywhere Reminders
-
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
-
-`python3 -m http.server`
-
-A button should appear to click: _Open Preview_ or _Open Browser_.
-
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
-
-`http_server`
-
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
-
-A button should appear to click: _Open Preview_ or _Open Browser_.
-
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
----
-
-Happy coding!
-## Terminal commands: 
-
-Run server 
-```shell
-python manage.py runserver  
-```
-
-Run server with local settings
-```console
-python manage.py runserver --settings page_turner.local_settings
-```
-
-Make directories 
-```
-mkdir location/new_directory_name
-```
-
-Check migrations for model changes
-```
-python manage.py makemigrations --dry-run
-```    
-
-Make migrations for model changes
-```
-python manage.py makemigrations
-```    
-
-Migrate database
-```bash
-python manage.py migrate
-```
-
-Create super user
-```
-python manage.py createsuperuser
-```
-
-Generating the static files
-```
-python manage.py collectstatic  
-```                                   
-
-Check
-```
-python manage.py check
-```
-
-Install dependencies
-```
-pip install -r .\requirements.txt
-```
-
-Update requirements.txt with latest versions of installed packages
-```
-pip freeze > requirements.txt
-```
-
-flush/delete existing data from databases 
-```
-python3 manage.py flush
-```
-
-Install Python Imaging Library - Pillow library. Required for book cover images.
-```
-pip3 install cloudinary~=1.36.0 dj3-cloudinary-storage~=0.0.6 urllib3~=1.26.15
-```
-
-
-Copy the templates from the allauth package to the project's templates directory for windows
-```
-xcopy "C:\Users\alval\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\allauth\templates\*" ".\templates\" /S /E
-```
-
-Install crispy forms and crispy bootstrap
-```
-pip3 install django-crispy-forms~=2.0 crispy-bootstrap5~=0.7
-```
-
 # PageTurner
 
-*You can find the link to [PageTurner here](https://)*
+*You can find the link to [PageTurner here](https://https://page-turner-006df6edb605.herokuapp.com/)*
 
-Welcome to PageTurner, where booklovers come together to explore, and delve into the captivating realm of literature. Explore a wide-ranging collection of various genres and authors, including classics and the latest bestsellers. Engage with our library, share your thoughts through reviews/comments, and build your personalised bookshelf to track your literary journey. Whether you're an addicted reader, a casual bookworm, or someone just starting their reading journey, PageTurner is your haven. 
+![PageTurner responsiveness](documentation/features/responsivenes-pageturner.jpg)
+
+Welcome to PageTurner, where booklovers come together to explore, and delve into the captivating realm of literature. Explore a wide-ranging collection of various genres and authors, including classics and the latest bestsellers. Engage with our library, share your thoughts through reviews/comments, and build your personalised bookshelf to track your literary journey. Whether you're an addicted reader, a casual bookworm, or someone just starting their reading journey, [PageTurner](https://https://page-turner-006df6edb605.herokuapp.com/) is your haven. 
 
 Join us and turn the page to your next adventure in literature!
 
@@ -176,7 +61,6 @@ PageTurner's strategy revolves around:
 
 You can access all user stories through **[this link](https://github.com/users/AlvaLind/projects/3/views/1)**
 
-## Features
 
 ## Design
 
@@ -222,8 +106,162 @@ You can also access the wireframes through the links below.
 * [Desktop Wireframes](https://github.com/AlvaLind/page-turner/blob/main/documentation/wireframes/wireframe-desktop-view.jpg)
 * [Mobile Wireframes](https://github.com/AlvaLind/page-turner/blob/main/documentation/wireframes/wireframe-phone-view.jpg)
 
+## Features
+
+### Navbar
+
+![navbar users](documentation/features/navbar-pageturner.png)
+
+For *users*, the navbar contains of the following:
+- PageTurner logo
+- Home
+- Books
+- Request a book
+- About us 
+- Searchbar
+- Register
+- Login
+
+![navbar registered users](documentation/features/navbar-logedin-pageturner.png)
+
+For *registered users*, the navbar contains of the following:
+- PageTurner logo
+- Home
+- Books
+- Request a book
+- About us 
+- Searchbar
+- Profile page
+- Logout
+
+### Footer
+
+![footer](documentation/features/footer-pageturner.png)
+
+The footer contains of:
+- PageTurner logo
+- Company description
+- Social media links
+- Explore section with page links
+- Company details section
+- Copyright tag
+
+### Homepage:
+
+![navbar users](documentation/features/homepage-full.jpg)
+
+The homepage contains of: 
+- Banner image of a woman reading for large screens and a man reading for small screens. 
+- Welcome message
+- Button to start browsing through the books in the library
+- Call to action banner, encuraging users to register an acount
+- Top rated books.
+- Button to see all books in the library
+- Banner informing users that they can request a book to be added to the library
+- Image of a girl and a cat reading
+
+#### Search function:
+
+![search](documentation/features/search-function.png)
+
+### Books paginated list:
+
+![book library](documentation/features/books-library.png)
+
+The books page contains of a paginated list of books. The books page also includes a filter function where users can filter books by genre.
+
+#### Filter feature:
+
+![filter](documentation/features/filter-by-genre.png)
+
+### Request a book form:
+
+If user:
+
+![request sign up/in](documentation/features/request-unauth.png)
+
+If registered user:
+
+![request form](documentation/features/request-auth.png)
+
+### Book details:
+
+The book dettails page contains of:
+- Go back to previous page button (highlights when hovered over).
+
+![Back button](documentation/features/back-button.png)
+
+- Book cover
+
+![book cover](documentation/features/book-cover-image.png)
+
+- Book name and details
+
+![book details](documentation/features/book-title-and-description.png)
+
+- Average rating score
+
+![book rating](documentation/features/book-rating.png)
+
+- Button to add to/reemove from bookshelf
+
+![add to bookshelf](documentation/features/add-bookshelf.png)
+![remove from bookshelf](documentation/features/remove-bookshelf.png)
+
+- Comment section
+
+Users
+
+![comments user](documentation/features/comments.png)
+
+Registered users
+
+![comments registered user](documentation/features/comment-section.png)
+
+- Rating section
+
+![rate book](documentation/features/rate-book.png)
+
+
+### User Profile:
+ The user profile contains of:
+
+- User settings
+
+![settings](documentation/features/user-settings.png)
+
+The user can update the username, name, email address and password from their profile. 
+
+- Bookshelf
+
+![bookshelf](documentation/features/bookshelf-pageturner.png)
+
+The bookshelf contains the users saved books.
+
+#### Set status feature:
+
+![book status](documentation/features/book-status.png)
+
+The user can set the status of the book by choosing "read", "reading" and "unread". Unread is the default value for every book.
+
+### Register:
+
+![register](documentation/features/signup-pageturner.png)
+
+### Login:
+
+![login](documentation/features/signin-pageturner.png)
+
+### Favicon
+
+![brower icon](documentation/features/favicon-pageturner.png)
+
+The [Favicon](https://favicon.io/) is a small image displayed in the browser's address bar. It helps users identify the website among others and makes it easier to find when browsing or searching.
+
+
 ## User journey flowchart
 User jurney flowchart was created with [Figma](https://www.figma.com/). Access the board for both desktop and mobile view through **[this link](https://www.figma.com/board/HKSKWYNd20VX7OtIus7dZz/Untitled?node-id=0-1&t=pRwyrs5hjfD9DQU2-1)**
+
 
 ## Technologies used
 
@@ -262,16 +300,11 @@ User jurney flowchart was created with [Figma](https://www.figma.com/). Access t
 * [Pep8](https://pep8ci.herokuapp.com/) was used to format the code to make it more readable and consistent.
 * [Favicon](https://favicon.io/) to add the browser icon.
 * [Canva](https://www.canva.com/) to create the logo.
-* [AmIResponsive](https://ui.dev/amiresponsive) to create the responsive showcase of the project.
+* [Pikwy](https://pikwy.com/) to create screenshots of full pages.
 * [Font Awesome](https://fontawesome.com/) was used to create the icons used in the website.
 * [Coolors](https://coolors.co/) was used to make a color palette for the website.
 * [Miro](https://miro.com/) to create wireframes.
 * [Figma](https://www.figma.com/) to show user flow.
-
-## Bugs
-### Solved bugs
-
-### Unsolved bugs
 
 ## Structural Design
 
@@ -360,15 +393,78 @@ The project was deployed using Code Institutes mock terminal for Heroku so it ca
 
 ![View Button](documentation/deployment-11.png)
 
+## Local deployment
+1. Clone the repository.
+ 
+ git clone https://github.com/AlvaLind/page-turner.git
+ 
+
+2. Go to the page_turner directory.
+
+`cd page_turner` 
+
+3. Create a virtual environment.
+
+`python3 -m venv venv`
+
+On Windows:
+`venv\Scripts\activate`
+
+On Mac:
+`source venv/bin/activate`
+
+3. Install all dependencies.
+
+`pip install -r requirements.txt`
+
+4. Create a env.py file.
+
+`touch env.py`
+
+5. Add the following lines to env.py:
+
+- `import os`
+- `os.environ["SECRET_KEY"]`= your secret key.  
+- `os.environ["DEBUG"]` = "True" or "False" depending on whether you are in development or production.  
+- `os.environ["DEVELOPMENT"]` = "True" or "False" depending on whether you are in development or production.  
+- `os.environ["ALLOWED_HOSTS"]` = your domain name.  
+- `os.environ["DATABASE_URL"]` = your database url.  
+- `os.environ["CLOUDINARY_CLOUD_NAME"]` = your cloudinary cloud name.  
+- `os.environ["CLOUDINARY_API_KEY"]` = your cloudinary api key.  
+- `os.environ["CLOUDINARY_API_SECRET"]` = your cloudinary api secret.
+
+6. Create and migrate the database.
+
+#### Deactivate the Virtueal Environment:
+
+Once the project is complete, deactivate the virtual environment with the following terminal comands.
+
+On Windows:
+`venv\Scripts\deactivate`  
+On Mac:
+`deactivate`
+
 ## Credits
 
-* [Heroku](https://dashboard.heroku.com/) for hosting the deployment.
-* [Code Institute course material](https://codeinstitute.net/global/) for django structure.
+- [Django](https://www.djangoproject.com/) for the framework libraries.
+- [GitHub](https://github.com/) for storing, tracking and management of files and development managment.
+- [Miro](https://miro.com/app/board): for project designing and planning including ERD builder.
+- [Lucidchart](https://lucid.app/documents) to create my flowchart for the initial idea.
+- [Font awesome](https://fontawesome.com/): for the free access to icons.
+- [Heroku](https://www.heroku.com/): for the hosting of the Page Turner website.
+- [jQuery](https://jquery.com/): for providing varieties of tools to make standard HTML code look appealing.
+- [Coolors](https://coolors.co/): for providing tools to generate your own colour palette for design purposes.
+- [Postgresql](https://www.postgresql.org/): for providing a free database.
+- [WebCodeKit](https://www.youtube.com/@WebKitCoding): for providing a helpful video on eventlisteners for buttons. 
+- [CodeForum](https://codeforum.org/): for providing helpful insights into developing a stars rating feature and help with bug problem solving.
+- [Code Institute](https://codeinstitute.net/se/): for video tutorials and Django content helping with project structure
 
 Images from: 
 
 * Image with the reading girl and the cat is from this [Time for Kids](https://www.timeforkids.com/g56/summer-reading-debate/)
 * AI generated images from [Adobe](https://firefly.adobe.com/inspire/images)
 
-## Acknowledgments
-* 
+
+## Acknowledgements
+
+I am very grateful for the help and support I have gotten from my mentor Julia Konovalova for this project!

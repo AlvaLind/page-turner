@@ -217,6 +217,70 @@ No warning or error messages were found when passing the java script files throu
 
 No warnings or errors were found when the python code was passed through Valentin Bryukhanov's [online validation tool](http://pep8online.com/). According to the reports, the code is [Pep 8-compliant](https://legacy.python.org/dev/peps/pep-0008/). This checking was done manually by copying python code and pasting it into the validator.
 
+### Lighthouse validation
+
+PageTurner has generally good scores when testing through Lighthouse except for performance testing that has gotten mixed results.
+
+* [lighthouse validation](documentation/lighthouse.png)
 
 
-#### Complete Python Validation Reports
+## Bugs 
+
+### Solved Bugs
+#### Issue: Default Rating Value  
+I encountered issues with setting the default rating value to `null`, which caused errors during the average rating calculation. To resolve this, I set the default rating value to `-1` and had the average rating calculation only for values between `1` and `5`.
+
+```
+class Rating(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="ratings")
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="rater")
+    rating = models.IntegerField(choices=[(i, i) for i in range (1, 6)], default=-1)
+    last_updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('user', 'book') 
+        
+    def __str__(self):
+        return f'{self.book.title} - {self.rating} Stars - Rated by: {self.user.username}'
+```
+
+#### Issue: Back Button not rendering previous page
+When opening the book_detail view for a book from any page I had created a button that would return the previously returned page. This worked well until an action such as a GET or POST request was taken on the book_detail page that caused the book_detail view to re-render ultimately saving its prior instance as the previous page. So the back button simply rendered the book_detail view again. 
+To solve this issue in the back_button.js I used the 
+`document.addEventListener` for the `DOMContentLoaded` to get the `referrer` URL that brought the user to the book_detail.html. The next time the user uses the back button the referrer URL is stored using `const referrer = localStorage.getItem('bookDetailReferrer');` and returned to be used as the buttons href. 
+
+```
+//back_button.js file
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if referrer is available and the user is landing on the book_detail page for the first time
+    if (document.referrer && !localStorage.getItem('bookDetailReferrer')) {
+        localStorage.setItem('bookDetailReferrer', document.referrer);
+    }
+});
+
+
+function goBack() {
+    // Get the stored referrer URL
+    const referrer = localStorage.getItem('bookDetailReferrer');
+    
+    // Check if the referrer URL is available
+    if (referrer) {
+        // Navigate back to the referrer URL
+        window.location.href = referrer;
+        
+        // Optionally, clear the stored referrer after navigating back
+        localStorage.removeItem('bookDetailReferrer');
+    } else {
+        // Fallback if there is no stored referrer
+        window.history.back();
+    }
+}
+
+```
+
+## Unsolved bugs
+
+#### Issue: Lack of Max-Length for Input Fields
+The input fields for features such as "Request a Book", "Edit User Settings" and "Register New Account" currently do not have a specified `max-length` beyond the default Django standards. This allows users to input an excessively large number of characters. I am aware that this is not best practice, but due to time constraints, I was unable to address it. However, I plan to fix this in future development.
+
+
