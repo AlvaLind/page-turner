@@ -19,9 +19,9 @@
         </div>
 
         <div class="users-bookshelf">
-            <h1 class="mb-3">{{ request.user.username }}'s Bookshelf</h1>
+            <h1 class="mb-3">My Bookshelf</h1>
             {% if not bookshelf %}
-            <p>There is no books in your bookshelf.</p>
+            <p>There are no books in your bookshelf.</p>
             {% endif %}
             <div class="row book-grid">
                 <!-- Create a card display for each book -->
