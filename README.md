@@ -176,15 +176,6 @@ PageTurner's strategy revolves around:
 
 You can access all user stories through **[this link](https://github.com/users/AlvaLind/projects/3/views/1)**
 
-## Agile Methodology
-For PageTurner, I used agile methodologies to enhance development. This approach allowed me to efficiently add new features and updates, ensuring a high-quality user experience.
-
-![User story](documentation/user-story.png)
-
-![Github Board ](documentation/user-stories-board.png)
-You can locate the PageTurner backlog through **[this link](https://github.com/users/AlvaLind/projects/3/views/1)**
-
-
 ## Features
 
 ## Design
@@ -294,6 +285,14 @@ The PostgreSQL database was provided by [Code Institute](https://codeinstitute.n
 
 The ERD was created via [Lucid charts](https://lucid.app/)
 
+## Agile Methodology
+I used GitHub Project Management to manage this project. This approach allowed me to efficiently add new features and updates, prioritize the tasks and to keep track of my progress.
+
+![User story](documentation/user-story.png)
+
+![Github Board ](documentation/user-stories-board.png)
+You can locate the PageTurner backlog through **[this link](https://github.com/users/AlvaLind/projects/3/views/1)**
+
 ## Testing
 Please refer to the [TESTING.md](https://github.com/AlvaLind/page-turner/blob/main/TESTING.md) for test-related documentation.
 
@@ -360,7 +359,6 @@ The project was deployed using Code Institutes mock terminal for Heroku so it ca
 * Click "View" to launch the application inside a web page.
 
 ![View Button](documentation/deployment-11.png)
-
 
 ## Credits
 

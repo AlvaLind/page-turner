@@ -82,3 +82,141 @@
 
 
 
+## Automated Testing 
+
+### Terminal Command
+```
+python3 manage.py test app_name.test_filename --verbosity=3 --settings=books.test_settings
+```
+
+This terminal command was used to run each of the test files within the PageTurner project individually. The file path to each of the test python files is specified in 'app_name.test_filename'. 
+For example to run the automated test_models.py in the books app created to test the books models.py the following was executed in the terminal:
+```
+python3 manage.py test books.test_models --verbosity=3 --settings=books.test_settings
+```
+All models, forms and views have been tested within each app using automated testing.
+
+## Automated Testing
+### Django unit testing
+The page_turner project consists of 4 main apps. Within these apps are automated testing files designed to test the models, forms and views within each app. We can run each of these tests seperately. I was aware of the want and need to implement automated testing from the begining of the porject. I chose to first complete the development of all funcitonality first and run the automated testing at the end. The automated tests found a few bugs related to the form handling and submission of invalid form entries making it quick and easy to locate and fix the bugs. On reflecton I would like to have, and will in the future implement and run automated testing along side development in order to increase productivity. 
+
+### about_us App
+**test_models.py**
+
+![about us Testing models](documentation/automated_testing/about_us.test_models.png)
+
+**test_views.py**
+
+![about us Testing views](documentation/automated_testing/about_us.test_views.png)
+
+
+### book_request App
+**test_models.py**
+
+![book_request Testing models](documentation/automated_testing/book_request.test_models.png)
+
+**test_views.py**
+
+![book_request Testing views](documentation/automated_testing/book_request.test_views.png)
+
+**test_forms.py**
+
+![book_request Testing forms](documentation/automated_testing/book_request.test_forms.png)
+
+
+### books App
+**test_models.py**
+
+![books Testing models](documentation/automated_testing/books.test_models.png)
+
+**test_views.py**
+
+![books Testing views](documentation/automated_testing/books.test_views.png)
+
+**test_forms.py**
+
+![books Testing forms](documentation/automated_testing/books.test_forms.png)
+
+
+### user_profile App
+**test_views.py**
+
+![user_profile Testing views](documentation/automated_testing/user_profile.test_views.png)
+
+**test_forms.py**
+
+![user_profile Testing forms](documentation/automated_testing/user_profile.test_forms.png)
+
+
+The sqlite database was used when running automated tests.
+
+The sqlite3 has not been used during the development of the project. The PostgresSQL database was instead used from the beginning of the project. 
+
+Within each app I have created the automated testing files as required to test models, forms and views. I have deleted the test.py files from all apps along with and admin.py and models.py where they are not being used.
+
+I have created a seperate test_settings.py located in the page_turner app along with my settings.py. This test_settings is called when running tests. It extends and overwrites parts of the settings.py required to connect to the sqlite database for testing.
+
+To run each of the 14 test files the following command was used: 
+```
+python3 manage.py test <app name>.<test file name> --verbosity=3 --settings=page_turner.test_settings
+```
+
+## Validation
+### HTML Validation
+
+No warnings or errors were found when passing each of my HTML templates through the [W3C](https://validator.w3.org/) validator. I have manually run these checks by copying each of the HTML templates source code (Ctrl+U) and pasting it into the validator. I have also run the validator checks by directly passing in the deployed URL path of each deployed page. 
+
+#### Complete HTML Validation Reports
+
+- [Homepage - Report](documentation/w3c_html_validation/home-html-validator.png)
+
+- [About Us - Report](documentation/w3c_html_validation/about-html-validator.png)
+
+- [Books - Report](documentation/w3c_html_validation/books-html-validator.png)
+
+- [Book Detail - Report](documentation/w3c_html_validation/details-html-validator.png)
+
+- [Profile - Report](documentation/w3c_html_validation/profile-html-validator.png)
+
+- [Request A Book - Report](documentation/w3c_html_validation/request-html-validator.png)
+
+### CSS Validation
+
+No warnings or errors were found when passing the css through the [W3C (Jigsaw)](https://jigsaw.w3.org/css-validator/#validate_by_uri). I have manually run these checks by copying each of the deployed page URLs and pasting them into the validator.
+
+#### Complete CSS Validation Reports
+
+- [Homepage - Report](documentation/w3c_css_validation/home-css-validator.png)
+
+- [About Us - Report](documentation/w3c_css_validation/about-css-validator.png)
+
+- [Books - Report](documentation/w3c_css_validation/books-css-validator.png)
+
+- [Book Detail - Report](documentation/w3c_css_validation/details-css-validator.png)
+
+- [Profile - Report](documentation/w3c_css_validation/profile-css-validator.png)
+
+- [Request A Book - Report](documentation/w3c_css_validation/request-css-validator.png)
+
+### JS Validation
+
+No warning or error messages were found when passing the java script files through the [JSHint](https://www.jshint.com/) validator. However, the validator has picked up in the comments.js that the bootstrap variable is not defined, but this variable is needed for the generation of the modal. 
+
+#### Complete Java Script Validation Reports
+
+- [Back Button JS - Report](documentation/jshint_validation/back_button_jshint_validation.png)
+
+- [Base JS - Report](documentation/jshint_validation/base_jshint_validation.png)
+
+- [Comment JS - Report](documentation/jshint_validation/comment_jshint_validation.png)
+
+- [Ratings JS - Report](documentation/jshint_validation/rating_jshint_validation.png)
+
+
+### Python Validation
+
+No warnings or errors were found when the python code was passed through Valentin Bryukhanov's [online validation tool](http://pep8online.com/). According to the reports, the code is [Pep 8-compliant](https://legacy.python.org/dev/peps/pep-0008/). This checking was done manually by copying python code and pasting it into the validator.
+
+
+
+#### Complete Python Validation Reports
